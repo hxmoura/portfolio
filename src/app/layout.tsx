@@ -1,5 +1,15 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
+
+const segoeUI = localFont({
+  src: "../assets/fonts/SegoeUI.ttf",
+});
+
+const BlueParadise = localFont({
+  src: "../assets/fonts/BlueParadise.otf",
+  variable: "--font-BlueParadise",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -12,8 +22,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="pt-BR">
+      <body className={`${segoeUI.className} ${BlueParadise.variable}`}>
+        {children}
+      </body>
     </html>
   );
 }
