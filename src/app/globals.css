@@ -2,4 +2,11 @@
 
 @theme {
   --font-BlueParadise: var(--font-BlueParadise);
+
+  --color-brand-50: #f4f4f4;
+  --color-brand-300: #AFAFAF;
+  --color-brand-500: #8B8B8B;
+  --color-brand-700: #2F2F2F;
+  --color-brand-800: #232323;
+  --color-brand-900: #141414;
 }
