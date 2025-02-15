@@ -19,13 +19,13 @@ export default function Header() {
         <Link
           target="_blank"
           href="https://github.com/hxmoura"
-          className="bg-brand-50 rounded-full p-2"
+          className="bg-brand-50 dark:bg-brand-800 rounded-full p-2"
         >
           <RiGithubFill size={20} />
         </Link>
         <Link
           href="mailto:hxmoura@hotmail.com"
-          className="bg-brand-50 rounded-full p-2"
+          className="bg-brand-50 dark:bg-brand-800 rounded-full p-2"
         >
           <RiAtLine size={20} />
         </Link>

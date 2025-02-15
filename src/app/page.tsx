@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <Container>
       <Header />
-      <main className="flex-1 text-brand-500">content</main>
+      <main className="flex-1">content</main>
       <Footer />
     </Container>
   );

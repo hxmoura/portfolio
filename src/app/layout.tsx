@@ -23,7 +23,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${segoeUI.className} ${BlueParadise.variable}`}>
+      <body
+        className={`${segoeUI.className} ${BlueParadise.variable} text-brand-700 dark:text-white bg-white dark:bg-brand-900`}
+      >
         {children}
       </body>
     </html>

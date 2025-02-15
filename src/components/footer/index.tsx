@@ -4,14 +4,14 @@ export default function Footer() {
   return (
     <footer className="flex flex-col items-center gap-2">
       <div className="flex gap-5 justify-center flex-wrap">
-        <p className="text-sm text-brand-500">
+        <p className="text-sm text-brand-500 dark:text-brand-300">
           Tema: <button className="underline cursor-pointer">Sistema</button>
         </p>
-        <p className="text-sm text-brand-500">
+        <p className="text-sm text-brand-500 dark:text-brand-300">
           Idioma:{" "}
           <button className="underline cursor-pointer">Português</button>
         </p>
-        <button className="text-sm text-brand-500">
+        <button className="text-sm text-brand-500 dark:text-brand-300">
           <Link
             target="_blank"
             href="https://github.com/hxmoura/portfolio-v2"
@@ -21,7 +21,7 @@ export default function Footer() {
           </Link>
         </button>
       </div>
-      <p className="text-sm text-brand-500 text-center">
+      <p className="text-sm text-brand-500 dark:text-brand-300 text-center">
         © hxmoura {new Date().getFullYear()} - Todos os direitos reservados
       </p>
     </footer>
