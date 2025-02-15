@@ -4,9 +4,11 @@
   --font-BlueParadise: var(--font-BlueParadise);
 
   --color-brand-50: #f4f4f4;
-  --color-brand-300: #AFAFAF;
-  --color-brand-500: #8B8B8B;
-  --color-brand-700: #2F2F2F;
+  --color-brand-300: #afafaf;
+  --color-brand-500: #8b8b8b;
+  --color-brand-700: #2f2f2f;
   --color-brand-800: #232323;
   --color-brand-900: #141414;
+
+  --breakpoint-sm: 36rem;
 }
