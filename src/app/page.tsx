@@ -1,3 +1,13 @@
+import Container from "@/components/container";
+
 export default function Home() {
-  return <h1 className="text-red-500">home page</h1>;
+  return (
+    <Container>
+      <header>header</header>
+
+      <main className="flex-1">content</main>
+
+      <footer>footer</footer>
+    </Container>
+  );
 }
