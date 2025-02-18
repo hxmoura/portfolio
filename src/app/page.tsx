@@ -1,7 +1,11 @@
+import casamoura from "@/assets/images/casamoura.png";
+import localize from "@/assets/images/localize.png";
+import todolist from "@/assets/images/todolist.png";
 import Container from "@/components/container";
 import Experience from "@/components/experience";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import Project from "@/components/project";
 import SectionTitle from "@/components/sectionTitle";
 
 export default function Home() {
@@ -36,6 +40,29 @@ export default function Home() {
               description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
+            />
+          </div>
+        </section>
+        <section>
+          <SectionTitle>Projetos</SectionTitle>
+          <div className="flex flex-col gap-5">
+            <Project
+              title="Casa Moura"
+              description="Ecommerce de materiais para construção"
+              image={casamoura}
+              redirectUrl="#"
+            />
+            <Project
+              title="Todolist"
+              description="Clássico gerenciador de tarefas e atividades diárias"
+              image={todolist}
+              redirectUrl="#"
+            />
+            <Project
+              title="Localize"
+              description="Busca de informações do CEP"
+              image={localize}
+              redirectUrl="#"
             />
           </div>
         </section>
