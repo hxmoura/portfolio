@@ -1,12 +1,15 @@
 import casamoura from "@/assets/images/casamoura.png";
 import localize from "@/assets/images/localize.png";
 import todolist from "@/assets/images/todolist.png";
+import CardPost from "@/components/cardPost";
 import Container from "@/components/container";
 import Experience from "@/components/experience";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import Project from "@/components/project";
 import SectionTitle from "@/components/sectionTitle";
+import { RiArrowRightLine } from "@remixicon/react";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -65,6 +68,43 @@ export default function Home() {
               redirectUrl="#"
             />
           </div>
+        </section>
+        <section>
+          <SectionTitle>Conteúdos</SectionTitle>
+
+          <div className="space-y-1">
+            <CardPost
+              redirectUrl="#"
+              title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+              date="09/02/2025"
+            />
+            <CardPost
+              redirectUrl="#"
+              title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+              date="09/02/2025"
+            />
+            <CardPost
+              redirectUrl="#"
+              title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+              date="09/02/2025"
+            />
+            <CardPost
+              redirectUrl="#"
+              title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+              date="09/02/2025"
+            />
+          </div>
+
+          <Link
+            className="flex items-center gap-1 mt-7 text-brand-500 dark:text-brand-300 group sm:hover:underline w-fit"
+            href="#"
+          >
+            <span>Ver mais</span>
+            <RiArrowRightLine
+              size={16}
+              className="sm:group-hover:translate-x-1.5 transition-transform duration-300"
+            />
+          </Link>
         </section>
       </main>
       <Footer />
