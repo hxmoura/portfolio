@@ -8,19 +8,20 @@ import Footer from "@/components/footer";
 import Header from "@/components/header";
 import Project from "@/components/project";
 import SectionTitle from "@/components/sectionTitle";
+import animationBlur from "@/utils/animationBlur";
 import { RiArrowRightLine } from "@remixicon/react";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <Container>
-      <Header />
+      <Header animationBlurLevel={1} />
       <main className="flex flex-col flex-1 gap-20 my-20">
         <section>
-          <h3 className="font-semibold text-xl mb-5">
+          <h3 className={`font-semibold text-xl mb-5 ${animationBlur(2)}`}>
             Olá, sou Henrique Moura 👋
           </h3>
-          <p>
+          <p className={`${animationBlur(3)}`}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -28,16 +29,10 @@ export default function Home() {
           </p>
         </section>
         <section>
-          <SectionTitle>Experiência</SectionTitle>
+          <SectionTitle animationBlurLevel={4}>Experiência</SectionTitle>
           <div className="space-y-10">
             <Experience
-              title="Fundador | GTA Modificado Brasil"
-              date="2017-2022"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
-            />
-            <Experience
+              animationBlurLevel={5}
               title="Fundador | GTA Modificado Brasil"
               date="2017-2022"
               description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -47,21 +42,24 @@ export default function Home() {
           </div>
         </section>
         <section>
-          <SectionTitle>Projetos</SectionTitle>
+          <SectionTitle animationBlurLevel={6}>Projetos</SectionTitle>
           <div className="flex flex-col gap-5">
             <Project
+              animationBlurLevel={7}
               title="Casa Moura"
               description="Ecommerce de materiais para construção"
               image={casamoura}
               redirectUrl="#"
             />
             <Project
+              animationBlurLevel={8}
               title="Todolist"
               description="Clássico gerenciador de tarefas e atividades diárias"
               image={todolist}
               redirectUrl="#"
             />
             <Project
+              animationBlurLevel={9}
               title="Localize"
               description="Busca de informações do CEP"
               image={localize}
@@ -70,25 +68,29 @@ export default function Home() {
           </div>
         </section>
         <section>
-          <SectionTitle>Conteúdos</SectionTitle>
+          <SectionTitle animationBlurLevel={10}>Conteúdos</SectionTitle>
 
           <div className="space-y-1">
             <CardPost
+              animationBlurLevel={11}
               redirectUrl="#"
               title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
               date="09/02/2025"
             />
             <CardPost
+              animationBlurLevel={12}
               redirectUrl="#"
               title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
               date="09/02/2025"
             />
             <CardPost
+              animationBlurLevel={13}
               redirectUrl="#"
               title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
               date="09/02/2025"
             />
             <CardPost
+              animationBlurLevel={14}
               redirectUrl="#"
               title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
               date="09/02/2025"
@@ -96,7 +98,9 @@ export default function Home() {
           </div>
 
           <Link
-            className="flex items-center gap-1 mt-7 text-brand-500 dark:text-brand-300 group sm:hover:underline w-fit"
+            className={`flex items-center gap-1 mt-7 text-brand-500 dark:text-brand-300 group sm:hover:underline w-fit
+              ${animationBlur(15)}
+            `}
             href="#"
           >
             <span>Ver mais</span>
@@ -107,7 +111,7 @@ export default function Home() {
           </Link>
         </section>
       </main>
-      <Footer />
+      <Footer animationBlurLevel={16} />
     </Container>
   );
 }

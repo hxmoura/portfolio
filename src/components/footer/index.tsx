@@ -1,8 +1,17 @@
+import animationBlur from "@/utils/animationBlur";
 import Link from "next/link";
 
-export default function Footer() {
+type FooterProps = {
+  animationBlurLevel?: number;
+};
+
+export default function Footer({ animationBlurLevel }: FooterProps) {
   return (
-    <footer className="flex flex-col items-center gap-2">
+    <footer
+      className={`flex flex-col items-center gap-2 ${
+        animationBlurLevel && animationBlur(animationBlurLevel)
+      }`}
+    >
       <div className="flex gap-5 justify-center flex-wrap">
         <p className="text-sm text-brand-500 dark:text-brand-300">
           Tema: <button className="underline cursor-pointer">Sistema</button>

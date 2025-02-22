@@ -1,3 +1,4 @@
+import animationBlur from "@/utils/animationBlur";
 import { RiAddCircleFill } from "@remixicon/react";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
@@ -7,6 +8,7 @@ type ProjectProps = {
   description: string;
   image: StaticImageData | string;
   redirectUrl: string;
+  animationBlurLevel?: number;
 };
 
 export default function Project({
@@ -14,11 +16,14 @@ export default function Project({
   description,
   image,
   redirectUrl,
+  animationBlurLevel,
 }: ProjectProps) {
   return (
     <Link
       href={redirectUrl}
-      className="relative group overflow-hidden rounded-lg"
+      className={`relative group overflow-hidden rounded-lg ${
+        animationBlurLevel && animationBlur(animationBlurLevel)
+      }`}
     >
       <div className="absolute inset-0 flex justify-center items-center flex-col gap-3 opacity-0 sm:group-hover:opacity-100 transition-all duration-300 z-40">
         <RiAddCircleFill size={80} className="text-white" />

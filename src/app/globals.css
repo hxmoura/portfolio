@@ -11,4 +11,37 @@
   --color-brand-900: #141414;
 
   --breakpoint-sm: 36rem;
+
+  --animate-fade-in-blur: fade-in-blur 0.5s ease forwards;
+
+  @keyframes fade-in-blur {
+    from {
+      filter: blur(8px);
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0px);
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer components {
+  .load {
+    opacity: 0;
+    animation: var(--animate-fade-in-blur);
+  }
+}
+
+@layer utilities {
+  :root {
+    --delay-step: 0.12s;
+  }
+
+  @for $i from 1 to 30 {
+    .level-$i {
+      animation-delay: calc($i * var(--delay-step));
+    }
+  }
 }
