@@ -1,3 +1,4 @@
+import { ThemeProvider } from "@/context/ThemeContext";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -17,7 +18,8 @@ export const metadata: Metadata = {
     default: "hxmoura - Portfolio",
     template: "%s - hxmoura",
   },
-  description: "Desenvolvedor Full-Stack especializado em aplicações web e mobile.",
+  description:
+    "Desenvolvedor Full-Stack especializado em aplicações web e mobile.",
   openGraph: {
     title: "hxmoura - Portfolio",
     description: "Desenvolvedor Full-Stack",
@@ -45,12 +47,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
-      <body
-        className={`${segoeUI.className} ${BlueParadise.variable} text-brand-700 dark:text-white bg-white dark:bg-brand-900`}
-      >
-        {children}
-      </body>
-    </html>
+    <ThemeProvider>
+      <html lang="pt-BR">
+        <body
+          className={`${segoeUI.className} ${BlueParadise.variable} text-brand-700 dark:text-white bg-white dark:bg-brand-900`}
+        >
+          {children}
+        </body>
+      </html>
+    </ThemeProvider>
   );
 }

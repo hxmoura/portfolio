@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme=dark] *));
+
 @theme {
   --font-BlueParadise: var(--font-BlueParadise);
 
