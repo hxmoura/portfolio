@@ -24,7 +24,12 @@ const ThemeContext = createContext<ThemeContextType | null>(null);
 export const useTheme = () => useContext(ThemeContext)!;
 
 export function ThemeProvider({ children }: ThemeProvider) {
-  const [theme, setTheme] = useState<ThemeOptions>("system");
+  const [theme, setTheme] = useState<ThemeOptions>(getLocalTheme);
+
+  function getLocalTheme() {
+    const getTheme = localStorage.getItem("theme") as ThemeOptions;
+    return themes.includes(getTheme) ? getTheme : "system";
+  }
 
   const updateTheme = useCallback((theme: ThemeOptions) => {
     setTheme(theme);
@@ -34,10 +39,9 @@ export function ThemeProvider({ children }: ThemeProvider) {
 
   useEffect(() => {
     if (typeof localStorage !== "undefined") {
-      const getTheme = localStorage.getItem("theme") as ThemeOptions;
       const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
-      updateTheme(themes.includes(getTheme) ? getTheme : "system");
+      updateTheme(getLocalTheme());
 
       function handleSystemTheme(e: MediaQueryListEvent) {
         if (theme === "system") {
