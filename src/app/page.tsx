@@ -7,7 +7,7 @@ import Experience from "@/components/experience";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import Project from "@/components/project";
-import SectionTitle from "@/components/sectionTitle";
+import Title from "@/components/title";
 import animationBlur from "@/utils/animationBlur";
 import { RiArrowRightLine } from "@remixicon/react";
 import Link from "next/link";
@@ -29,7 +29,7 @@ export default function Home() {
           </p>
         </section>
         <section>
-          <SectionTitle animationBlurLevel={4}>Experiência</SectionTitle>
+          <Title animationBlurLevel={4}>Experiência</Title>
           <div className="space-y-10">
             <Experience
               animationBlurLevel={5}
@@ -42,7 +42,7 @@ export default function Home() {
           </div>
         </section>
         <section>
-          <SectionTitle animationBlurLevel={6}>Projetos</SectionTitle>
+          <Title animationBlurLevel={6}>Projetos</Title>
           <div className="flex flex-col gap-5">
             <Project
               animationBlurLevel={7}
@@ -68,7 +68,7 @@ export default function Home() {
           </div>
         </section>
         <section>
-          <SectionTitle animationBlurLevel={10}>Conteúdos</SectionTitle>
+          <Title animationBlurLevel={10}>Conteúdos</Title>
 
           <div className="space-y-1">
             <CardPost

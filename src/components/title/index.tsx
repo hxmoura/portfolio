@@ -5,7 +5,7 @@ type SectionTitleProps = {
   animationBlurLevel?: number;
 };
 
-export default function SectionTitle({
+export default function Title({
   children,
   animationBlurLevel,
 }: SectionTitleProps) {
