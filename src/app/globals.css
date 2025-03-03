@@ -41,9 +41,25 @@
     --delay-step: 0.12s;
   }
 
+  .disable-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .disable-scroll {
+    scrollbar-width: none;
+  }
+
   @for $i from 1 to 30 {
     .level-$i {
       animation-delay: calc($i * var(--delay-step));
     }
   }
+}
+
+.slick-custom li {
+  @apply grayscale-100;
+}
+
+.slick-custom li.slick-active {
+  @apply grayscale-0;
 }
