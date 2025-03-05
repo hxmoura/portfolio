@@ -1,5 +1,5 @@
-import { ThemeProvider } from "@/context/ThemeContext";
 import type { Metadata } from "next";
+import { ThemeProvider } from "next-themes";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -41,20 +41,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <ThemeProvider>
-      <html lang="pt-BR">
-        <body
-          className={`${segoeUI.className} ${BlueParadise.variable} text-brand-700 dark:text-white bg-white dark:bg-brand-900`}
-        >
-          {children}
-        </body>
-      </html>
-    </ThemeProvider>
+    <html lang="pt-BR" suppressHydrationWarning>
+      <body
+        className={`${segoeUI.className} ${BlueParadise.variable} text-brand-700 dark:text-white bg-white dark:bg-brand-900`}
+      >
+        <ThemeProvider enableSystem>{children}</ThemeProvider>
+      </body>
+    </html>
   );
 }

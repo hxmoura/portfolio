@@ -1,15 +1,31 @@
 "use client";
 
-import { useTheme } from "@/context/ThemeContext";
 import animationBlur from "@/utils/animationBlur";
+import { useTheme } from "next-themes";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 type FooterProps = {
   animationBlurLevel?: number;
 };
 
 export default function Footer({ animationBlurLevel }: FooterProps) {
-  const { theme, handleTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
+  function handleTheme() {
+    setTheme(
+      theme === "light" ? "dark" : theme === "dark" ? "system" : "light"
+    );
+  }
 
   return (
     <footer
@@ -21,9 +37,11 @@ export default function Footer({ animationBlurLevel }: FooterProps) {
         <p className="text-sm text-brand-500 dark:text-brand-300">
           Tema:{" "}
           <button className="underline cursor-pointer" onClick={handleTheme}>
-            {theme === "dark" && "Escuro"}
-            {theme === "light" && "Claro"}
-            {theme === "system" && "Sistema"}
+            {theme === "dark"
+              ? "Escuro"
+              : theme === "system"
+              ? "Sistema"
+              : "Claro"}
           </button>
         </p>
         <p className="text-sm text-brand-500 dark:text-brand-300">
