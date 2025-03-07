@@ -5,19 +5,21 @@ import CardPost from "@/components/cardPost";
 import Experience from "@/components/experience";
 import Project from "@/components/project";
 import Setup from "@/components/setup";
+import StaggedAnimation from "@/components/staggedAnimation";
 import Title from "@/components/title";
-import animationBlur from "@/utils/animationBlur";
 import { RiArrowRightLine } from "@remixicon/react";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <Setup spaceElements={80}>
+      <StaggedAnimation />
       <section>
-        <h3 className={`font-semibold text-xl mb-5 ${animationBlur(2)}`}>
+        <h3 className="font-semibold text-xl mb-5 animation-blur">
           Olá, sou Henrique Moura 👋
         </h3>
-        <p className={`${animationBlur(3)}`}>
+
+        <p className="animation-blur">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -25,10 +27,9 @@ export default function Home() {
         </p>
       </section>
       <section>
-        <Title animationBlurLevel={4}>Experiência</Title>
+        <Title>Experiência</Title>
         <div className="space-y-10">
           <Experience
-            animationBlurLevel={5}
             title="Fundador | GTA Modificado Brasil"
             date="2017-2022"
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -38,24 +39,21 @@ export default function Home() {
         </div>
       </section>
       <section>
-        <Title animationBlurLevel={6}>Projetos</Title>
+        <Title>Projetos</Title>
         <div className="flex flex-col gap-5">
           <Project
-            animationBlurLevel={7}
             title="Casa Moura"
             description="Ecommerce de materiais para construção"
             image={casamoura}
             redirectUrl="#"
           />
           <Project
-            animationBlurLevel={8}
             title="Todolist"
             description="Clássico gerenciador de tarefas e atividades diárias"
             image={todolist}
             redirectUrl="#"
           />
           <Project
-            animationBlurLevel={9}
             title="Localize"
             description="Busca de informações do CEP"
             image={localize}
@@ -64,29 +62,25 @@ export default function Home() {
         </div>
       </section>
       <section>
-        <Title animationBlurLevel={10}>Conteúdos</Title>
+        <Title>Conteúdos</Title>
 
         <div className="space-y-1">
           <CardPost
-            animationBlurLevel={11}
             redirectUrl="#"
             title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             date="09/02/2025"
           />
           <CardPost
-            animationBlurLevel={12}
             redirectUrl="#"
             title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             date="09/02/2025"
           />
           <CardPost
-            animationBlurLevel={13}
             redirectUrl="#"
             title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             date="09/02/2025"
           />
           <CardPost
-            animationBlurLevel={14}
             redirectUrl="#"
             title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             date="09/02/2025"
@@ -94,9 +88,7 @@ export default function Home() {
         </div>
 
         <Link
-          className={`flex items-center gap-1 mt-7 text-brand-500 dark:text-brand-300 group sm:hover:underline w-fit
-              ${animationBlur(15)}
-            `}
+          className="flex items-center gap-1 mt-7 text-brand-500 dark:text-brand-300 group sm:hover:underline w-fit animation-blur"
           href="#"
         >
           <span>Ver mais</span>

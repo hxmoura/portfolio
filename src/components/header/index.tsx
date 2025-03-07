@@ -1,18 +1,9 @@
-import animationBlur from "@/utils/animationBlur";
 import { RiAtLine, RiGithubFill, RiLinkedinFill } from "@remixicon/react";
 import Link from "next/link";
 
-type HeaderProps = {
-  animationBlurLevel?: number;
-};
-
-export default function Header({ animationBlurLevel }: HeaderProps) {
+export default function Header() {
   return (
-    <header
-      className={`flex justify-between ${
-        animationBlurLevel && animationBlur(animationBlurLevel)
-      }`}
-    >
+    <header className="flex justify-between animation-blur">
       <h1 className="font-BlueParadise text-2xl">
         <Link href="/">hxmoura</Link>
       </h1>

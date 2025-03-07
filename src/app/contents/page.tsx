@@ -1,5 +1,6 @@
 import BackButton from "@/components/backButton";
 import Setup from "@/components/setup";
+import StaggedAnimation from "@/components/staggedAnimation";
 import Title from "@/components/title";
 import { RiLink } from "@remixicon/react";
 import Link from "next/link";
@@ -7,13 +8,14 @@ import Link from "next/link";
 export default function Contents() {
   return (
     <Setup>
+      <StaggedAnimation />
       <BackButton redirect="/" />
       <Title>Conteúdos</Title>
       <ul>
         {Array.from({ length: 8 }).map((_, index) => (
           <li
             key={index}
-            className="border-b border-brand-500 dark:border-brand-300 border-dashed last:border-none"
+            className="border-b border-brand-500 dark:border-brand-300 border-dashed last:border-none animation-blur"
           >
             <Link
               href="/"

@@ -30,29 +30,19 @@
 }
 
 @layer components {
-  .load {
-    opacity: 0;
+  .animation-blur {
+    @apply opacity-0;
     animation: var(--animate-fade-in-blur);
   }
 }
 
 @layer utilities {
-  :root {
-    --delay-step: 0.12s;
-  }
-
   .disable-scroll::-webkit-scrollbar {
     display: none;
   }
 
   .disable-scroll {
     scrollbar-width: none;
-  }
-
-  @for $i from 1 to 30 {
-    .level-$i {
-      animation-delay: calc($i * var(--delay-step));
-    }
   }
 }
 

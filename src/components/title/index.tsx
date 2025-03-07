@@ -1,21 +1,9 @@
-import animationBlur from "@/utils/animationBlur";
-
 type SectionTitleProps = {
   children: React.ReactNode;
-  animationBlurLevel?: number;
 };
 
-export default function Title({
-  children,
-  animationBlurLevel,
-}: SectionTitleProps) {
+export default function Title({ children }: SectionTitleProps) {
   return (
-    <h4
-      className={`font-semibold text-lg mb-7 ${
-        animationBlurLevel && animationBlur(animationBlurLevel)
-      }`}
-    >
-      {children}
-    </h4>
+    <h4 className="font-semibold text-lg mb-7 animation-blur">{children}</h4>
   );
 }

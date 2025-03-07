@@ -1,6 +1,5 @@
 "use client";
 
-import animationBlur from "@/utils/animationBlur";
 import { RiArrowDropLeftLine, RiArrowDropRightLine } from "@remixicon/react";
 import Image from "next/image";
 import { useRef } from "react";
@@ -8,14 +7,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 
 type CarouselProps = {
-  animationBlurLevel?: number;
   images: string[];
 };
 
-export default function Carousel({
-  animationBlurLevel,
-  images,
-}: CarouselProps) {
+export default function Carousel({ images }: CarouselProps) {
   const dotsRef = useRef<HTMLUListElement>(null);
   const enableScrolling = images.length >= 5;
 
@@ -55,7 +50,7 @@ export default function Carousel({
         )}
 
         <ul
-          className={`flex gap-3 overflow-x-scroll mt-3 disable-scroll scroll-smooth
+          className={`flex gap-3 overflow-x-scroll mt-3 disable-scroll scroll-smooth animation-blur
             ${!enableScrolling && "justify-center"}
           `}
           ref={dotsRef}
@@ -95,10 +90,7 @@ export default function Carousel({
   }
 
   return (
-    <Slider
-      {...settings}
-      className={`${animationBlurLevel && animationBlur(animationBlurLevel)}`}
-    >
+    <Slider {...settings} className="animation-blur">
       {images.map((image) => (
         <div key={image} className="aspect-video w-full outline-none">
           <Image
