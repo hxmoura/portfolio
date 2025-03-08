@@ -1,7 +1,7 @@
+import PrimaryButton from "@/components/primaryButton";
 import Setup from "@/components/setup";
 import StaggedAnimation from "@/components/staggedAnimation";
 import Title from "@/components/title";
-import Link from "next/link";
 
 export default function NotFound() {
   return (
@@ -15,12 +15,7 @@ export default function NotFound() {
           Pode ser que você digitou a URL errada, ou a página não está mais
           disponível.
         </p>
-        <Link
-          href="/"
-          className="rounded-lg py-2 px-3 text-white bg-brand-700 dark:bg-white dark:text-brand-700 animation-blur sm:hover:-translate-y-1 transition-transform duration-300 text-sm"
-        >
-          Voltar para o início
-        </Link>
+        <PrimaryButton onClick="/">Voltar para o inicio</PrimaryButton>
       </div>
     </Setup>
   );

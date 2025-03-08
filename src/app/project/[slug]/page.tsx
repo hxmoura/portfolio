@@ -1,6 +1,8 @@
 import BackButton from "@/components/backButton";
 import Badge from "@/components/badge";
 import Carousel from "@/components/carousel";
+import PrimaryButton from "@/components/primaryButton";
+import SecondaryButton from "@/components/secondaryButton";
 import Setup from "@/components/setup";
 import StaggedAnimation from "@/components/staggedAnimation";
 import Status from "@/components/status";
@@ -10,7 +12,6 @@ import {
   RiFigmaLine,
   RiSearchEyeLine,
 } from "@remixicon/react";
-import Link from "next/link";
 
 export default function Project() {
   return (
@@ -24,30 +25,18 @@ export default function Project() {
         </div>
 
         <div className="flex flex-wrap gap-3">
-          <Link
-            href="https://google.com"
-            target="_blank"
-            className="flex gap-2 items-center px-3 py-2 rounded-lg bg-brand-700 text-white dark:bg-white dark:text-brand-700 h-10 animation-blur"
-          >
+          <PrimaryButton onClick="/" openInNewTab>
             <RiSearchEyeLine size={16} />
             <span className="text-sm">Visualizar</span>
-          </Link>
-          <Link
-            href="https://google.com"
-            target="_blank"
-            className="flex gap-2 items-center px-3 py-2 rounded-lg bg-brand-50 dark:bg-brand-700 h-10 animation-blur"
-          >
+          </PrimaryButton>
+          <SecondaryButton onClick="/" openInNewTab>
             <RiCodeSSlashLine size={16} />
             <span className="text-sm">Código</span>
-          </Link>
-          <Link
-            href="https://google.com"
-            target="_blank"
-            className="flex gap-2 items-center px-3 py-2 rounded-lg bg-brand-50 dark:bg-brand-700 h-10 animation-blur"
-          >
+          </SecondaryButton>
+          <SecondaryButton onClick="/" openInNewTab>
             <RiFigmaLine size={16} />
             <span className="text-sm">UI Design</span>
-          </Link>
+          </SecondaryButton>
         </div>
       </section>
 
