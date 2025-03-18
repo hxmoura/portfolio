@@ -1,4 +1,4 @@
-import Input from "@/components/Input";
+import Input from "@/components/input";
 import Modal from "@/components/modal";
 import PrimaryButton from "@/components/primaryButton";
 import SecondaryButton from "@/components/secondaryButton";

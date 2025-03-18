@@ -1,4 +1,4 @@
-import Input from "@/components/Input";
+import Input from "@/components/input";
 import PrimaryButton from "@/components/primaryButton";
 import Title from "@/components/title";
 import database from "@/services/database";
