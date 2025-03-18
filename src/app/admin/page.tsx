@@ -6,6 +6,9 @@ import { auth } from "@/db/firebaseClient";
 import { RiGithubFill } from "@remixicon/react";
 import { GithubAuthProvider, signInWithPopup } from "firebase/auth";
 import { useState } from "react";
+import Experience from "./components/Experience";
+import Presentation from "./components/Presentation";
+import Project from "./components/Project";
 
 interface User {
   hasPermission: boolean;
@@ -41,8 +44,10 @@ export default function Admin() {
   return (
     <>
       {user.hasPermission ? (
-        <Setup>
-          <h1>Usuario autorizado</h1>
+        <Setup spaceElements={80}>
+          <Presentation />
+          <Experience />
+          <Project />
         </Setup>
       ) : (
         <main className="flex flex-col items-center justify-center h-screen">
