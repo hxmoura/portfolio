@@ -7,7 +7,7 @@ import {
   DocumentData,
   getDocs,
   onSnapshot,
-  setDoc,
+  updateDoc,
 } from "firebase/firestore";
 
 const database = {
@@ -32,7 +32,7 @@ const database = {
   ) {
     delete data.id;
 
-    await setDoc(doc(db, collectionName, documentId), data);
+    await updateDoc(doc(db, collectionName, documentId), data);
   },
 
   async deleteDocument(collectionName: string, documentId: string) {
