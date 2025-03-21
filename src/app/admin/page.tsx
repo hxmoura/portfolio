@@ -28,7 +28,7 @@ export default function Admin() {
       .then(async (result) => {
         const token = await result.user.getIdToken();
 
-        const request = await fetch("/api", {
+        const request = await fetch("/api/auth", {
           method: "POST",
           body: JSON.stringify({ token }),
         });

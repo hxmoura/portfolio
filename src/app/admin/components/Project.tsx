@@ -4,7 +4,8 @@ import PrimaryButton from "@/components/primaryButton";
 import SecondaryButton from "@/components/secondaryButton";
 import Title from "@/components/title";
 import database from "@/services/database";
-import { RiDeleteBinLine } from "@remixicon/react";
+import { RiDeleteBinLine, RiHeartFill } from "@remixicon/react";
+import Image from "next/image";
 import { ChangeEvent, useEffect, useState } from "react";
 
 enum ProjectStatus {
@@ -15,6 +16,8 @@ enum ProjectStatus {
 interface Project {
   name: string;
   shortDescription: string;
+  wallpaper: string;
+  images: string[];
   slug: string;
   status: ProjectStatus;
   linkProject: string;
@@ -23,13 +26,15 @@ interface Project {
   description: string;
   features: string;
   technologies: string;
-  id: string | null;
+  id: string;
 }
 
 export default function Project() {
   const initialProject = {
     name: "",
     shortDescription: "",
+    wallpaper: "",
+    images: [],
     slug: "",
     status: ProjectStatus.development,
     linkProject: "",
@@ -38,11 +43,16 @@ export default function Project() {
     description: "",
     features: "",
     technologies: "",
-    id: null,
+    id: "",
   };
   const [projects, setProjects] = useState<Project[]>([]);
   const [modal, setModal] = useState(false);
   const [fields, setFields] = useState<Project>(initialProject);
+
+  useEffect(() => {
+    const listener = database.listenColletionUpdate("project", setProjects);
+    return () => listener();
+  }, []);
 
   function selectProject(project: Project) {
     setFields(project);
@@ -59,7 +69,7 @@ export default function Project() {
   }
 
   function deleteProject() {
-    database.deleteDocument("project", fields.id!);
+    database.deleteDocument("project", fields.id);
     setModal(false);
   }
 
@@ -78,10 +88,41 @@ export default function Project() {
     setModal(true);
   }
 
-  useEffect(() => {
-    const listener = database.listenColletionUpdate("project", setProjects);
-    return () => listener();
-  }, []);
+  async function addImage(evt: ChangeEvent<HTMLInputElement>) {
+    const { files } = evt.target;
+
+    if (files) {
+      const form = new FormData();
+      form.append("image", files[0]);
+
+      const response = await fetch("/api/upload", {
+        method: "POST",
+        body: form,
+      });
+      const data = await response.json();
+
+      if (data) {
+        setFields((prev) => ({
+          ...prev,
+          images: [...prev.images, data.url],
+        }));
+      }
+    }
+  }
+
+  function deleteImage(deleteUrl: string) {
+    setFields((prev) => ({
+      ...prev,
+      images: prev.images.filter((image) => image !== deleteUrl),
+    }));
+  }
+
+  function selectWallpaper(image: string) {
+    setFields((prev) => ({
+      ...prev,
+      wallpaper: image,
+    }));
+  }
 
   return (
     <section className="flex flex-col gap-3.5">
@@ -134,12 +175,15 @@ export default function Project() {
             onChange={handleField}
             name="description"
             label="Descrição"
+            multiline
           />
+
           <Input
             value={fields.features}
             onChange={handleField}
             name="features"
             label="Recursos"
+            multiline
           />
           <Input
             value={fields.technologies}
@@ -147,6 +191,7 @@ export default function Project() {
             name="technologies"
             label="Tecnologias"
           />
+
           <fieldset>
             <div className="flex items-center gap-2">
               <input
@@ -171,6 +216,38 @@ export default function Project() {
               <label htmlFor="development">Desenvolvimento</label>
             </div>
           </fieldset>
+
+          <input
+            type="file"
+            onChange={addImage}
+            className="file:bg-brand-700 file:text-white dark:file:bg-white dark:file:text-brand-700 file:rounded-lg file:py-2 file:px-3 file:cursor-pointer"
+          />
+          <div className="flex gap-2">
+            {fields.images &&
+              fields.images.map((image, index) => (
+                <div key={index} className="relative w-28 h-16">
+                  <Image
+                    src={image}
+                    fill
+                    className="object-cover rounded-lg"
+                    alt=""
+                    onClick={() => selectWallpaper(image)}
+                  />
+                  <button
+                    className="bg-red-500 rounded-full h-6 w-6 flex items-center justify-center text-white absolute top-0 right-0"
+                    onClick={() => deleteImage(image)}
+                  >
+                    <RiDeleteBinLine size={16} />
+                  </button>
+                  <RiHeartFill
+                    size={24}
+                    className={`text-green-300 absolute bottom-0 left-0 ${
+                      image === fields.wallpaper ? "block" : "hidden"
+                    }`}
+                  />
+                </div>
+              ))}
+          </div>
 
           <div className="flex gap-2">
             <PrimaryButton onClick={addOrUpdateProject}>
@@ -206,10 +283,11 @@ export default function Project() {
               <strong>Descrição: </strong>
               {project.shortDescription}
             </span>
-            <span>
-              <strong>features: </strong>
-              {project.features}
-            </span>
+            <ul>
+              {project.features.split("\n").map((line, index) => (
+                <li key={index}>{line}</li>
+              ))}
+            </ul>
             <span>
               <strong>linkCode: </strong>
               {project.linkCode}
