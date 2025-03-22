@@ -4,11 +4,11 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 const segoeUI = localFont({
-  src: "../assets/fonts/SegoeUI.ttf",
+  src: "../fonts/SegoeUI.ttf",
 });
 
 const BlueParadise = localFont({
-  src: "../assets/fonts/BlueParadise.otf",
+  src: "../fonts/BlueParadise.otf",
   variable: "--font-BlueParadise",
 });
 
