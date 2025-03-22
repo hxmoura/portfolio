@@ -2,6 +2,7 @@
 
 import CardPost from "@/components/cardPost";
 import Experience from "@/components/experience";
+import Loading from "@/components/loading";
 import Project from "@/components/project";
 import Setup from "@/components/setup";
 import StaggedAnimation from "@/components/staggedAnimation";
@@ -43,7 +44,7 @@ export default function Home() {
   }, []);
 
   if (loading) {
-    return <h1>carregando...</h1>;
+    return <Loading />;
   }
 
   return (
