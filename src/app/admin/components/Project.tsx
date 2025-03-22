@@ -84,6 +84,7 @@ export default function Project() {
       if (data) {
         setFields((prev) => ({
           ...prev,
+          wallpaper: prev.images.length === 0 ? data.url : prev.wallpaper,
           images: [...prev.images, data.url],
         }));
       }
