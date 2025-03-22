@@ -4,39 +4,19 @@ import PrimaryButton from "@/components/primaryButton";
 import SecondaryButton from "@/components/secondaryButton";
 import Title from "@/components/title";
 import database from "@/services/database";
+import { Project as TypeProject } from "@/types/project";
 import { RiDeleteBinLine, RiHeartFill } from "@remixicon/react";
 import Image from "next/image";
 import { ChangeEvent, useEffect, useState } from "react";
 
-enum ProjectStatus {
-  "development" = "development",
-  "concluded" = "concluded",
-}
-
-interface Project {
-  name: string;
-  shortDescription: string;
-  wallpaper: string;
-  images: string[];
-  slug: string;
-  status: ProjectStatus;
-  linkProject: string;
-  linkCode: string;
-  linkUI: string;
-  description: string;
-  features: string;
-  technologies: string;
-  id: string;
-}
-
 export default function Project() {
-  const initialProject = {
+  const initialProject: TypeProject = {
     name: "",
     shortDescription: "",
     wallpaper: "",
     images: [],
     slug: "",
-    status: ProjectStatus.development,
+    status: "development",
     linkProject: "",
     linkCode: "",
     linkUI: "",
@@ -45,16 +25,16 @@ export default function Project() {
     technologies: "",
     id: "",
   };
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [projects, setProjects] = useState<TypeProject[]>([]);
   const [modal, setModal] = useState(false);
-  const [fields, setFields] = useState<Project>(initialProject);
+  const [fields, setFields] = useState<TypeProject>(initialProject);
 
   useEffect(() => {
     const listener = database.listenColletionUpdate("project", setProjects);
     return () => listener();
   }, []);
 
-  function selectProject(project: Project) {
+  function selectProject(project: TypeProject) {
     setFields(project);
     setModal(true);
   }
@@ -199,7 +179,7 @@ export default function Project() {
                 id="concluded"
                 name="status"
                 value="concluded"
-                checked={fields.status === ProjectStatus.concluded}
+                checked={fields.status === "concluded"}
                 onChange={handleField}
               />
               <label htmlFor="concluded">Concluido</label>
@@ -210,7 +190,7 @@ export default function Project() {
                 id="development"
                 name="status"
                 value="development"
-                checked={fields.status === ProjectStatus.development}
+                checked={fields.status === "development"}
                 onChange={handleField}
               />
               <label htmlFor="development">Desenvolvimento</label>

@@ -4,37 +4,31 @@ import PrimaryButton from "@/components/primaryButton";
 import SecondaryButton from "@/components/secondaryButton";
 import Title from "@/components/title";
 import database from "@/services/database";
+import { Experience as TypeExperience } from "@/types/experience";
 import { RiDeleteBinLine } from "@remixicon/react";
 import { ChangeEvent, useEffect, useState } from "react";
-
-export interface Experience {
-  title: string;
-  description: string;
-  date: string;
-  id: string | null;
-}
 
 export default function Experience() {
   const initialFields = {
     title: "",
     description: "",
     date: "",
-    id: null,
+    id: "",
   };
 
-  const [experiences, setExperiences] = useState<Experience[]>([]);
+  const [experiences, setExperiences] = useState<TypeExperience[]>([]);
   const [modal, setModal] = useState(false);
-  const [fields, setFields] = useState<Experience>(initialFields);
+  const [fields, setFields] = useState<TypeExperience>(initialFields);
 
   useEffect(() => {
-    const listener = database.listenColletionUpdate<Experience>(
+    const listener = database.listenColletionUpdate<TypeExperience>(
       "experience",
       setExperiences
     );
     return () => listener();
   }, []);
 
-  function selectExperience(exp: Experience) {
+  function selectExperience(exp: TypeExperience) {
     setFields(exp);
     setModal(true);
   }
@@ -54,7 +48,7 @@ export default function Experience() {
   }
 
   async function deleteExperience() {
-    await database.deleteDocument("experience", fields.id!);
+    await database.deleteDocument("experience", fields.id);
     setModal(false);
   }
 
