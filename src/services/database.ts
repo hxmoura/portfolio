@@ -5,6 +5,7 @@ import {
   deleteDoc,
   doc,
   DocumentData,
+  getDoc,
   getDocs,
   onSnapshot,
   updateDoc,
@@ -14,6 +15,14 @@ const database = {
   async getCollection(collectionName: string) {
     const querySnapshot = await getDocs(collection(db, collectionName));
     return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+  },
+
+  async getDocument(collectionName: string, documentId: string) {
+    const docSnap = await getDoc(doc(db, collectionName, documentId));
+
+    if (docSnap.exists()) {
+      return { ...docSnap.data(), id: docSnap.id };
+    }
   },
 
   async createDocument<T extends DocumentData>(
@@ -49,6 +58,17 @@ const database = {
         id: doc.id,
       })) as T[];
 
+      callback(data);
+    });
+  },
+
+  listenDocumentUpdate<T>(
+    collectionName: string,
+    documentId: string,
+    callback: React.Dispatch<React.SetStateAction<T>>
+  ) {
+    return onSnapshot(doc(db, collectionName, documentId), (doc) => {
+      const data = { ...doc.data(), id: doc.id } as T;
       callback(data);
     });
   },
