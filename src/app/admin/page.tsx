@@ -1,25 +1,52 @@
 "use client";
 
+import Loading from "@/components/loading";
 import PrimaryButton from "@/components/primaryButton";
 import Setup from "@/components/setup";
 import { auth } from "@/db/firebaseClient";
 import { RiGithubFill } from "@remixicon/react";
-import { GithubAuthProvider, signInWithPopup } from "firebase/auth";
-import { useState } from "react";
+import {
+  GithubAuthProvider,
+  onAuthStateChanged,
+  signInWithPopup,
+} from "firebase/auth";
+import { useEffect, useState } from "react";
 import Experience from "./components/Experience";
 import Presentation from "./components/Presentation";
 import Project from "./components/Project";
 
-interface User {
+interface Authentication {
   hasPermission: boolean;
-  isLogged: boolean;
+  errorMessage: string;
+}
+
+async function userValidate(token: string) {
+  const request = await fetch("/api/auth", {
+    method: "POST",
+    body: JSON.stringify({ token }),
+  });
+
+  const data = await request.json();
+  return data;
 }
 
 export default function Admin() {
-  const [user, setUser] = useState<User>({
+  const [authentication, setAuthentication] = useState<Authentication>({
     hasPermission: false,
-    isLogged: false,
+    errorMessage: "",
   });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const token = await user.getIdToken();
+        const data = await userValidate(token);
+        setAuthentication(data);
+      }
+      setLoading(false);
+    });
+  }, []);
 
   function handleAuthentication() {
     const provider = new GithubAuthProvider();
@@ -27,23 +54,26 @@ export default function Admin() {
     signInWithPopup(auth, provider)
       .then(async (result) => {
         const token = await result.user.getIdToken();
-
-        const request = await fetch("/api/auth", {
-          method: "POST",
-          body: JSON.stringify({ token }),
-        });
-
-        const data = await request.json();
-        setUser(data);
+        const data = await userValidate(token);
+        setAuthentication(data);
       })
       .catch((error) => {
         console.log(error.message);
+        setAuthentication({
+          hasPermission: false,
+          errorMessage:
+            "Não foi possível concluir a autenticação, tente novamente!",
+        });
       });
+  }
+
+  if (loading) {
+    return <Loading />;
   }
 
   return (
     <>
-      {user.hasPermission ? (
+      {authentication.hasPermission ? (
         <Setup spaceElements={80}>
           <Presentation />
           <Experience />
@@ -55,9 +85,9 @@ export default function Admin() {
             <RiGithubFill size={24} />
             <span>Login com Github</span>
           </PrimaryButton>
-          {user.isLogged && !user.hasPermission && (
+          {!authentication.hasPermission && authentication.errorMessage && (
             <p className="text-center mt-3 text-red-500">
-              Você não possui permissão para acessar a área administrativa!
+              {authentication.errorMessage}
             </p>
           )}
         </main>

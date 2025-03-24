@@ -11,17 +11,22 @@ export async function POST(request: Request) {
       if (githubID === process.env.GITHUB_AUTHORIZED_ID) {
         return Response.json({
           hasPermission: true,
-          isLogged: true,
+          errorMessage: "",
         });
       } else {
         admin.auth().deleteUser(data.uid);
         return Response.json({
           hasPermission: false,
-          isLogged: true,
+          errorMessage:
+            "Você não possui permissão para acessar a área administrativa!",
         });
       }
-    } catch (err) {
-      console.log(err);
+    } catch {
+      return Response.json({
+        hasPermission: false,
+        errorMessage:
+          "Não foi possível concluir a autenticação, tente novamente!",
+      });
     }
   }
 }
