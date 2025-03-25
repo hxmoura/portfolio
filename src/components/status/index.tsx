@@ -1,9 +1,9 @@
 type ProjectStatusProps = {
-  status?: "concluded" | "inDevelopment";
+  status?: "concluded" | "development";
 };
 
 export default function Status({
-  status = "inDevelopment",
+  status = "development",
 }: ProjectStatusProps) {
   const isConcluded = status === "concluded";
 

@@ -31,7 +31,6 @@ export default function Carousel({ images }: CarouselProps) {
           src={images[i]}
           width={0}
           height={0}
-          unoptimized
           alt="Preview image"
           draggable={false}
           className="min-w-24 h-16 sm:min-w-32 sm:h-20 cursor-pointer object-cover rounded-lg"
@@ -90,19 +89,33 @@ export default function Carousel({ images }: CarouselProps) {
   }
 
   return (
-    <Slider {...settings} className="animation-blur">
-      {images.map((image) => (
-        <div key={image} className="aspect-video w-full outline-none">
+    <>
+      {images.length === 1 ? (
+        <div className="aspect-video w-full">
           <Image
-            src={image}
+            src={images[0]}
             width={0}
             height={0}
-            unoptimized
-            alt="Slide"
-            className="w-full h-full object-cover cursor-grab rounded-lg"
+            draggable={false}
+            alt="Image"
+            className="w-full h-full object-cover rounded-lg animation-blur"
           />
         </div>
-      ))}
-    </Slider>
+      ) : (
+        <Slider {...settings} className="animation-blur">
+          {images.map((image, index) => (
+            <div key={index} className="aspect-video w-full outline-none">
+              <Image
+                src={image}
+                width={0}
+                height={0}
+                alt="Slide"
+                className="w-full h-full object-cover cursor-grab rounded-lg"
+              />
+            </div>
+          ))}
+        </Slider>
+      )}
+    </>
   );
 }

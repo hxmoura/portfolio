@@ -1,90 +1,125 @@
+"use client";
+
 import BackButton from "@/components/backButton";
 import Badge from "@/components/badge";
 import Carousel from "@/components/carousel";
+import Loading from "@/components/loading";
 import PrimaryButton from "@/components/primaryButton";
 import SecondaryButton from "@/components/secondaryButton";
 import Setup from "@/components/setup";
 import StaggedAnimation from "@/components/staggedAnimation";
 import Status from "@/components/status";
 import Title from "@/components/title";
+import database from "@/services/database";
+import { Project as TypeProject } from "@/types/project";
 import {
   RiCodeSSlashLine,
   RiFigmaLine,
   RiSearchEyeLine,
 } from "@remixicon/react";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Project() {
+  const { slug } = useParams();
+  const [project, setProject] = useState<TypeProject>({
+    name: "",
+    shortDescription: "",
+    wallpaper: "",
+    images: [],
+    slug: "",
+    status: "development",
+    linkProject: "",
+    linkCode: "",
+    linkUI: "",
+    description: "",
+    features: "",
+    technologies: "",
+    id: "",
+  });
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function getProject() {
+      const [data] = await database.getByQuery(
+        "project",
+        1,
+        { field: "slug", operator: "==", value: String(slug) },
+      );
+      setProject(data as TypeProject);
+      setIsLoading(false);
+    }
+
+    getProject();
+  }, [slug]);
+
+  const imgsWithoutWallpaper = project.images.filter(
+    (img) => img !== project.wallpaper
+  );
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <Setup spaceElements={40}>
       <StaggedAnimation />
       <section>
         <BackButton redirect="/" />
         <div className="flex items-start gap-2 mt-1">
-          <Title>Casa Moura</Title>
-          <Status status="concluded" />
+          <Title>{project.name}</Title>
+          <Status status={project.status} />
         </div>
 
         <div className="flex flex-wrap gap-3">
-          <PrimaryButton onClick="/" openInNewTab>
-            <RiSearchEyeLine size={16} />
-            <span className="text-sm">Visualizar</span>
-          </PrimaryButton>
-          <SecondaryButton onClick="/" openInNewTab>
-            <RiCodeSSlashLine size={16} />
-            <span className="text-sm">Código</span>
-          </SecondaryButton>
-          <SecondaryButton onClick="/" openInNewTab>
-            <RiFigmaLine size={16} />
-            <span className="text-sm">UI Design</span>
-          </SecondaryButton>
+          {project.linkProject && (
+            <PrimaryButton onClick={project.linkProject} openInNewTab>
+              <RiSearchEyeLine size={16} />
+              <span className="text-sm">Visualizar</span>
+            </PrimaryButton>
+          )}
+          {project.linkCode && (
+            <SecondaryButton onClick={project.linkCode} openInNewTab>
+              <RiCodeSSlashLine size={16} />
+              <span className="text-sm">Código</span>
+            </SecondaryButton>
+          )}
+          {project.linkUI && (
+            <SecondaryButton onClick={project.linkUI} openInNewTab>
+              <RiFigmaLine size={16} />
+              <span className="text-sm">UI Design</span>
+            </SecondaryButton>
+          )}
         </div>
       </section>
 
-      <p className="animation-blur">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua
-      </p>
+      <p className="animation-blur">{project.description}</p>
 
-      <Carousel
-        images={[
-          "https://images.unsplash.com/photo-1731450626260-0ca05713fdd7?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-          "https://images.unsplash.com/photo-1740165886202-924690cf11e4?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-          "https://images.unsplash.com/photo-1740165886179-c2be3d6447ca?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-          "https://images.unsplash.com/photo-1738924349706-14d70715e236?q=80&w=1665&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-          "https://images.unsplash.com/photo-1740767582687-96244e238c81?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-          "https://images.unsplash.com/photo-1562749536-5642fe7bb115?q=80&w=1672&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-          "https://images.unsplash.com/photo-1599619800634-52718b7f9064?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-          "https://images.unsplash.com/photo-1606523080746-c6a924e7ec8c?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        ]}
-      />
+      <Carousel images={imgsWithoutWallpaper} />
 
-      <section>
-        <Title>Funcionalidades 💡</Title>
-        <ul className="list-disc list-inside">
-          <li className="animation-blur">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit
-          </li>
-          <li className="animation-blur">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit
-          </li>
-          <li className="animation-blur">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit
-          </li>
-          <li className="animation-blur">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit
-          </li>
-        </ul>
-      </section>
+      {project.features && (
+        <section>
+          <Title>Funcionalidades 💡</Title>
+          <ul className="list-disc list-inside">
+            {project.features.split("\n").map((feature, index) => (
+              <li className="animation-blur break-all" key={index}>
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
-      <section>
-        <Title>Tecnologias usadas ⚙️</Title>
-        <div className="flex flex-wrap gap-3">
-          <Badge>React</Badge>
-          <Badge>TailwindCSS</Badge>
-          <Badge>TypeScript</Badge>
-          <Badge>Firebase</Badge>
-        </div>
-      </section>
+      {project.technologies && (
+        <section>
+          <Title>Tecnologias usadas ⚙️</Title>
+          <div className="flex flex-wrap gap-3">
+            {project.technologies.split(",").map((tech, index) => (
+              <Badge key={index}>{tech}</Badge>
+            ))}
+          </div>
+        </section>
+      )}
     </Setup>
   );
 }

@@ -81,7 +81,7 @@ export default function Home() {
                 title={project.name}
                 description={project.shortDescription}
                 image={project.wallpaper}
-                redirectUrl={`/${project.slug}`}
+                redirectUrl={`/project/${project.slug}`}
               />
             ))}
           </div>
