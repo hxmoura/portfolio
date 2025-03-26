@@ -17,11 +17,13 @@ import {
   RiFigmaLine,
   RiSearchEyeLine,
 } from "@remixicon/react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Project() {
   const { slug } = useParams();
+  const router = useRouter();
+
   const [project, setProject] = useState<TypeProject>({
     name: "",
     shortDescription: "",
@@ -41,17 +43,22 @@ export default function Project() {
 
   useEffect(() => {
     async function getProject() {
-      const [data] = await database.getByQuery(
-        "project",
-        1,
-        { field: "slug", operator: "==", value: String(slug) },
-      );
+      const [data] = await database.getByQuery("project", 1, {
+        field: "slug",
+        operator: "==",
+        value: String(slug),
+      });
+
+      if (!data) {
+        return router.push("/not-found");
+      }
+
       setProject(data as TypeProject);
       setIsLoading(false);
     }
 
     getProject();
-  }, [slug]);
+  }, [slug, router]);
 
   const imgsWithoutWallpaper = project.images.filter(
     (img) => img !== project.wallpaper

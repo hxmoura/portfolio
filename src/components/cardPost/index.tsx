@@ -12,6 +12,7 @@ export default function CardPost({ redirectUrl, title, date }: CardPostProps) {
     <article className="group animation-blur">
       <Link
         href={redirectUrl}
+        target="_blank"
         className="flex justify-between p-3 sm:group-hover:bg-brand-50 sm:dark:group-hover:bg-brand-800 rounded-lg transition-colors duration-300 text-brand-500 sm:group-hover:text-brand-700 dark:text-brand-300 sm:dark:group-hover:text-white"
       >
         <p className="line-clamp-1 mr-3">{title}</p>
