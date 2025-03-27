@@ -20,13 +20,29 @@ type ProjectProps = {
   params: Promise<{ slug: string }>;
 };
 
-export default async function Project({ params }: ProjectProps) {
-  const { slug } = await params;
+async function getProject(slug: string) {
   const [project] = (await database.getByQuery("project", 1, {
     field: "slug",
     operator: "==",
     value: String(slug),
   })) as TypeProject[];
+
+  return project;
+}
+
+export async function generateMetadata({ params }: ProjectProps) {
+  const { slug } = await params;
+  const project = await getProject(slug);
+
+  return {
+    title: project.name,
+    description: project.shortDescription,
+  };
+}
+
+export default async function Project({ params }: ProjectProps) {
+  const { slug } = await params;
+  const project = await getProject(slug);
 
   if (!project) {
     return redirect("/not-found");

@@ -6,7 +6,12 @@ import { Content } from "@/types/content";
 import { fetcher } from "@/utils/fetcher";
 import { formatDate } from "@/utils/formatDate";
 import { RiLink } from "@remixicon/react";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Conteúdos",
+};
 
 export default async function Contents() {
   const contents = await fetcher(
