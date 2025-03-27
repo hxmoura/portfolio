@@ -2,7 +2,7 @@
 
 import Loading from "@/components/Loading";
 import PrimaryButton from "@/components/PrimaryButton";
-import { auth } from "@/db/firebaseClient";
+import Setup from "@/components/Setup";
 import { RiGithubFill } from "@remixicon/react";
 import {
   GithubAuthProvider,
@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import Experience from "./components/Experience";
 import Presentation from "./components/Presentation";
 import Project from "./components/Project";
-import Setup from "@/components/Setup";
+import { auth } from "@/config/firebaseClient";
 
 interface Authentication {
   hasPermission: boolean;

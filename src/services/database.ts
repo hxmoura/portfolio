@@ -1,4 +1,4 @@
-import { db } from "@/db/firebaseClient";
+import { db } from "@/config/firebaseClient";
 import { sendDataToFirebase, receiveFirebaseData } from "@/utils/adapter";
 import {
   addDoc,

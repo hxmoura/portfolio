@@ -1,4 +1,4 @@
-import { admin } from "@/db/firebaseAdmin";
+import { admin } from "@/config/firebaseAdmin";
 
 export async function POST(request: Request) {
   const { token } = await request.json();
