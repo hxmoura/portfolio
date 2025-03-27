@@ -29,9 +29,9 @@ export default function Carousel({ images }: CarouselProps) {
       return (
         <Image
           src={images[i]}
-          width={0}
-          height={0}
-          alt="Preview image"
+          width={128}
+          height={80}
+          alt="Preview"
           draggable={false}
           className="min-w-24 h-16 sm:min-w-32 sm:h-20 cursor-pointer object-cover rounded-lg"
         />
@@ -94,8 +94,8 @@ export default function Carousel({ images }: CarouselProps) {
         <div className="aspect-video w-full">
           <Image
             src={images[0]}
-            width={0}
-            height={0}
+            width={600}
+            height={320}
             draggable={false}
             alt="Image"
             className="w-full h-full object-cover rounded-lg animation-blur"
@@ -107,8 +107,8 @@ export default function Carousel({ images }: CarouselProps) {
             <div key={index} className="aspect-video w-full outline-none">
               <Image
                 src={image}
-                width={0}
-                height={0}
+                width={600}
+                height={320}
                 alt="Slide"
                 className="w-full h-full object-cover cursor-grab rounded-lg"
               />

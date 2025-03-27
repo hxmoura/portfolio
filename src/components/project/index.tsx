@@ -1,11 +1,11 @@
 import { RiAddCircleFill } from "@remixicon/react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 
 type ProjectProps = {
   title: string;
   description: string;
-  image: StaticImageData | string;
+  image: string;
   redirectUrl: string;
 };
 
@@ -35,8 +35,8 @@ export default function Project({
       <Image
         src={image}
         alt={`${title} - ${description}`}
-        width={0}
-        height={0}
+        width={1000}
+        height={700}
         className="w-full h-auto max-h-[320px] object-cover sm:group-hover:scale-110 transition-all duration-300"
       />
     </Link>
