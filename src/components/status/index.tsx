@@ -10,7 +10,7 @@ export default function Status({
   return (
     <div
       className={`animation-blur flex items-center gap-2 px-2 py-1 rounded-lg ${
-        isConcluded ? "bg-green-100" : "bg-amber-100"
+        isConcluded ? "bg-green-400/20" : "bg-amber-400/20"
       }`}
     >
       <span className="relative flex size-2">
