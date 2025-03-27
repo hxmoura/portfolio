@@ -1,4 +1,5 @@
 import { db } from "@/db/firebaseClient";
+import { sendDataToFirebase, receiveFirebaseData } from "@/utils/adapter";
 import {
   addDoc,
   collection,
@@ -18,21 +19,21 @@ import {
 const database = {
   async getCollection(collectionName: string) {
     const querySnapshot = await getDocs(collection(db, collectionName));
-    return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+    return querySnapshot.docs.map((doc) => receiveFirebaseData(doc.data(), doc.id));
   },
 
   async getDocument(collectionName: string, documentId: string) {
     const docSnap = await getDoc(doc(db, collectionName, documentId));
 
     if (docSnap.exists()) {
-      return { ...docSnap.data(), id: docSnap.id };
+      return receiveFirebaseData(docSnap.data(), docSnap.id);
     }
   },
 
   async getByQuery(
     collectionName: string,
     docLimit: number = 99,
-    filter: { field: string; operator: WhereFilterOp; value: string },
+    filter: { field: string; operator: WhereFilterOp; value: string }
   ) {
     const q = query(
       collection(db, collectionName),
@@ -41,16 +42,15 @@ const database = {
     );
 
     const querySnapshot = await getDocs(q);
-    return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+    return querySnapshot.docs.map((doc) => receiveFirebaseData(doc.data(), doc.id));
   },
 
   async createDocument<T extends DocumentData>(
     collectionName: string,
     data: T
   ) {
-    delete data.id;
-
-    await addDoc(collection(db, collectionName), data);
+    const collectionRef = collection(db, collectionName);
+    await addDoc(collectionRef, sendDataToFirebase(data));
   },
 
   async updateDocument<T extends DocumentData>(
@@ -58,9 +58,8 @@ const database = {
     documentId: string,
     data: T
   ) {
-    delete data.id;
-
-    await updateDoc(doc(db, collectionName, documentId), data);
+    const docRef = doc(db, collectionName, documentId);
+    await updateDoc(docRef, sendDataToFirebase(data));
   },
 
   async deleteDocument(collectionName: string, documentId: string) {
@@ -72,10 +71,9 @@ const database = {
     callback: React.Dispatch<React.SetStateAction<T[]>>
   ) {
     return onSnapshot(collection(db, collectionName), (snapshot) => {
-      const data = snapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      })) as T[];
+      const data = snapshot.docs.map((doc) =>
+        receiveFirebaseData(doc.data(), doc.id)
+      ) as T[];
 
       callback(data);
     });
@@ -86,9 +84,11 @@ const database = {
     documentId: string,
     callback: React.Dispatch<React.SetStateAction<T>>
   ) {
-    return onSnapshot(doc(db, collectionName, documentId), (doc) => {
-      const data = { ...doc.data(), id: doc.id } as T;
-      callback(data);
+    const docRef = doc(db, collectionName, documentId);
+    return onSnapshot(docRef, (doc) => {
+      if (doc.exists()) {
+        return callback(receiveFirebaseData(doc.data(), doc.id) as T);
+      }
     });
   },
 };
