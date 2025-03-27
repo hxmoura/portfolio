@@ -1,3 +1,4 @@
+import { updatePath } from "@/app/actions";
 import Input from "@/components/input";
 import Modal from "@/components/modal";
 import PrimaryButton from "@/components/primaryButton";
@@ -39,7 +40,9 @@ export default function Experience() {
     } else {
       database.createDocument("experience", fields);
     }
+
     setModal(false);
+    updatePath("/");
   }
 
   function newExperience() {
@@ -50,6 +53,7 @@ export default function Experience() {
   async function deleteExperience() {
     await database.deleteDocument("experience", fields.id);
     setModal(false);
+    updatePath("/");
   }
 
   function handleField(evt: ChangeEvent) {

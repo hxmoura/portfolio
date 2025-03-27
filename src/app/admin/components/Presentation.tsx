@@ -1,3 +1,4 @@
+import { updatePath } from "@/app/actions";
 import Input from "@/components/input";
 import PrimaryButton from "@/components/primaryButton";
 import Title from "@/components/title";
@@ -30,12 +31,9 @@ export default function Presentation() {
     }));
   }
 
-  async function sendPresentation() {
-    await database.updateDocument(
-      "presentation",
-      presentation.id,
-      presentation
-    );
+  function sendPresentation() {
+    database.updateDocument("presentation", presentation.id, presentation);
+    updatePath("/");
   }
 
   return (

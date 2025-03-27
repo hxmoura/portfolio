@@ -1,76 +1,42 @@
-"use client";
-
 import CardPost from "@/components/cardPost";
 import Experience from "@/components/experience";
-import Loading from "@/components/loading";
 import Project from "@/components/project";
 import Setup from "@/components/setup";
 import StaggedAnimation from "@/components/staggedAnimation";
 import Title from "@/components/title";
 import database from "@/services/database";
-import { Content } from "@/types/content";
-import { Experience as TypeExperience } from "@/types/experience";
-import { Presentation } from "@/types/presentation";
+import { Content as TypeContent } from "@/types/content";
+import { Experience as TypeExp } from "@/types/experience";
+import { Presentation as TypePresentation } from "@/types/presentation";
 import { Project as TypeProject } from "@/types/project";
+import { fetcher } from "@/utils/fetcher";
 import { formatDate } from "@/utils/formatDate";
 import { RiArrowRightLine } from "@remixicon/react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
-export default function Home() {
-  const [presentation, setPresentation] = useState<Partial<Presentation>>({});
-  const [experiences, setExperiences] = useState<TypeExperience[]>([]);
-  const [projets, setProjects] = useState<TypeProject[]>([]);
-  const [contents, setContents] = useState<Content[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function getData() {
-      const getPresentation = database.getDocument("presentation", "data");
-      const getProjects = database.getCollection("project");
-      const getExperiences = database.getCollection("experience");
-      const resp = await fetch(
-        `https://dev.to/api/articles?username=${process.env.NEXT_PUBLIC_DEV_TO_USERNAME}&per_page=5`
-      );
-      const getContents = await resp.json();
-
-      const [presentationData, projectsData, experiencesData, contentsData] =
-        (await Promise.all([
-          getPresentation,
-          getProjects,
-          getExperiences,
-          getContents,
-        ])) as [Presentation, TypeProject[], TypeExperience[], Content[]];
-
-      const filtered = contentsData.map((content: Content) => ({
-        title: content.title,
-        published_at: formatDate(content.published_at),
-        url: content.url,
-      }));
-
-      setPresentation(presentationData);
-      setProjects(projectsData);
-      setExperiences(experiencesData);
-      setContents(filtered);
-      setLoading(false);
-    }
-
-    getData();
-  }, []);
-
-  if (loading) {
-    return <Loading />;
-  }
+export default async function Home() {
+  const presentation = (await database.getDocument(
+    "presentation",
+    "data"
+  )) as TypePresentation;
+  const experiences = (await database.getCollection("experience")) as TypeExp[];
+  const projects = (await database.getCollection("project")) as TypeProject[];
+  const contents = (await fetcher(
+    `https://dev.to/api/articles?username=${process.env.NEXT_PUBLIC_DEV_TO_USERNAME}&per_page=5`,
+    { next: { revalidate: 86400 } }
+  )) as TypeContent[];
 
   return (
     <Setup spaceElements={80}>
       <StaggedAnimation />
+
       <section>
         <h3 className="font-semibold text-xl mb-5 animation-blur">
           {presentation.title}
         </h3>
         <p className="animation-blur">{presentation.description}</p>
       </section>
+
       {experiences.length > 0 && (
         <section>
           <Title>Experiência</Title>
@@ -86,11 +52,12 @@ export default function Home() {
           </div>
         </section>
       )}
-      {projets.length > 0 && (
+
+      {projects.length > 0 && (
         <section>
           <Title>Projetos</Title>
           <div className="flex flex-col gap-5">
-            {projets.map((project) => (
+            {projects.map((project) => (
               <Project
                 key={project.id}
                 title={project.name}
@@ -113,10 +80,11 @@ export default function Home() {
                 key={index}
                 redirectUrl={content.url}
                 title={content.title}
-                date={content.published_at}
+                date={formatDate(content.published_at)}
               />
             ))}
           </div>
+
           <Link
             className="flex items-center gap-1 mt-7 text-brand-500 dark:text-brand-300 group sm:hover:underline w-fit animation-blur"
             href="/contents"

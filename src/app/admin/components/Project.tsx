@@ -1,3 +1,4 @@
+import { updatePath } from "@/app/actions";
 import Input from "@/components/input";
 import Modal from "@/components/modal";
 import PrimaryButton from "@/components/primaryButton";
@@ -51,6 +52,7 @@ export default function Project() {
   function deleteProject() {
     database.deleteDocument("project", fields.id);
     setModal(false);
+    updatePath("/");
   }
 
   function addOrUpdateProject() {
@@ -61,6 +63,7 @@ export default function Project() {
     }
 
     setModal(false);
+    updatePath("/");
   }
 
   function newProject() {
