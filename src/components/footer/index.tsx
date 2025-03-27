@@ -35,10 +35,6 @@ export default function Footer() {
             )}
           </button>
         </p>
-        <p className="text-sm text-brand-500 dark:text-brand-300">
-          Idioma:{" "}
-          <button className="underline cursor-pointer">Português</button>
-        </p>
         <button className="text-sm text-brand-500 dark:text-brand-300">
           <Link
             target="_blank"
