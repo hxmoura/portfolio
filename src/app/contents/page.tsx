@@ -1,7 +1,7 @@
-import BackButton from "@/components/backButton";
-import Setup from "@/components/setup";
-import StaggedAnimation from "@/components/staggedAnimation";
-import Title from "@/components/title";
+import BackButton from "@/components/BackButton";
+import Setup from "@/components/Setup";
+import StaggedAnimation from "@/components/StaggedAnimation";
+import Title from "@/components/Title";
 import { Content } from "@/types/content";
 import { fetcher } from "@/utils/fetcher";
 import { formatDate } from "@/utils/formatDate";

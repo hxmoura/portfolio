@@ -1,7 +1,7 @@
 import { updatePath } from "@/app/actions";
-import Input from "@/components/input";
-import PrimaryButton from "@/components/primaryButton";
-import Title from "@/components/title";
+import Input from "@/components/Input";
+import PrimaryButton from "@/components/PrimaryButton";
+import Title from "@/components/Title";
 import database from "@/services/database";
 import { Presentation as TypePresentation } from "@/types/presentation";
 import { ChangeEvent, useEffect, useState } from "react";

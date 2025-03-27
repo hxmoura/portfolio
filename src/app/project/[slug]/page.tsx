@@ -1,12 +1,12 @@
-import BackButton from "@/components/backButton";
-import Badge from "@/components/badge";
-import Carousel from "@/components/carousel";
-import PrimaryButton from "@/components/primaryButton";
-import SecondaryButton from "@/components/secondaryButton";
-import Setup from "@/components/setup";
-import StaggedAnimation from "@/components/staggedAnimation";
-import Status from "@/components/status";
-import Title from "@/components/title";
+import BackButton from "@/components/BackButton";
+import Badge from "@/components/Badge";
+import Carousel from "@/components/Carousel";
+import PrimaryButton from "@/components/PrimaryButton";
+import SecondaryButton from "@/components/SecondaryButton";
+import Setup from "@/components/Setup";
+import StaggedAnimation from "@/components/StaggedAnimation";
+import Status from "@/components/Status";
+import Title from "@/components/Title";
 import database from "@/services/database";
 import { Project as TypeProject } from "@/types/project";
 import {

@@ -1,8 +1,7 @@
 "use client";
 
-import Loading from "@/components/loading";
-import PrimaryButton from "@/components/primaryButton";
-import Setup from "@/components/setup";
+import Loading from "@/components/Loading";
+import PrimaryButton from "@/components/PrimaryButton";
 import { auth } from "@/db/firebaseClient";
 import { RiGithubFill } from "@remixicon/react";
 import {
@@ -14,6 +13,7 @@ import { useEffect, useState } from "react";
 import Experience from "./components/Experience";
 import Presentation from "./components/Presentation";
 import Project from "./components/Project";
+import Setup from "@/components/Setup";
 
 interface Authentication {
   hasPermission: boolean;

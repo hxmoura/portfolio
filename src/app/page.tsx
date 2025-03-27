@@ -1,9 +1,9 @@
-import CardPost from "@/components/cardPost";
-import Experience from "@/components/experience";
-import Project from "@/components/project";
-import Setup from "@/components/setup";
-import StaggedAnimation from "@/components/staggedAnimation";
-import Title from "@/components/title";
+import CardPost from "@/components/CardPost";
+import Experience from "@/components/Experience";
+import Project from "@/components/Project";
+import Setup from "@/components/Setup";
+import StaggedAnimation from "@/components/StaggedAnimation";
+import Title from "@/components/Title";
 import database from "@/services/database";
 import { Content as TypeContent } from "@/types/content";
 import { Experience as TypeExp } from "@/types/experience";

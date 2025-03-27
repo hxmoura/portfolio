@@ -1,6 +1,6 @@
-import Container from "../container";
-import Footer from "../footer";
-import Header from "../header";
+import Container from "./Container";
+import Footer from "./Footer";
+import Header from "./Header";
 
 type SetupProps = {
   children: React.ReactNode;

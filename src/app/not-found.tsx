@@ -1,7 +1,7 @@
-import PrimaryButton from "@/components/primaryButton";
-import Setup from "@/components/setup";
-import StaggedAnimation from "@/components/staggedAnimation";
-import Title from "@/components/title";
+import PrimaryButton from "@/components/PrimaryButton";
+import Setup from "@/components/Setup";
+import StaggedAnimation from "@/components/StaggedAnimation";
+import Title from "@/components/Title";
 
 export default function NotFound() {
   return (

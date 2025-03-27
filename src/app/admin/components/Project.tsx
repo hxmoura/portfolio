@@ -1,9 +1,9 @@
 import { updatePath } from "@/app/actions";
-import Input from "@/components/input";
-import Modal from "@/components/modal";
-import PrimaryButton from "@/components/primaryButton";
-import SecondaryButton from "@/components/secondaryButton";
-import Title from "@/components/title";
+import Input from "@/components/Input";
+import Modal from "@/components/Modal";
+import PrimaryButton from "@/components/PrimaryButton";
+import SecondaryButton from "@/components/SecondaryButton";
+import Title from "@/components/Title";
 import database from "@/services/database";
 import { Project as TypeProject } from "@/types/project";
 import { RiDeleteBinLine, RiHeartFill } from "@remixicon/react";
