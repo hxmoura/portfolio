@@ -53,3 +53,8 @@
 .slick-custom li.slick-active {
   @apply grayscale-0;
 }
+
+::selection {
+  background: #f5f5dc;
+  color: #4b2e2a;
+}
