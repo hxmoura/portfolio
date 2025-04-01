@@ -93,7 +93,7 @@ export default async function Project({ params }: ProjectProps) {
           <Title>Funcionalidades 💡</Title>
           <ul className="list-disc list-inside">
             {project.features.split("\n").map((feature, index) => (
-              <li className="animation-blur break-all" key={index}>
+              <li className="animation-blur whitespace-break-spaces" key={index}>
                 {feature}
               </li>
             ))}
