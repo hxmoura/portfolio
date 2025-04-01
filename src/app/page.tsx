@@ -85,16 +85,18 @@ export default async function Home() {
             ))}
           </div>
 
-          <Link
-            className="flex items-center gap-1 mt-7 text-brand-500 dark:text-brand-300 group sm:hover:underline w-fit animation-blur"
-            href="/contents"
-          >
-            <span>Ver mais</span>
-            <RiArrowRightLine
-              size={16}
-              className="sm:group-hover:translate-x-1.5 transition-transform duration-300"
-            />
-          </Link>
+          {contents.length >= 5 && (
+            <Link
+              className="flex items-center gap-1 mt-7 text-brand-500 dark:text-brand-300 group sm:hover:underline w-fit animation-blur"
+              href="/contents"
+            >
+              <span>Ver mais</span>
+              <RiArrowRightLine
+                size={16}
+                className="sm:group-hover:translate-x-1.5 transition-transform duration-300"
+              />
+            </Link>
+          )}
         </section>
       )}
     </Setup>
