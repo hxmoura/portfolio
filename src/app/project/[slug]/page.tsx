@@ -86,14 +86,19 @@ export default async function Project({ params }: ProjectProps) {
 
       <p className="animation-blur">{project.description}</p>
 
-      <Carousel images={imgsWithoutWallpaper} />
+      {imgsWithoutWallpaper.length > 0 && (
+        <Carousel images={imgsWithoutWallpaper} />
+      )}
 
       {project.features && (
         <section>
           <Title>Funcionalidades 💡</Title>
           <ul className="list-disc list-inside">
             {project.features.split("\n").map((feature, index) => (
-              <li className="animation-blur whitespace-break-spaces" key={index}>
+              <li
+                className="animation-blur whitespace-break-spaces"
+                key={index}
+              >
                 {feature}
               </li>
             ))}
