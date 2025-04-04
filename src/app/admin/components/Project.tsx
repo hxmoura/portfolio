@@ -24,6 +24,7 @@ export default function Project() {
     description: "",
     features: "",
     technologies: "",
+    visible: false,
     id: "",
   };
   const [projects, setProjects] = useState<TypeProject[]>([]);
@@ -46,6 +47,13 @@ export default function Project() {
     setFields((prev) => ({
       ...prev,
       [name]: value,
+    }));
+  }
+
+  function toggleVisible() {
+    setFields((prev) => ({
+      ...prev,
+      visible: !prev.visible,
     }));
   }
 
@@ -245,6 +253,15 @@ export default function Project() {
                 <RiDeleteBinLine size={24} />
               </SecondaryButton>
             )}
+            <label>
+              <input
+                type="checkbox"
+                name="visible"
+                checked={fields.visible}
+                onChange={toggleVisible}
+              />
+              Deixar visível?
+            </label>
           </div>
         </Modal>
       )}

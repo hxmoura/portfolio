@@ -13,5 +13,6 @@ export interface Project {
   description: string;
   features: string;
   technologies: string;
+  visible: boolean;
   id: string;
 }

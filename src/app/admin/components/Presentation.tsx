@@ -50,6 +50,7 @@ export default function Presentation() {
         onChange={handlePresentation}
         name="description"
         label="Descrição"
+        multiline
       />
       <PrimaryButton onClick={sendPresentation}>
         Salvar alterações

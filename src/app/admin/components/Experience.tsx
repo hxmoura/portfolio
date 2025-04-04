@@ -14,6 +14,7 @@ export default function Experience() {
     title: "",
     description: "",
     date: "",
+    visible: false,
     id: "",
   };
 
@@ -65,6 +66,13 @@ export default function Experience() {
     }));
   }
 
+  function toggleVisible() {
+    setFields((prev) => ({
+      ...prev,
+      visible: !prev.visible,
+    }));
+  }
+
   return (
     <section className="flex flex-col gap-3.5">
       {modal && (
@@ -80,6 +88,7 @@ export default function Experience() {
             onChange={handleField}
             name="description"
             label="Descrição"
+            multiline
           />
           <Input
             value={fields.date}
@@ -99,6 +108,15 @@ export default function Experience() {
                 <RiDeleteBinLine size={24} />
               </SecondaryButton>
             )}
+            <label>
+              <input
+                type="checkbox"
+                name="visible"
+                checked={fields.visible}
+                onChange={toggleVisible}
+              />
+              Deixar visível?
+            </label>
           </div>
         </Modal>
       )}

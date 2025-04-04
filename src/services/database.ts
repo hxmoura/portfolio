@@ -1,5 +1,5 @@
 import { db } from "@/config/firebaseClient";
-import { sendDataToFirebase, receiveFirebaseData } from "@/utils/adapter";
+import { receiveFirebaseData, sendDataToFirebase } from "@/utils/adapter";
 import {
   addDoc,
   collection,
@@ -19,7 +19,9 @@ import {
 const database = {
   async getCollection(collectionName: string) {
     const querySnapshot = await getDocs(collection(db, collectionName));
-    return querySnapshot.docs.map((doc) => receiveFirebaseData(doc.data(), doc.id));
+    return querySnapshot.docs.map((doc) =>
+      receiveFirebaseData(doc.data(), doc.id)
+    );
   },
 
   async getDocument(collectionName: string, documentId: string) {
@@ -32,17 +34,28 @@ const database = {
 
   async getByQuery(
     collectionName: string,
-    docLimit: number = 99,
-    filter: { field: string; operator: WhereFilterOp; value: string }
+    conditions: {
+      field: string;
+      operator: WhereFilterOp;
+      value: unknown;
+    }[],
+    docLimit: number = 99
   ) {
+    const queryConditions = conditions.map((condition) => {
+      return where(condition.field, condition.operator, condition.value);
+    });
+
     const q = query(
       collection(db, collectionName),
-      where(filter.field, filter.operator, filter.value),
+      ...queryConditions,
       limit(docLimit)
     );
 
     const querySnapshot = await getDocs(q);
-    return querySnapshot.docs.map((doc) => receiveFirebaseData(doc.data(), doc.id));
+
+    return querySnapshot.docs.map((doc) =>
+      receiveFirebaseData(doc.data(), doc.id)
+    );
   },
 
   async createDocument<T extends DocumentData>(

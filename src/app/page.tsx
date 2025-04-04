@@ -19,8 +19,23 @@ export default async function Home() {
     "presentation",
     "data"
   )) as TypePresentation;
-  const experiences = (await database.getCollection("experience")) as TypeExp[];
-  const projects = (await database.getCollection("project")) as TypeProject[];
+
+  const experiences = (await database.getByQuery("experience", [
+    {
+      field: "visible",
+      operator: "==",
+      value: true,
+    },
+  ])) as TypeExp[];
+
+  const projects = (await database.getByQuery("project", [
+    {
+      field: "visible",
+      operator: "==",
+      value: true,
+    },
+  ])) as TypeProject[];
+
   const contents = (await fetcher(
     `https://dev.to/api/articles?username=${process.env.NEXT_PUBLIC_DEV_TO_USERNAME}&per_page=5`,
     { next: { revalidate: 86400 } }

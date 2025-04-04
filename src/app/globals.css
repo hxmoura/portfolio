@@ -46,12 +46,21 @@
   }
 }
 
+.slick-custom {
+  display: flex !important;
+  @apply items-center justify-center gap-2 mt-3;
+}
+
 .slick-custom li {
-  @apply grayscale-100;
+  @apply rounded-full bg-brand-500/30 dark:bg-brand-300/30 w-2 h-2;
+}
+
+.slick-custom button {
+  @apply opacity-0 cursor-pointer;
 }
 
 .slick-custom li.slick-active {
-  @apply grayscale-0;
+  @apply bg-brand-700/50 dark:bg-brand-50/50;
 }
 
 ::selection {

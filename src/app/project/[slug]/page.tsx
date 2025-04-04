@@ -21,11 +21,22 @@ type ProjectProps = {
 };
 
 async function getProject(slug: string) {
-  const [project] = (await database.getByQuery("project", 1, {
-    field: "slug",
-    operator: "==",
-    value: String(slug),
-  })) as TypeProject[];
+  const [project] = (await database.getByQuery(
+    "project",
+    [
+      {
+        field: "slug",
+        operator: "==",
+        value: slug,
+      },
+      {
+        field: "visible",
+        operator: "==",
+        value: true,
+      },
+    ],
+    1
+  )) as TypeProject[];
 
   return project;
 }
@@ -52,36 +63,40 @@ export default async function Project({ params }: ProjectProps) {
     (img) => img !== project.wallpaper
   );
 
+  const hasLink = project.linkCode || project.linkProject || project.linkUI
+
   return (
     <Setup spaceElements={40}>
       <StaggedAnimation />
       <section>
         <BackButton redirect="/" />
         <div className="flex items-start gap-2 mt-1">
-          <Title>{project.name}</Title>
+          <Title noMargin>{project.name}</Title>
           <Status status={project.status} />
         </div>
 
-        <div className="flex flex-wrap gap-3">
-          {project.linkProject && (
-            <PrimaryButton onClick={project.linkProject} openInNewTab>
-              <RiSearchEyeLine size={16} />
-              <span className="text-sm">Visualizar</span>
-            </PrimaryButton>
+        {hasLink && (
+            <div className="flex flex-wrap gap-3 mt-7">
+              {project.linkProject && (
+                <PrimaryButton onClick={project.linkProject} openInNewTab>
+                  <RiSearchEyeLine size={16} />
+                  <span className="text-sm">Visualizar</span>
+                </PrimaryButton>
+              )}
+              {project.linkCode && (
+                <SecondaryButton onClick={project.linkCode} openInNewTab>
+                  <RiCodeSSlashLine size={16} />
+                  <span className="text-sm">Código</span>
+                </SecondaryButton>
+              )}
+              {project.linkUI && (
+                <SecondaryButton onClick={project.linkUI} openInNewTab>
+                  <RiFigmaLine size={16} />
+                  <span className="text-sm">UI Design</span>
+                </SecondaryButton>
+              )}
+            </div>
           )}
-          {project.linkCode && (
-            <SecondaryButton onClick={project.linkCode} openInNewTab>
-              <RiCodeSSlashLine size={16} />
-              <span className="text-sm">Código</span>
-            </SecondaryButton>
-          )}
-          {project.linkUI && (
-            <SecondaryButton onClick={project.linkUI} openInNewTab>
-              <RiFigmaLine size={16} />
-              <span className="text-sm">UI Design</span>
-            </SecondaryButton>
-          )}
-        </div>
       </section>
 
       <p className="animation-blur">{project.description}</p>
