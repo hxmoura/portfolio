@@ -1,8 +1,9 @@
 import Link from "next/link";
+import { FormEvent } from "react";
 
 type PrimaryButton = {
   children: React.ReactNode;
-  onClick: VoidFunction | string;
+  onClick: VoidFunction | string | ((evt: FormEvent) => void);
   openInNewTab?: boolean;
 };
 

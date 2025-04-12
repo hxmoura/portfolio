@@ -8,6 +8,7 @@ import database from "@/services/database";
 import { Experience as TypeExperience } from "@/types/experience";
 import { RiDeleteBinLine } from "@remixicon/react";
 import { ChangeEvent, useEffect, useState } from "react";
+import validateUser from "../validate";
 
 export default function Experience() {
   const initialFields = {
@@ -35,15 +36,19 @@ export default function Experience() {
     setModal(true);
   }
 
-  function addOrUpdateExperience() {
-    if (fields.id) {
-      database.updateDocument("experience", fields.id, fields);
-    } else {
-      database.createDocument("experience", fields);
-    }
+  async function addOrUpdateExperience() {
+    const isValidate = await validateUser();
 
-    setModal(false);
-    updatePath("/");
+    if (isValidate) {
+      if (fields.id) {
+        database.updateDocument("experience", fields.id, fields);
+      } else {
+        database.createDocument("experience", fields);
+      }
+
+      setModal(false);
+      updatePath("/");
+    }
   }
 
   function newExperience() {
@@ -52,9 +57,13 @@ export default function Experience() {
   }
 
   async function deleteExperience() {
-    await database.deleteDocument("experience", fields.id);
-    setModal(false);
-    updatePath("/");
+    const isValidate = await validateUser();
+
+    if (isValidate) {
+      await database.deleteDocument("experience", fields.id);
+      setModal(false);
+      updatePath("/");
+    }
   }
 
   function handleField(evt: ChangeEvent) {

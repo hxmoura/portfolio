@@ -6,9 +6,11 @@ import SecondaryButton from "@/components/SecondaryButton";
 import Title from "@/components/Title";
 import database from "@/services/database";
 import { Project as TypeProject } from "@/types/project";
+import { fetcher } from "@/utils/fetcher";
 import { RiDeleteBinLine, RiHeartFill } from "@remixicon/react";
 import Image from "next/image";
 import { ChangeEvent, useEffect, useState } from "react";
+import validateUser from "../validate";
 
 export default function Project() {
   const initialProject: TypeProject = {
@@ -57,21 +59,29 @@ export default function Project() {
     }));
   }
 
-  function deleteProject() {
-    database.deleteDocument("project", fields.id);
-    setModal(false);
-    updatePath("/");
+  async function deleteProject() {
+    const isValidate = await validateUser();
+
+    if (isValidate) {
+      await database.deleteDocument("project", fields.id);
+      setModal(false);
+      updatePath("/");
+    }
   }
 
-  function addOrUpdateProject() {
-    if (fields.id) {
-      database.updateDocument("project", fields.id, fields);
-    } else {
-      database.createDocument("project", fields);
-    }
+  async function addOrUpdateProject() {
+    const isValidate = await validateUser();
 
-    setModal(false);
-    updatePath("/");
+    if (isValidate) {
+      if (fields.id) {
+        await database.updateDocument("project", fields.id, fields);
+      } else {
+        await database.createDocument("project", fields);
+      }
+
+      setModal(false);
+      updatePath("/");
+    }
   }
 
   function newProject() {
@@ -86,11 +96,10 @@ export default function Project() {
       const form = new FormData();
       form.append("image", files[0]);
 
-      const response = await fetch("/api/upload", {
+      const data = await fetcher("/api/upload", {
         method: "POST",
         body: form,
       });
-      const data = await response.json();
 
       if (data) {
         setFields((prev) => ({

@@ -5,6 +5,7 @@ import Title from "@/components/Title";
 import database from "@/services/database";
 import { Presentation as TypePresentation } from "@/types/presentation";
 import { ChangeEvent, useEffect, useState } from "react";
+import validateUser from "../validate";
 
 export default function Presentation() {
   const [presentation, setPresentation] = useState<TypePresentation>({
@@ -31,9 +32,17 @@ export default function Presentation() {
     }));
   }
 
-  function sendPresentation() {
-    database.updateDocument("presentation", presentation.id, presentation);
-    updatePath("/");
+  async function sendPresentation() {
+    const isValidate = await validateUser();
+
+    if (isValidate) {
+      await database.updateDocument(
+        "presentation",
+        presentation.id,
+        presentation
+      );
+      updatePath("/");
+    }
   }
 
   return (

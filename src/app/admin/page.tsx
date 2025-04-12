@@ -1,33 +1,24 @@
 "use client";
 
+import Input from "@/components/Input";
 import Loading from "@/components/Loading";
 import PrimaryButton from "@/components/PrimaryButton";
+import SecondaryButton from "@/components/SecondaryButton";
 import Setup from "@/components/Setup";
-import { RiGithubFill } from "@remixicon/react";
+import { auth } from "@/config/firebaseClient";
 import {
-  GithubAuthProvider,
   onAuthStateChanged,
-  signInWithPopup,
+  signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
-import { useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import Experience from "./components/Experience";
 import Presentation from "./components/Presentation";
 import Project from "./components/Project";
-import { auth } from "@/config/firebaseClient";
 
 interface Authentication {
   hasPermission: boolean;
   errorMessage: string;
-}
-
-async function userValidate(token: string) {
-  const request = await fetch("/api/auth", {
-    method: "POST",
-    body: JSON.stringify({ token }),
-  });
-
-  const data = await request.json();
-  return data;
 }
 
 export default function Admin() {
@@ -36,35 +27,62 @@ export default function Admin() {
     errorMessage: "",
   });
   const [loading, setLoading] = useState(true);
+  const [formAuth, setFormAuth] = useState({ email: "", password: "" });
 
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const token = await user.getIdToken();
-        const data = await userValidate(token);
-        setAuthentication(data);
+        setAuthentication({
+          hasPermission: true,
+          errorMessage: "",
+        });
       }
       setLoading(false);
     });
   }, []);
 
-  function handleAuthentication() {
-    const provider = new GithubAuthProvider();
+  function handleFormAuth(evt: ChangeEvent) {
+    const { value, name } = evt.target as HTMLInputElement;
 
-    signInWithPopup(auth, provider)
-      .then(async (result) => {
-        const token = await result.user.getIdToken();
-        const data = await userValidate(token);
-        setAuthentication(data);
+    setFormAuth((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }
+
+  function handleAuthentication(evt: FormEvent) {
+    evt.preventDefault();
+
+    signInWithEmailAndPassword(auth, formAuth.email, formAuth.password)
+      .then(() => {
+        setAuthentication({
+          hasPermission: true,
+          errorMessage: "",
+        });
       })
       .catch((error) => {
-        console.log(error.message);
-        setAuthentication({
-          hasPermission: false,
-          errorMessage:
-            "Não foi possível concluir a autenticação, tente novamente!",
-        });
+        if (error.code === "auth/invalid-credential") {
+          setAuthentication({
+            hasPermission: false,
+            errorMessage: "O e-mail ou senha estão incorretos!",
+          });
+        } else {
+          setAuthentication({
+            hasPermission: false,
+            errorMessage:
+              "Não foi possível concluir a autenticação, tente novamente!",
+          });
+        }
       });
+  }
+
+  function handleLogout() {
+    signOut(auth).then(() => {
+      setAuthentication({
+        hasPermission: false,
+        errorMessage: "",
+      });
+    });
   }
 
   if (loading) {
@@ -78,13 +96,25 @@ export default function Admin() {
           <Presentation />
           <Experience />
           <Project />
+          <SecondaryButton onClick={handleLogout}>Logout</SecondaryButton>
         </Setup>
       ) : (
         <main className="flex flex-col items-center justify-center h-screen">
-          <PrimaryButton onClick={handleAuthentication}>
-            <RiGithubFill size={24} />
-            <span>Login com Github</span>
-          </PrimaryButton>
+          <form className="max-w-xl w-full space-y-4">
+            <Input
+              onChange={handleFormAuth}
+              value={formAuth.email}
+              label="E-mail"
+              name="email"
+            />
+            <Input
+              onChange={handleFormAuth}
+              value={formAuth.password}
+              label="Senha"
+              name="password"
+            />
+            <PrimaryButton onClick={handleAuthentication}>Login</PrimaryButton>
+          </form>
           {!authentication.hasPermission && authentication.errorMessage && (
             <p className="text-center mt-3 text-red-500">
               {authentication.errorMessage}
