@@ -2,6 +2,7 @@ import { updatePath } from "@/app/actions";
 import Input from "@/components/Input";
 import Modal from "@/components/Modal";
 import PrimaryButton from "@/components/PrimaryButton";
+import Project from "@/components/Project";
 import SecondaryButton from "@/components/SecondaryButton";
 import Title from "@/components/Title";
 import database from "@/services/database";
@@ -12,7 +13,7 @@ import Image from "next/image";
 import { ChangeEvent, useEffect, useState } from "react";
 import validateUser from "../validate";
 
-export default function Project() {
+export default function ProjectAdmin() {
   const initialProject: TypeProject = {
     name: "",
     shortDescription: "",
@@ -274,55 +275,20 @@ export default function Project() {
           </div>
         </Modal>
       )}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center mb-7">
         <Title noMargin>Editar projetos</Title>
         <PrimaryButton onClick={newProject}>Novo projeto</PrimaryButton>
       </div>
       <div className="flex flex-col gap-3">
         {projects.reverse().map((project, index) => (
-          <button
+          <Project
             key={index}
-            className="p-6 rounded-lg bg-brand-50 dark:bg-brand-700 flex flex-col cursor-pointer"
+            title={project.name}
+            description={project.shortDescription}
+            image={project.wallpaper}
+            redirectUrl={project.linkProject}
             onClick={() => selectProject(project)}
-          >
-            <span>
-              <strong>Nome: </strong>
-              {project.name}
-            </span>
-            <span>
-              <strong>Descrição: </strong>
-              {project.shortDescription}
-            </span>
-            <ul>
-              {project.features.split("\n").map((line, index) => (
-                <li key={index}>{line}</li>
-              ))}
-            </ul>
-            <span>
-              <strong>linkCode: </strong>
-              {project.linkCode}
-            </span>
-            <span>
-              <strong>linkProject: </strong>
-              {project.linkProject}
-            </span>
-            <span>
-              <strong>linkUI: </strong>
-              {project.linkUI}
-            </span>
-            <span>
-              <strong>Status: </strong>
-              {project.status}
-            </span>
-            <span>
-              <strong>technologies: </strong>
-              {project.technologies}
-            </span>
-            <span>
-              <strong>slug: </strong>
-              {project.slug}
-            </span>
-          </button>
+          />
         ))}
       </div>
     </section>

@@ -1,4 +1,5 @@
 import { updatePath } from "@/app/actions";
+import Experience from "@/components/Experience";
 import Input from "@/components/Input";
 import Modal from "@/components/Modal";
 import PrimaryButton from "@/components/PrimaryButton";
@@ -10,7 +11,7 @@ import { RiDeleteBinLine } from "@remixicon/react";
 import { ChangeEvent, useEffect, useState } from "react";
 import validateUser from "../validate";
 
-export default function Experience() {
+export default function ExperienceAdmin() {
   const initialFields = {
     title: "",
     description: "",
@@ -129,30 +130,19 @@ export default function Experience() {
           </div>
         </Modal>
       )}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center mb-7">
         <Title noMargin>Editar experiência</Title>
         <PrimaryButton onClick={newExperience}>Nova experiência</PrimaryButton>
       </div>
       <div className="flex flex-col gap-3">
         {experiences.reverse().map((exp, index) => (
-          <button
+          <Experience
             key={index}
-            className="p-6 rounded-lg bg-brand-50 dark:bg-brand-700 flex flex-col cursor-pointer"
+            title={exp.title}
+            date={exp.date}
+            description={exp.description}
             onClick={() => selectExperience(exp)}
-          >
-            <span>
-              <strong>Titulo: </strong>
-              {exp.title}
-            </span>
-            <span>
-              <strong>Descrição: </strong>
-              {exp.description}
-            </span>
-            <span>
-              <strong>Data: </strong>
-              {exp.date}
-            </span>
-          </button>
+          />
         ))}
       </div>
     </section>

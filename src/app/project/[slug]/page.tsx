@@ -63,7 +63,7 @@ export default async function Project({ params }: ProjectProps) {
     (img) => img !== project.wallpaper
   );
 
-  const hasLink = project.linkCode || project.linkProject || project.linkUI
+  const hasLink = project.linkCode || project.linkProject || project.linkUI;
 
   return (
     <Setup spaceElements={40}>
@@ -76,27 +76,48 @@ export default async function Project({ params }: ProjectProps) {
         </div>
 
         {hasLink && (
-            <div className="flex flex-wrap gap-3 mt-7">
-              {project.linkProject && (
-                <PrimaryButton onClick={project.linkProject} openInNewTab>
-                  <RiSearchEyeLine size={16} />
-                  <span className="text-sm">Visualizar</span>
-                </PrimaryButton>
-              )}
-              {project.linkCode && (
-                <SecondaryButton onClick={project.linkCode} openInNewTab>
-                  <RiCodeSSlashLine size={16} />
-                  <span className="text-sm">Código</span>
-                </SecondaryButton>
-              )}
-              {project.linkUI && (
-                <SecondaryButton onClick={project.linkUI} openInNewTab>
-                  <RiFigmaLine size={16} />
-                  <span className="text-sm">UI Design</span>
-                </SecondaryButton>
-              )}
-            </div>
-          )}
+          <div className="flex flex-wrap gap-3 mt-7">
+            {project.linkProject && (
+              <PrimaryButton
+                onClick={project.linkProject}
+                openInNewTab
+                analyticsClick={{
+                  event: "project_actions_clicked",
+                  target: project.linkProject,
+                }}
+              >
+                <RiSearchEyeLine size={16} />
+                <span className="text-sm">Visualizar</span>
+              </PrimaryButton>
+            )}
+            {project.linkCode && (
+              <SecondaryButton
+                onClick={project.linkCode}
+                openInNewTab
+                analyticsClick={{
+                  event: "project_actions_clicked",
+                  target: project.linkCode,
+                }}
+              >
+                <RiCodeSSlashLine size={16} />
+                <span className="text-sm">Código</span>
+              </SecondaryButton>
+            )}
+            {project.linkUI && (
+              <SecondaryButton
+                onClick={project.linkUI}
+                openInNewTab
+                analyticsClick={{
+                  event: "project_actions_clicked",
+                  target: project.linkUI,
+                }}
+              >
+                <RiFigmaLine size={16} />
+                <span className="text-sm">UI Design</span>
+              </SecondaryButton>
+            )}
+          </div>
+        )}
       </section>
 
       <p className="animation-blur">{project.description}</p>

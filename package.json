@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@firebase/auth": "^1.9.1",
+    "@next/third-parties": "^15.3.1",
     "@remixicon/react": "^4.6.0",
     "@tailwindcss/postcss": "^4.0.6",
     "firebase": "^11.4.0",

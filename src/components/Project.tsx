@@ -1,3 +1,5 @@
+"use client";
+
 import { RiAddCircleFill } from "@remixicon/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,6 +9,7 @@ type ProjectProps = {
   description: string;
   image: string;
   redirectUrl: string;
+  onClick?: VoidFunction;
 };
 
 export default function Project({
@@ -14,10 +17,12 @@ export default function Project({
   description,
   image,
   redirectUrl,
+  onClick,
 }: ProjectProps) {
   return (
     <Link
       href={redirectUrl}
+      onClick={onClick}
       className="relative group overflow-hidden rounded-lg animation-blur"
     >
       <div className="absolute inset-0 flex justify-center items-center flex-col gap-3 opacity-0 sm:group-hover:opacity-100 transition-all duration-300 z-40">
