@@ -54,7 +54,9 @@ export default async function RootLayout({
       >
         <ThemeProvider enableSystem>{children}</ThemeProvider>
       </body>
-      <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID as string} />
+      <GoogleAnalytics
+        gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string}
+      />
     </html>
   );
 }
