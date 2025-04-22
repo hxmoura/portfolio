@@ -12,9 +12,9 @@ import {
   signOut,
 } from "firebase/auth";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import Experience from "./components/Experience";
-import Presentation from "./components/Presentation";
-import Project from "./components/Project";
+import ExperienceAdmin from "./components/ExperienceAdmin";
+import PresentationAdmin from "./components/PresentationAdmin";
+import ProjectAdmin from "./components/ProjectAdmin";
 
 interface Authentication {
   hasPermission: boolean;
@@ -93,9 +93,9 @@ export default function Admin() {
     <>
       {authentication.hasPermission ? (
         <Setup spaceElements={80}>
-          <Presentation />
-          <Experience />
-          <Project />
+          <PresentationAdmin />
+          <ExperienceAdmin />
+          <ProjectAdmin />
           <SecondaryButton onClick={handleLogout}>Logout</SecondaryButton>
         </Setup>
       ) : (

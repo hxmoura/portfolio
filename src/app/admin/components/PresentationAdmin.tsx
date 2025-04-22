@@ -7,7 +7,7 @@ import { Presentation as TypePresentation } from "@/types/presentation";
 import { ChangeEvent, useEffect, useState } from "react";
 import validateUser from "../validate";
 
-export default function Presentation() {
+export default function PresentationAdmin() {
   const [presentation, setPresentation] = useState<TypePresentation>({
     title: "",
     description: "",
