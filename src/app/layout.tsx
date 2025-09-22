@@ -8,9 +8,9 @@ const segoeUI = localFont({
   src: "../fonts/SegoeUI.ttf",
 });
 
-const BlueParadise = localFont({
-  src: "../fonts/BlueParadise.otf",
-  variable: "--font-BlueParadise",
+const signature = localFont({
+  src: "../fonts/signature.otf",
+  variable: "--font-signature",
 });
 
 export const metadata: Metadata = {
@@ -50,9 +50,9 @@ export default async function RootLayout({
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <body
-        className={`${segoeUI.className} ${BlueParadise.variable} text-brand-700 dark:text-white bg-white dark:bg-brand-900`}
+        className={`${segoeUI.className} ${signature.variable} text-brand-700 dark:text-white bg-white dark:bg-brand-900`}
       >
-        <ThemeProvider enableSystem>{children}</ThemeProvider>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
       <GoogleAnalytics
         gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string}

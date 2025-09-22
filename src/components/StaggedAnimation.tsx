@@ -7,7 +7,7 @@ export default function StaggedAnimation() {
     const animationElements = document.querySelectorAll(
       ".animation-blur"
     ) as NodeListOf<HTMLElement>;
-    const increment = 0.12;
+    const increment = 0.08;
 
     animationElements.forEach((el, index) => {
       const delay = increment + index * increment;

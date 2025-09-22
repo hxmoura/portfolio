@@ -7,18 +7,18 @@ import Title from "@/components/Title";
 import database from "@/services/database";
 import { Content as TypeContent } from "@/types/content";
 import { Experience as TypeExp } from "@/types/experience";
-import { Presentation as TypePresentation } from "@/types/presentation";
 import { Project as TypeProject } from "@/types/project";
 import { fetcher } from "@/utils/fetcher";
 import { formatDate } from "@/utils/formatDate";
+import { Icon } from "@iconify/react";
 import { RiArrowRightLine } from "@remixicon/react";
 import Link from "next/link";
 
 export default async function Home() {
-  const presentation = (await database.getDocument(
-    "presentation",
-    "data"
-  )) as TypePresentation;
+  // const presentation = (await database.getDocument(
+  //   "presentation",
+  //   "data"
+  // )) as TypePresentation;
 
   const experiences = (await database.getByQuery("experience", [
     {
@@ -45,11 +45,51 @@ export default async function Home() {
     <Setup spaceElements={80}>
       <StaggedAnimation />
 
-      <section>
-        <h3 className="font-semibold text-xl mb-5 animation-blur">
-          {presentation.title}
-        </h3>
-        <p className="animation-blur">{presentation.description}</p>
+      <section className="space-y-5">
+        <p className="animation-blur text-brand-500 dark:text-brand-300">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          <br />
+          <br />
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum.
+        </p>
+
+        <Link
+          href="/about"
+          className="flex items-center gap-1 cursor-pointer group hover:underline w-fit animation-blur"
+        >
+          Continuar lendo
+          <Icon
+            icon="ri:arrow-right-line"
+            fontSize={16}
+            className="sm:group-hover:translate-x-1.5 transition-transform duration-300"
+          />
+        </Link>
+
+        <div className="flex items-center gap-2 text-brand-300 dark:text-brand-500 animation-blur">
+          <span title="Nextjs">
+            <Icon icon="ri:nextjs-fill" fontSize={32} />
+          </span>
+          <span title="Javascript">
+            <Icon icon="ri:javascript-fill" fontSize={32} />
+          </span>
+          <span title="Figma">
+            <Icon icon="ri:figma-fill" fontSize={32} />
+          </span>
+          <span title="Reactjs">
+            <Icon icon="ri:reactjs-fill" fontSize={32} />
+          </span>
+          <span title="Nodejs">
+            <Icon icon="ri:nodejs-fill" fontSize={32} />
+          </span>
+          <span title="TailwindCSS">
+            <Icon icon="ri:tailwind-css-fill" fontSize={32} />
+          </span>
+          <p className="font-semibold">+12</p>
+        </div>
       </section>
 
       {experiences.length > 0 && (
@@ -70,14 +110,13 @@ export default async function Home() {
 
       {projects.length > 0 && (
         <section>
-          <Title>Projetos</Title>
-          <div className="flex flex-col gap-5">
+          <Title>PROJETOS</Title>
+          <div className="flex flex-col gap-1">
             {projects.map((project) => (
               <Project
                 key={project.id}
                 title={project.name}
                 description={project.shortDescription}
-                image={project.wallpaper}
                 redirectUrl={`/project/${project.slug}`}
               />
             ))}
@@ -87,7 +126,7 @@ export default async function Home() {
 
       {contents.length > 0 && (
         <section>
-          <Title>Conteúdos</Title>
+          <Title>CONTEÚDOS</Title>
 
           <div className="space-y-1">
             {contents.map((content, index) => (
@@ -100,18 +139,16 @@ export default async function Home() {
             ))}
           </div>
 
-          {contents.length >= 5 && (
-            <Link
-              className="flex items-center gap-1 mt-7 text-brand-500 dark:text-brand-300 group sm:hover:underline w-fit animation-blur"
-              href="/contents"
-            >
-              <span>Ver mais</span>
-              <RiArrowRightLine
-                size={16}
-                className="sm:group-hover:translate-x-1.5 transition-transform duration-300"
-              />
-            </Link>
-          )}
+          <Link
+            className="flex items-center gap-1 mt-7 text-brand-500 dark:text-brand-300 group sm:hover:underline w-fit animation-blur"
+            href="/contents"
+          >
+            <span>Ver mais</span>
+            <RiArrowRightLine
+              size={16}
+              className="sm:group-hover:translate-x-1.5 transition-transform duration-300"
+            />
+          </Link>
         </section>
       )}
     </Setup>
