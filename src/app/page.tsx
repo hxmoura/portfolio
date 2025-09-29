@@ -6,7 +6,6 @@ import { Content as TypeContent } from "@/types/content";
 import { fetcher } from "@/utils/fetcher";
 import { formatDate } from "@/utils/formatDate";
 import { Icon } from "@iconify/react";
-import { RiArrowRightLine } from "@remixicon/react";
 import Link from "next/link";
 
 export default async function Home() {
@@ -163,9 +162,11 @@ export default async function Home() {
             href="/contents"
           >
             <span>Ver mais</span>
-            <RiArrowRightLine
-              size={16}
+            <Icon
+              icon="ri:arrow-right-line"
               className="sm:group-hover:translate-x-1.5 transition-transform duration-300"
+              width={16}
+              height={16}
             />
           </Link>
         </section>

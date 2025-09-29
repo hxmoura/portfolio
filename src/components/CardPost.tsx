@@ -1,4 +1,4 @@
-import { RiLink } from "@remixicon/react";
+import { Icon } from "@iconify/react";
 import Link from "next/link";
 
 type CardPostProps = {
@@ -18,7 +18,7 @@ export default function CardPost({ redirectUrl, title, date }: CardPostProps) {
 
         <div className="flex gap-3 items-center">
           <small className="text-sm max-sm:hidden">{date}</small>
-          <RiLink size={16} />
+          <Icon icon="ri:link" width={16} height={16} />
         </div>
       </Link>
     </article>

@@ -1,9 +1,14 @@
-import { RiLoader5Fill } from "@remixicon/react";
+import { Icon } from "@iconify/react";
 
 export default function Loading() {
   return (
     <div className="w-full h-screen flex items-center justify-center">
-      <RiLoader5Fill size={56} className="animate-spin" />
+      <Icon
+        icon="ri:loader-5-fill"
+        width={56}
+        height={56}
+        className="animate-spin"
+      />
     </div>
   );
 }
