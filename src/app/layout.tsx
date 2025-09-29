@@ -50,9 +50,12 @@ export default async function RootLayout({
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <body
-        className={`${segoeUI.className} ${signature.variable} text-brand-700 dark:text-white bg-white dark:bg-brand-900`}
+        className={`${segoeUI.className} ${signature.variable} text-brand-500 dark:text-brand-300 bg-white dark:bg-brand-900`}
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          {children}
+          <div id="portal-root" />
+        </ThemeProvider>
       </body>
       <GoogleAnalytics
         gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string}

@@ -29,6 +29,14 @@
   }
 }
 
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+}
+
 @layer components {
   .animation-blur {
     @apply opacity-0;

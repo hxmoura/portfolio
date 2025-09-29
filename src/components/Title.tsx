@@ -11,7 +11,7 @@ export default function Title({
 }: SectionTitleProps) {
   return (
     <h4
-      className={`font-semibold text-lg animation-blur
+      className={`font-semibold text-lg animation-blur text-brand-700 dark:text-white
         ${center && "text-center"} ${!noMargin && "mb-7"}
       `}
     >

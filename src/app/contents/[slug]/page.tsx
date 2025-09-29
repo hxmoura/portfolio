@@ -4,8 +4,13 @@ import { components } from "@/utils/components";
 import readMarkdown from "@/utils/readMarkdown";
 import { MDXRemote } from "next-mdx-remote-client/rsc";
 
-export default async function About() {
-  const content = readMarkdown("about", "content/about");
+type ContentsProps = {
+  params: Promise<{ slug: string }>;
+};
+
+export default async function ContentsPage({ params }: ContentsProps) {
+  const { slug } = await params;
+  const content = readMarkdown(slug, "content/posts");
 
   return (
     <Setup spaceElements={40}>

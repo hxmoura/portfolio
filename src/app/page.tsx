@@ -1,13 +1,8 @@
 import CardPost from "@/components/CardPost";
-import Experience from "@/components/Experience";
-import Project from "@/components/Project";
 import Setup from "@/components/Setup";
 import StaggedAnimation from "@/components/StaggedAnimation";
 import Title from "@/components/Title";
-import database from "@/services/database";
 import { Content as TypeContent } from "@/types/content";
-import { Experience as TypeExp } from "@/types/experience";
-import { Project as TypeProject } from "@/types/project";
 import { fetcher } from "@/utils/fetcher";
 import { formatDate } from "@/utils/formatDate";
 import { Icon } from "@iconify/react";
@@ -20,21 +15,21 @@ export default async function Home() {
   //   "data"
   // )) as TypePresentation;
 
-  const experiences = (await database.getByQuery("experience", [
-    {
-      field: "visible",
-      operator: "==",
-      value: true,
-    },
-  ])) as TypeExp[];
+  // const experiences = (await database.getByQuery("experience", [
+  //   {
+  //     field: "visible",
+  //     operator: "==",
+  //     value: true,
+  //   },
+  // ])) as TypeExp[];
 
-  const projects = (await database.getByQuery("project", [
-    {
-      field: "visible",
-      operator: "==",
-      value: true,
-    },
-  ])) as TypeProject[];
+  // const projects = (await database.getByQuery("project", [
+  //   {
+  //     field: "visible",
+  //     operator: "==",
+  //     value: true,
+  //   },
+  // ])) as TypeProject[];
 
   const contents = (await fetcher(
     `https://dev.to/api/articles?username=${process.env.NEXT_PUBLIC_DEV_TO_USERNAME}&per_page=5`,
@@ -59,7 +54,7 @@ export default async function Home() {
 
         <Link
           href="/about"
-          className="flex items-center gap-1 cursor-pointer group hover:underline w-fit animation-blur"
+          className="flex items-center gap-1 cursor-pointer group hover:underline w-fit animation-blur text-brand-700 dark:text-white"
         >
           Continuar lendo
           <Icon
@@ -71,28 +66,52 @@ export default async function Home() {
 
         <div className="flex items-center gap-2 text-brand-300 dark:text-brand-500 animation-blur">
           <span title="Nextjs">
-            <Icon icon="ri:nextjs-fill" fontSize={32} />
+            <Icon
+              icon="ri:nextjs-fill"
+              fontSize={32}
+              className="hover:text-brand-500 hover:dark:text-white"
+            />
           </span>
           <span title="Javascript">
-            <Icon icon="ri:javascript-fill" fontSize={32} />
+            <Icon
+              icon="ri:javascript-fill"
+              fontSize={32}
+              className="hover:text-brand-500 hover:dark:text-white"
+            />
           </span>
           <span title="Figma">
-            <Icon icon="ri:figma-fill" fontSize={32} />
+            <Icon
+              icon="ri:figma-fill"
+              fontSize={32}
+              className="hover:text-brand-500 hover:dark:text-white"
+            />
           </span>
           <span title="Reactjs">
-            <Icon icon="ri:reactjs-fill" fontSize={32} />
+            <Icon
+              icon="ri:reactjs-fill"
+              fontSize={32}
+              className="hover:text-brand-500 hover:dark:text-white"
+            />
           </span>
           <span title="Nodejs">
-            <Icon icon="ri:nodejs-fill" fontSize={32} />
+            <Icon
+              icon="ri:nodejs-fill"
+              fontSize={32}
+              className="hover:text-brand-500 hover:dark:text-white"
+            />
           </span>
           <span title="TailwindCSS">
-            <Icon icon="ri:tailwind-css-fill" fontSize={32} />
+            <Icon
+              icon="ri:tailwind-css-fill"
+              fontSize={32}
+              className="hover:text-brand-500 hover:dark:text-white"
+            />
           </span>
           <p className="font-semibold">+12</p>
         </div>
       </section>
 
-      {experiences.length > 0 && (
+      {/* {experiences.length > 0 && (
         <section>
           <Title>Experiência</Title>
           <div className="space-y-10">
@@ -122,7 +141,7 @@ export default async function Home() {
             ))}
           </div>
         </section>
-      )}
+      )} */}
 
       {contents.length > 0 && (
         <section>

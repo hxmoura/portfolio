@@ -3,10 +3,10 @@ import ToggleLanguage from "./ToggleLanguage";
 
 export default function Header() {
   return (
-    <header className="flex justify-between animation-blur">
+    <header className="flex justify-between animation-blur z-50">
       <div>
         <h1 className="text-lg font-semibold h-7 overflow-hidden">
-          <Link href="/" className="flex flex-col group">
+          <Link href="/" className="flex flex-col group text-brand-700 dark:text-white">
             <span className="group-hover:-translate-y-7 transition-transform ease-in-out">
               Henrique Moura
             </span>
