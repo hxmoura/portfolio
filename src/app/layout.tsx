@@ -57,9 +57,7 @@ export default async function RootLayout({
           <div id="portal-root" />
         </ThemeProvider>
       </body>
-      <GoogleAnalytics
-        gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string}
-      />
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID!} />
     </html>
   );
 }

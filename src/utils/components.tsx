@@ -6,7 +6,6 @@ import Experience from "@/components/Experience";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ImageView from "@/components/ImageView";
-import Input from "@/components/Input";
 import Loading from "@/components/Loading";
 import Modal from "@/components/Modal";
 import { Portal } from "@/components/Portal";
@@ -30,7 +29,6 @@ export const components = {
   Footer,
   Header,
   ImageView,
-  Input,
   Loading,
   Modal,
   Portal,
