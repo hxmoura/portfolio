@@ -1,21 +1,27 @@
 "use client";
 
 import { Icon } from "@iconify/react";
-import { useState } from "react";
+import { useParams, usePathname, useRouter } from "next/navigation";
 
 export default function ToggleLanguage() {
-  const [language, setLanguage] = useState<"en" | "pt">("pt");
+  const router = useRouter();
+  const { lang } = useParams<{ lang: string }>();
+  const pathname = usePathname();
 
-  const handleLanguage = () => {
-    setLanguage((prev) => (prev === "en" ? "pt" : "en"));
+  const currentLang = lang || "en";
+  const nextLang = currentLang === "en" ? "pt" : "en";
+
+  const handleClick = () => {
+    const newPath = pathname.replace(`/${currentLang}`, `/${nextLang}`);
+    router.push(newPath);
   };
 
   return (
     <button
       className="border border-brand-50 dark:border-brand-700 rounded-full p-1 h-10 w-24 cursor-pointer"
-      onClick={handleLanguage}
+      onClick={handleClick}
     >
-      <div className="relative flex items-center justify-center gap-6">
+      <div className="relative flex items-center justify-center gap-6 bg-red-400">
         <Icon
           icon="twemoji:flag-brazil"
           height={16}
@@ -30,7 +36,7 @@ export default function ToggleLanguage() {
         />
         <div
           className={`bg-brand-50 dark:bg-brand-700 left-0 transition-transform h-8 w-11 absolute rounded-full ${
-            language === "pt" ? "translate-x-0" : "translate-x-10.5"
+            lang === "pt" ? "translate-x-0" : "translate-x-10.5"
           }`}
         />
       </div>

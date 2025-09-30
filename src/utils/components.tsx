@@ -1,12 +1,11 @@
-import BackButton from "@/components/BackButton";
 import Badge from "@/components/Badge";
+import Button from "@/components/Button";
 import CardPost from "@/components/CardPost";
 import Container from "@/components/Container";
 import Experience from "@/components/Experience";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ImageView from "@/components/ImageView";
-import Loading from "@/components/Loading";
 import Modal from "@/components/Modal";
 import { Portal } from "@/components/Portal";
 import PrimaryButton from "@/components/PrimaryButton";
@@ -21,7 +20,6 @@ import ToggleTheme from "@/components/ToggleTheme";
 import { HTMLAttributes } from "react";
 
 export const components = {
-  BackButton,
   Badge,
   CardPost,
   Container,
@@ -29,7 +27,7 @@ export const components = {
   Footer,
   Header,
   ImageView,
-  Loading,
+  Button,
   Modal,
   Portal,
   PrimaryButton,

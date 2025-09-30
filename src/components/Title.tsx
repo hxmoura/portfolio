@@ -15,7 +15,7 @@ export default function Title({
         ${center && "text-center"} ${!noMargin && "mb-7"}
       `}
     >
-      {children}
+      {String(children).toUpperCase()}
     </h4>
   );
 }

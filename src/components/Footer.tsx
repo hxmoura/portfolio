@@ -1,6 +1,10 @@
 import Link from "next/link";
 
-export default function Footer() {
+type Props = {
+  dict: Record<string, string>;
+};
+
+export default function Footer({ dict }: Props) {
   return (
     <footer className="flex flex-col items-center gap-5 animation-blur text-brand-500 dark:text-brand-300">
       <h4 className="font-signature text-2xl">Hxmoura</h4>
@@ -29,7 +33,7 @@ export default function Footer() {
           </Link>
         </div>
         <p className="text-sm text-brand-500 dark:text-brand-300 text-center">
-          © hxmoura {new Date().getFullYear()} - Todos os direitos reservados
+          © hxmoura {new Date().getFullYear()} - {dict.copyright}
         </p>
       </div>
     </footer>

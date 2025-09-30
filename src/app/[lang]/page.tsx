@@ -1,34 +1,22 @@
+import Button from "@/components/Button";
 import CardPost from "@/components/CardPost";
 import Setup from "@/components/Setup";
 import StaggedAnimation from "@/components/StaggedAnimation";
 import Title from "@/components/Title";
+import { getDictionary } from "@/dictionaries";
+import { Locale } from "@/dictionaries/config";
 import { Content as TypeContent } from "@/types/content";
 import { fetcher } from "@/utils/fetcher";
 import { formatDate } from "@/utils/formatDate";
 import { Icon } from "@iconify/react";
-import Link from "next/link";
 
-export default async function Home() {
-  // const presentation = (await database.getDocument(
-  //   "presentation",
-  //   "data"
-  // )) as TypePresentation;
+type Props = {
+  params: Promise<{ lang: Locale }>;
+};
 
-  // const experiences = (await database.getByQuery("experience", [
-  //   {
-  //     field: "visible",
-  //     operator: "==",
-  //     value: true,
-  //   },
-  // ])) as TypeExp[];
-
-  // const projects = (await database.getByQuery("project", [
-  //   {
-  //     field: "visible",
-  //     operator: "==",
-  //     value: true,
-  //   },
-  // ])) as TypeProject[];
+export default async function Home({ params }: Props) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
 
   const contents = (await fetcher(
     `https://dev.to/api/articles?username=${process.env.NEXT_PUBLIC_DEV_TO_USERNAME}&per_page=5`,
@@ -36,7 +24,7 @@ export default async function Home() {
   )) as TypeContent[];
 
   return (
-    <Setup spaceElements={80}>
+    <Setup spaceElements={80} dict={dict} lang={lang}>
       <StaggedAnimation />
 
       <section className="space-y-5">
@@ -51,17 +39,9 @@ export default async function Home() {
           reprehenderit in voluptate velit esse cillum.
         </p>
 
-        <Link
-          href="/about"
-          className="flex items-center gap-1 cursor-pointer group hover:underline w-fit animation-blur text-brand-700 dark:text-white"
-        >
-          Continuar lendo
-          <Icon
-            icon="ri:arrow-right-line"
-            fontSize={16}
-            className="sm:group-hover:translate-x-1.5 transition-transform duration-300"
-          />
-        </Link>
+        <Button href="/about" className="text-brand-700 dark:text-white">
+          {dict.readMore}
+        </Button>
 
         <div className="flex items-center gap-2 text-brand-300 dark:text-brand-500 animation-blur">
           <span title="Nextjs">
@@ -144,7 +124,7 @@ export default async function Home() {
 
       {contents.length > 0 && (
         <section>
-          <Title>CONTEÚDOS</Title>
+          <Title>{dict.contentTitle}</Title>
 
           <div className="space-y-1">
             {contents.map((content, index) => (
@@ -157,18 +137,9 @@ export default async function Home() {
             ))}
           </div>
 
-          <Link
-            className="flex items-center gap-1 mt-7 text-brand-500 dark:text-brand-300 group sm:hover:underline w-fit animation-blur"
-            href="/contents"
-          >
-            <span>Ver mais</span>
-            <Icon
-              icon="ri:arrow-right-line"
-              className="sm:group-hover:translate-x-1.5 transition-transform duration-300"
-              width={16}
-              height={16}
-            />
-          </Link>
+          <Button href="/contents" className="mt-7">
+            {dict.seeMore}
+          </Button>
         </section>
       )}
     </Setup>

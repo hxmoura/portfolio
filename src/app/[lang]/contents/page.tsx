@@ -1,7 +1,9 @@
-import BackButton from "@/components/BackButton";
+import Button from "@/components/Button";
 import Setup from "@/components/Setup";
 import StaggedAnimation from "@/components/StaggedAnimation";
 import Title from "@/components/Title";
+import { getDictionary } from "@/dictionaries";
+import { Locale } from "@/dictionaries/config";
 import { Content } from "@/types/content";
 import { fetcher } from "@/utils/fetcher";
 import { formatDate } from "@/utils/formatDate";
@@ -13,17 +15,26 @@ export const metadata: Metadata = {
   title: "Conteúdos",
 };
 
-export default async function Contents() {
+type Props = {
+  params: Promise<{ lang: Locale }>;
+};
+
+export default async function Contents({ params }: Props) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
+
   const contents = await fetcher(
     `https://dev.to/api/articles?username=${process.env.NEXT_PUBLIC_DEV_TO_USERNAME}`,
     { next: { revalidate: 86400 } }
   );
 
   return (
-    <Setup>
+    <Setup dict={dict} lang={lang}>
       <StaggedAnimation />
-      <BackButton redirect="/" />
-      <Title>Conteúdos</Title>
+      <Button href="/" arrowLeft className="text-sm">
+        {dict.back}
+      </Button>
+      <Title>{dict.contentTitle}</Title>
       <ul>
         {contents.map((content: Content, index: number) => (
           <li

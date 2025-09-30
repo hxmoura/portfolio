@@ -1,10 +1,6 @@
 import Setup from "@/components/Setup";
 import StaggedAnimation from "@/components/StaggedAnimation";
 
-type ProjectProps = {
-  params: Promise<{ slug: string }>;
-};
-
 // async function getProject(slug: string) {
 //   const [project] = (await database.getByQuery(
 //     "project",
@@ -36,9 +32,7 @@ type ProjectProps = {
 //   };
 // }
 
-export default async function Project({ params }: ProjectProps) {
-  const { slug } = await params;
-  console.log(slug);
+export default async function Project() {
   // const project = await getProject(slug);
   // const project = null;
 
