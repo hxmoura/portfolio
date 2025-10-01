@@ -1,18 +1,20 @@
 export type ProjectStatus = "development" | "concluded";
 
+interface Technologies {
+  icon: string;
+  label: string;
+  description: string;
+  color: string;
+}
+
 export interface Project {
   name: string;
+  date: string;
   shortDescription: string;
-  wallpaper: string;
-  images: string[];
-  slug: string;
+  icon: string;
+  technologies: Technologies[];
+  projectUrl: string;
+  codeUrl: string;
   status: ProjectStatus;
-  linkProject: string;
-  linkCode: string;
-  linkUI: string;
-  description: string;
-  features: string;
-  technologies: string;
-  visible: boolean;
-  id: string;
+  visibility: boolean;
 }

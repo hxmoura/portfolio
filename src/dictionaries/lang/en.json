@@ -8,5 +8,6 @@
   "back": "Back",
   "notFoundTitle": "Oops! The page was not found.",
   "notFoundDescription": "You may have entered the wrong URL, or the page is no longer available.",
-  "notFoundButton": "Back to home"
+  "notFoundButton": "Back to home",
+  "postedOn": "Posted on"
 }

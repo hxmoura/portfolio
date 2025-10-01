@@ -1,138 +1,44 @@
 import Setup from "@/components/Setup";
 import StaggedAnimation from "@/components/StaggedAnimation";
+import { getDictionary } from "@/dictionaries";
+import { Locale } from "@/dictionaries/config";
+import { Project } from "@/types/project";
+import { components } from "@/utils/components";
+import readMarkdown from "@/utils/readMarkdown";
+import { Metadata } from "next";
+import { MDXRemote } from "next-mdx-remote-client/rsc";
 
-// async function getProject(slug: string) {
-//   const [project] = (await database.getByQuery(
-//     "project",
-//     [
-//       {
-//         field: "slug",
-//         operator: "==",
-//         value: slug,
-//       },
-//       {
-//         field: "visible",
-//         operator: "==",
-//         value: true,
-//       },
-//     ],
-//     1
-//   )) as TypeProject[];
+type Props = {
+  params: Promise<{ slug: string; lang: Locale }>;
+};
 
-//   return project;
-// }
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug, lang } = await params;
 
-// export async function generateMetadata({ params }: ProjectProps) {
-//   const { slug } = await params;
-//   const project = await getProject(slug);
+  const { data } = readMarkdown<Project>({
+    folderPath: `${lang}/projects`,
+    fileName: slug,
+  });
 
-//   return {
-//     title: project.name,
-//     description: project.shortDescription,
-//   };
-// }
+  return {
+    title: data.name,
+  };
+}
 
-export default async function Project() {
-  // const project = await getProject(slug);
-  // const project = null;
+export default async function ProjectPage({ params }: Props) {
+  const { slug, lang } = await params;
+  const dict = await getDictionary(lang);
 
-  // if (!project) {
-  //   return redirect("/not-found");
-  // }
-
-  // const imgsWithoutWallpaper = project.images.filter(
-  //   (img) => img !== project.wallpaper
-  // );
-
-  // const hasLink = project.linkCode || project.linkProject || project.linkUI;
+  const { content, data } = readMarkdown<Project>({
+    folderPath: `${lang}/projects`,
+    fileName: slug,
+  });
 
   return (
-    <Setup spaceElements={40}>
+    <Setup spaceElements={40} dict={dict} lang={lang}>
       <StaggedAnimation />
-      {/* <section>
-        <BackButton redirect="/" />
-        <div className="flex items-start gap-2 mt-1">
-          <Title noMargin>{project.name}</Title>
-          <Status status={project.status} />
-        </div>
 
-        {hasLink && (
-          <div className="flex flex-wrap gap-3 mt-7">
-            {project.linkProject && (
-              <PrimaryButton
-                onClick={project.linkProject}
-                openInNewTab
-                analyticsClick={{
-                  event: "project_actions_clicked",
-                  target: project.linkProject,
-                }}
-              >
-                <RiSearchEyeLine size={16} />
-                <span className="text-sm">Visualizar</span>
-              </PrimaryButton>
-            )}
-            {project.linkCode && (
-              <SecondaryButton
-                onClick={project.linkCode}
-                openInNewTab
-                analyticsClick={{
-                  event: "project_actions_clicked",
-                  target: project.linkCode,
-                }}
-              >
-                <RiCodeSSlashLine size={16} />
-                <span className="text-sm">Código</span>
-              </SecondaryButton>
-            )}
-            {project.linkUI && (
-              <SecondaryButton
-                onClick={project.linkUI}
-                openInNewTab
-                analyticsClick={{
-                  event: "project_actions_clicked",
-                  target: project.linkUI,
-                }}
-              >
-                <RiFigmaLine size={16} />
-                <span className="text-sm">UI Design</span>
-              </SecondaryButton>
-            )}
-          </div>
-        )}
-      </section>
-
-      <p className="animation-blur">{project.description}</p>
-
-      {imgsWithoutWallpaper.length > 0 && (
-        <Carousel images={imgsWithoutWallpaper} />
-      )}
-
-      {project.features && (
-        <section>
-          <Title>Funcionalidades 💡</Title>
-          <ul className="list-disc list-inside">
-            {project.features.split("\n").map((feature, index) => (
-              <li
-                className="animation-blur whitespace-break-spaces"
-                key={index}
-              >
-                {feature}
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {project.technologies && (
-        <section>
-          <Title>Tecnologias usadas ⚙️</Title>
-          <div className="flex flex-wrap gap-3">
-            {project.technologies.split(",").map((tech, index) => (
-              <Badge key={index}>{tech}</Badge>
-            ))}
-          </div>
-        </section>
-      )} */}
+      <MDXRemote source={content} components={components} />
     </Setup>
   );
 }

@@ -1,6 +1,7 @@
 import Badge from "@/components/Badge";
 import Button from "@/components/Button";
 import CardPost from "@/components/CardPost";
+import Project from "@/components/CardProject";
 import Container from "@/components/Container";
 import Experience from "@/components/Experience";
 import Footer from "@/components/Footer";
@@ -9,7 +10,6 @@ import ImageView from "@/components/ImageView";
 import Modal from "@/components/Modal";
 import { Portal } from "@/components/Portal";
 import PrimaryButton from "@/components/PrimaryButton";
-import Project from "@/components/Project";
 import SecondaryButton from "@/components/SecondaryButton";
 import Setup from "@/components/Setup";
 import StaggedAnimation from "@/components/StaggedAnimation";

@@ -1,9 +1,11 @@
-export function formatDate(date: string) {
-  const d = new Date(date);
+export function formatDate(isoDate: string, lang = "pt") {
+  if (!isoDate) return "";
 
-  const day = ("0" + d.getDate()).slice(-2);
-  const month = ("0" + (d.getMonth() + 1)).slice(-2);
-  const year = d.getFullYear();
+  const [year, month, day] = isoDate.split("-");
+
+  if (lang === "en") {
+    return `${month}/${day}/${year}`;
+  }
 
   return `${day}/${month}/${year}`;
 }
