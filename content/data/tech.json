@@ -1,0 +1,128 @@
+{
+  "aws": {
+    "name": "Amazon Web Services",
+    "icon": "cib:amazon-aws",
+    "description": {
+      "en": "Cloud services platform for securely and reliably hosting, scaling, and managing applications.",
+      "pt": "Plataforma de serviços em nuvem para hospedar, escalar e gerenciar aplicações de forma segura e confiável."
+    },
+    "color": "#FF9900"
+  },
+  "typescript": {
+    "name": "Typescript",
+    "icon": "logos:typescript-icon",
+    "description": {
+      "en": "JavaScript superset that adds static typing, improving productivity and project maintainability.",
+      "pt": "Superset do JavaScript que adiciona tipagem estática, aumentando a produtividade e a manutenção de projetos."
+    },
+    "color": "#3178C6"
+  },
+  "figma": {
+    "name": "Figma",
+    "icon": "material-icon-theme:figma",
+    "description": {
+      "en": "Collaborative design tool for creating prototypes, interfaces, and user flows.",
+      "pt": "Ferramenta de design colaborativo para criar protótipos, interfaces e fluxos de usuário."
+    },
+    "color": "#7C4DFF"
+  },
+  "serverless": {
+    "name": "Serverless",
+    "icon": "material-icon-theme:serverless",
+    "description": {
+      "en": "Architecture that allows running functions in the cloud without managing servers, paying only for usage.",
+      "pt": "Arquitetura que permite rodar funções na nuvem sem gerenciar servidores, pagando apenas pelo uso."
+    },
+    "color": "#EF5350"
+  },
+  "nextjs": {
+    "name": "Next.js",
+    "icon": "devicon:nextjs",
+    "description": {
+      "en": "React framework offering hybrid rendering (SSR/SSG), optimized routing, and excellent performance.",
+      "pt": "Framework React que oferece renderização híbrida (SSR/SSG), rotas otimizadas e excelente performance."
+    },
+    "color": "#000000"
+  },
+  "javascript": {
+    "name": "JavaScript",
+    "icon": "devicon:javascript",
+    "description": {
+      "en": "Essential programming language for web development, both frontend and backend.",
+      "pt": "Linguagem de programação essencial para desenvolvimento web, tanto no frontend quanto no backend."
+    },
+    "color": "#F0DB4F"
+  },
+  "tailwindcss": {
+    "name": "TailwindCSS",
+    "icon": "material-icon-theme:tailwindcss",
+    "description": {
+      "en": "Utility-first CSS framework for building fast and responsive interfaces with high productivity.",
+      "pt": "Framework CSS utilitário que permite criar interfaces rápidas e responsivas com produtividade."
+    },
+    "color": "#4DB6AC"
+  },
+  "reactnative": {
+    "name": "React Native",
+    "icon": "devicon:reactnative",
+    "description": {
+      "en": "Framework for building native mobile apps using React.",
+      "pt": "Framework para desenvolvimento de aplicativos móveis nativos utilizando React."
+    },
+    "color": "#61DAFB"
+  },
+  "docker": {
+    "name": "Docker",
+    "icon": "material-icon-theme:docker",
+    "description": {
+      "en": "Container platform that simplifies creating, deploying, and running applications in a standardized way.",
+      "pt": "Plataforma de containers que facilita a criação, deploy e execução de aplicações de forma padronizada."
+    },
+    "color": "#0288D1"
+  },
+  "nodejs": {
+    "name": "Nodejs",
+    "icon": "material-icon-theme:nodejs",
+    "description": {
+      "en": "JavaScript runtime for backend, efficient for scalable applications.",
+      "pt": "Ambiente de execução do JavaScript no backend, eficiente para aplicações escaláveis."
+    },
+    "color": "#8BC34A"
+  },
+  "postgresql": {
+    "name": "PostgreSQL",
+    "icon": "devicon:postgresql",
+    "description": {
+      "en": "Robust relational database with support for advanced queries and high reliability.",
+      "pt": "Banco de dados relacional robusto, com suporte a consultas avançadas e alta confiabilidade."
+    },
+    "color": "#336791"
+  },
+  "jest": {
+    "name": "Jest",
+    "icon": "logos:jest",
+    "description": {
+      "en": "JavaScript testing framework focused on simplicity and speed, widely used in React and Node.js projects.",
+      "pt": "Framework de testes em JavaScript focado em simplicidade e rapidez, muito usado em projetos React e Node.js."
+    },
+    "color": "#99425B"
+  },
+  "firebase": {
+    "name": "Firebase",
+    "icon": "devicon:firebase",
+    "description": {
+      "en": "Google platform offering ready-to-use backend services like authentication, database, and hosting.",
+      "pt": "Plataforma do Google que oferece serviços backend prontos, como autenticação, banco de dados e hospedagem."
+    },
+    "color": "#F57C00"
+  },
+  "react": {
+    "name": "React",
+    "icon": "material-icon-theme:react",
+    "description": {
+      "en": "JavaScript library for building modern, component-based user interfaces.",
+      "pt": "Biblioteca JavaScript para construção de interfaces de usuário modernas e componentizadas."
+    },
+    "color": "#00BCD4"
+  }
+}

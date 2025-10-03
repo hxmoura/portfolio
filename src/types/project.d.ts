@@ -1,4 +1,6 @@
-export type ProjectStatus = "development" | "concluded";
+import stack from "../../content/data/tech.json";
+
+export type ProjectStatus = "development" | "done";
 
 interface Technologies {
   icon: string;
@@ -11,8 +13,9 @@ export interface Project {
   name: string;
   date: string;
   shortDescription: string;
+  description: string;
   icon: string;
-  technologies: Technologies[];
+  technologies: (keyof typeof stack)[];
   projectUrl: string;
   codeUrl: string;
   status: ProjectStatus;

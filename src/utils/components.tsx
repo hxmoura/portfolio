@@ -1,4 +1,3 @@
-import Badge from "@/components/Badge";
 import Button from "@/components/Button";
 import CardPost from "@/components/CardPost";
 import Project from "@/components/CardProject";
@@ -14,13 +13,14 @@ import SecondaryButton from "@/components/SecondaryButton";
 import Setup from "@/components/Setup";
 import StaggedAnimation from "@/components/StaggedAnimation";
 import Status from "@/components/Status";
+import Technology from "@/components/Technology";
 import Title from "@/components/Title";
 import ToggleLanguage from "@/components/ToggleLanguage";
 import ToggleTheme from "@/components/ToggleTheme";
 import { HTMLAttributes } from "react";
 
 export const components = {
-  Badge,
+  Technology,
   CardPost,
   Container,
   Experience,

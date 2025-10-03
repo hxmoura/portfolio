@@ -2,6 +2,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import localFont from "next/font/local";
+import theme from "../../content/settings/settings.json";
 import "./globals.css";
 
 const segoeUI = localFont({
@@ -50,6 +51,12 @@ export default async function RootLayout({
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <body
+        style={
+          {
+            "--color-primary": theme.primaryColor,
+            "--color-primary-dark": theme.primaryColorDark,
+          } as React.CSSProperties
+        }
         className={`${segoeUI.className} ${signature.variable} text-brand-500 dark:text-brand-300 bg-white dark:bg-brand-900`}
       >
         <ThemeProvider>

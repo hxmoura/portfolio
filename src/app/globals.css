@@ -12,6 +12,9 @@
   --color-brand-800: #232323;
   --color-brand-900: #141414;
 
+  --color-primary: var(--color-primary);
+  --color-primary-dark: var(--color-primary-dark);
+
   --breakpoint-sm: 36rem;
 
   --animate-fade-in-blur: fade-in-blur 0.5s ease forwards;

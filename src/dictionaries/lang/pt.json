@@ -9,5 +9,9 @@
   "notFoundTitle": "Oops! A página não foi encontrada.",
   "notFoundDescription": "Pode ser que você digitou a URL errada, ou a página não está mais disponível.",
   "notFoundButton": "Voltar para o inicio",
-  "postedOn": "Postado em"
+  "postedOn": "Postado em",
+  "seeProject": "Ver projeto",
+  "code": "Código",
+  "development": "Em desenvolvimento",
+  "done": "Concluído"
 }

@@ -29,9 +29,12 @@ export default function Setup({
         </main>
         <Footer dict={dict} />
 
-        <div className="fixed left-90 top-48 size-112 bg-radial from-[#00ff55] to-white dark:to-brand-900 to-70% opacity-7 dark:opacity-5 pointer-events-none -z-20" />
+        {/* <div className="fixed left-90 top-48 size-112 bg-radial from-[#00ff55] to-white dark:to-brand-900 to-70% opacity-7 dark:opacity-5 pointer-events-none -z-20" />
         <div className="fixed left-70 top-28 size-112 bg-radial from-[#00D0FF] to-white dark:to-brand-900 to-70% opacity-7 dark:opacity-5 pointer-events-none -z-20" />
-        <div className="hidden lg:block fixed right-44 size-112 bg-radial from-[#00ff55] to-white dark:to-brand-900 to-70% opacity-7 dark:opacity-5 pointer-events-none -z-20" />
+        <div className="hidden lg:block fixed right-44 size-112 bg-radial from-[#00ff55] to-white dark:to-brand-900 to-70% opacity-7 dark:opacity-5 pointer-events-none -z-20" /> */}
+        <div className="fixed left-90 top-48 size-112 bg-radial from-primary to-white dark:to-brand-900 to-70% opacity-7 dark:opacity-5 pointer-events-none -z-20" />
+        <div className="fixed left-70 top-28 size-112 bg-radial from-primary to-white dark:to-brand-900 to-70% opacity-7 dark:opacity-5 pointer-events-none -z-20" />
+        <div className="hidden lg:block fixed right-44 size-112 bg-radial from-primary to-white dark:to-brand-900 to-70% opacity-7 dark:opacity-5 pointer-events-none -z-20" />
       </Container>
 
       <ToggleTheme />

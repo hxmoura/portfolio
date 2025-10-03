@@ -27,6 +27,75 @@ export default defineConfig({
   schema: {
     collections: [
       {
+        label: "Configurações",
+        name: "settings",
+        path: "content/settings",
+        format: "json",
+        fields: [
+          {
+            type: "string",
+            label: "Cor primária",
+            name: "primaryColor",
+            ui: {
+              component: "color",
+            },
+          },
+          {
+            type: "string",
+            label: "Cor primária escura",
+            name: "primaryColorDark",
+            ui: {
+              component: "color",
+            },
+          },
+        ],
+      },
+      {
+        label: "Technologies",
+        name: "technologies",
+        path: "content/data",
+        format: "json",
+        match: { include: "tech" },
+        fields: [
+          {
+            type: "object",
+            name: "items",
+            label: "Tech List",
+            list: true,
+            ui: { itemProps: (item) => ({ label: item?.name }) },
+            fields: [
+              { type: "string", name: "name", label: "Name" },
+              { type: "string", name: "icon", label: "Icone" },
+              {
+                type: "string",
+                name: "color",
+                label: "Cor",
+                ui: {
+                  component: "color",
+                },
+              },
+              {
+                type: "object",
+                name: "description",
+                label: "Descrição",
+                fields: [
+                  {
+                    type: "string",
+                    name: "description_pt",
+                    label: "Descrição (PT)",
+                  },
+                  {
+                    type: "string",
+                    name: "description_en",
+                    label: "Descrição (EN)",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
         name: "about_pt",
         label: "About (PT)",
         path: "content/pt/about",

@@ -24,7 +24,7 @@ export default async function NotFound() {
         <p className="mt-3 mb-9 text-brand-500 dark:text-brand-300 text-center max-w-76 animation-blur">
           {dict.notFoundDescription}
         </p>
-        <PrimaryButton onClick="/">{dict.notFoundButton}</PrimaryButton>
+        <PrimaryButton href="/">{dict.notFoundButton}</PrimaryButton>
       </div>
     </Setup>
   );
