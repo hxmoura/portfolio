@@ -71,7 +71,7 @@ export default async function ProjectPage({ params }: Props) {
         <p className="animation-blur">{data.description}</p>
 
         <div className="flex flex-wrap gap-3 mt-7">
-          {data.technologies.map((tech) => (
+          {data.stacks.map((tech) => (
             <Technology key={tech} name={tech} />
           ))}
         </div>

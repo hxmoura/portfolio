@@ -50,7 +50,7 @@ export default async function ContentsPage({ params }: Props) {
         </h1>
 
         <p className="text-sm animation-blur">
-          {dict.postedOn} {formatDate(data.date, lang)}
+          {dict.postedOn} {formatDate(data.publishedAt, lang)}
         </p>
       </div>
 

@@ -49,7 +49,7 @@ export default async function Contents({ params }: Props) {
               <p>{content.title}</p>
               <div className="flex items-center gap-3 ml-5">
                 <small className="text-sm hidden sm:block">
-                  {formatDate(content.date, lang)}
+                  {formatDate(content.publishedAt, lang)}
                 </small>
                 <Icon icon="ri:link" width={16} height={16} />
               </div>

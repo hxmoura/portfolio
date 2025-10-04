@@ -1,5 +1,5 @@
 export interface Content {
   title: string;
-  date: string;
+  publishedAt: string;
   visibility: boolean;
 }
