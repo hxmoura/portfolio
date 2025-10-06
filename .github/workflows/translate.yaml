@@ -1,0 +1,52 @@
+name: Auto Translate to English
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "content/pt/**/*.mdx"
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Get modified files
+        id: changed
+        run: |
+          FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^content/pt/' || true)
+          echo "files<<EOF" >> $GITHUB_OUTPUT
+          echo "$FILES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Translate modified files
+        if: steps.changed.outputs.files != '' && !contains(github.event.head_commit.message, 'Auto-translate')
+        env:
+          DEEPL_API_KEY: ${{ secrets.DEEPL_API_KEY }}
+        run: |
+          node scripts/translate.js ${{ steps.changed.outputs.files }}
+
+      - name: Commit and push translations
+        if: "!contains(github.event.head_commit.message, 'Auto-translate')"
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add content/en
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Auto-translate updated files"
+            git push
+          fi
