@@ -58,14 +58,18 @@ export default async function ProjectPage({ params }: Props) {
         </div>
 
         <div className="flex gap-5 mt-6 mb-12">
-          <PrimaryButton openInNewTab href="/">
-            <Icon icon="ri:search-eye-line" width={16} height={16} />
-            {dict.seeProject}
-          </PrimaryButton>
-          <SecondaryButton openInNewTab href="/">
-            <Icon icon="ri:code-s-slash-fill" width={16} height={16} />
-            {dict.code}
-          </SecondaryButton>
+          {data.projectUrl && (
+            <PrimaryButton openInNewTab href={data.projectUrl}>
+              <Icon icon="ri:search-eye-line" width={16} height={16} />
+              {dict.seeProject}
+            </PrimaryButton>
+          )}
+          {data.codeUrl && (
+            <SecondaryButton openInNewTab href={data.codeUrl}>
+              <Icon icon="ri:code-s-slash-fill" width={16} height={16} />
+              {dict.code}
+            </SecondaryButton>
+          )}
         </div>
 
         <p className="animation-blur">{data.description}</p>

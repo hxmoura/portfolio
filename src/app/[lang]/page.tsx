@@ -50,7 +50,7 @@ export default async function Home({ params }: Props) {
         )}
 
         <div className="flex items-center gap-2 text-brand-300 dark:text-brand-500 animation-blur">
-          {data.stack.map((tech: string, index: number) => (
+          {data.stack.map((tech, index) => (
             <Icon
               key={index}
               icon={tech}
@@ -89,7 +89,7 @@ export default async function Home({ params }: Props) {
                 key={index}
                 redirectUrl={`/${lang}/contents/${post.slug}`}
                 title={post.title}
-                date={formatDate(post.date, lang)}
+                date={formatDate(post.publishedAt, lang)}
               />
             ))}
           </div>

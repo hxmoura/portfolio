@@ -2,7 +2,6 @@ import { defineConfig } from "tinacms";
 import {
   aboutCollection,
   aboutHomeCollection,
-  bodyField,
   postCollection,
   projectCollection,
   settingsCollection,
@@ -31,27 +30,6 @@ export default defineConfig({
       aboutCollection,
       postCollection,
       projectCollection,
-      {
-        name: "about_en",
-        label: "About (EN)",
-        path: "content/en/about",
-        format: "mdx",
-        fields: [bodyField],
-      },
-      {
-        name: "post_en",
-        label: "Posts (EN)",
-        path: "content/en/posts",
-        format: "mdx",
-        fields: [bodyField],
-      },
-      {
-        name: "project_en",
-        label: "Projects (EN)",
-        path: "content/en/projects",
-        format: "mdx",
-        fields: [bodyField],
-      },
     ],
   },
 });

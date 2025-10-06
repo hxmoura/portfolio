@@ -31,9 +31,11 @@ export default function getFrontmatter<T>({
   return allData
     .filter((data) => data.visibility)
     .sort((a, b) => {
-      const dateA = "date" in a ? new Date(a.date as string).getTime() : 0;
-      const dateB = "date" in b ? new Date(b.date as string).getTime() : 0;
-      return dateB - dateA;
+      const dateA =
+        "publishedAt" in a ? new Date(a.publishedAt as string).getTime() : 0;
+      const dateB =
+        "publishedAt" in b ? new Date(b.publishedAt as string).getTime() : 0;
+      return dateA - dateB;
     })
     .slice(0, limit);
 }

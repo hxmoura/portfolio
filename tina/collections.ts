@@ -30,7 +30,7 @@ const publishedAtField: TinaField = {
 };
 
 export const settingsCollection: Collection = {
-  label: "Configurações",
+  label: "Settings",
   name: "settings",
   path: "content/settings",
   format: "json",
@@ -80,7 +80,7 @@ export const aboutHomeCollection: Collection = {
 };
 
 export const technologiesCollection: Collection = {
-  label: "Technologies",
+  label: "Stacks",
   name: "technologies",
   path: "content/data",
   format: "json",
@@ -140,7 +140,7 @@ export const aboutCollection: Collection = {
 
 export const postCollection: Collection = {
   name: "post_pt",
-  label: "Posts (PT)",
+  label: "Posts",
   path: "content/pt/posts",
   format: "mdx",
   fields: [
@@ -159,7 +159,7 @@ export const postCollection: Collection = {
 
 export const projectCollection: Collection = {
   name: "project_pt",
-  label: "Projects (PT)",
+  label: "Projects",
   path: "content/pt/projects",
   format: "mdx",
   fields: [
