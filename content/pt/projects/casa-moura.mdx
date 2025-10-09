@@ -1,24 +1,77 @@
 ---
 visibility: true
 name: Casa Moura
-shortDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+shortDescription: "Compre materiais para construir ou reformar sua casa. "
 description: >-
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-  nostrud exercitation ullamco.
-icon: " \U0001F680"
+  Casa Moura é um e-commerce de materiais de construção. Você pode procurar pelo
+  produto desejado e verificar as informações e avaliações de cada produto.
+  Adicione no carrinho os produtos escolhidos e conclua sua compra com
+  segurança.
+icon: "\U0001F6E0️"
 stacks:
   - nextjs
+  - typescript
   - tailwindcss
   - firebase
-projectUrl: 'https://google.com'
-codeUrl: 'https://google.com'
+projectUrl: "https://casamoura.hxmoura.com.br/"
+codeUrl: "https://github.com/hxmoura/casa-moura"
 status: done
-publishedAt: '2025-10-01'
+publishedAt: "2025-10-07"
 ---
 
+### Layout
 
+Guia de estilo e prototipação das telas estão disponíveis no <CustomLink external href="https://www.figma.com/design/VfI83my6VZsLKM4GZJkBhO/Casa-Moura">Figma</CustomLink>
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+**Telas criadas:**
+
+- 🏠 Página inicial
+- 🔍 Listagem de produtos por pesquisa
+- 📦 Produto específico
+- 🔑 Autenticação (Cadastro/login)
+- 🛒 Carrinho de compras (Popup + página)
+- 💳 Checkout multi-step (Pagamento e dados pessoais)
+- ✅ Confirmação de compra
+- ❌ Produto não encontrado
+- ✨ **Extra:** Skeleton Screen + Modais
+
+<Spacer />
+
+### Melhorias futuras
+
+- 🔄 Migrar para um banco de dados relacional
+- 🔍 Migrar pesquisa, paginação e filtros para o backend
+- 👤 Permitir que o usuário visualize o status e o histórico de pedidos
+- 🛠️ Criar um painel administrativo simplificado para gerenciar pedidos
+
+<Spacer />
+
+### Fluxo da aplicação
+
+O fluxo principal segue a jornada do usuário em um e-commerce:
+
+1. **🔎 Navegação e busca de produtos**
+
+   - O usuário acessa a página inicial e visualiza os produtos.
+   - É possível filtrar ou pesquisar por nome.
+
+2. **🛒 Carrinho de compras**
+
+   - O usuário adiciona produtos ao carrinho.
+   - O carrinho é persistido (mesmo após recarregar a página).
+   - É possível aumentar/diminuir quantidade ou remover itens.
+
+3. **🔑 Autenticação**
+
+   - Para finalizar a compra, o usuário precisa estar autenticado.
+   - O login/cadastro é feito via Firebase Authentication (email/senha).
+   - Após autenticação, o usuário retorna ao fluxo de checkout.
+
+4. **💳 Checkout e pagamento**
+
+   - No checkout, o sistema calcula o total.
+   - Integração com o **Mercado Pago Checkout Transparente** processa o pagamento sem redirecionar o usuário.
+
+5. **✅ Confirmação de pedido**
+   - O pedido é registrado no **Firestore**.
+   - O usuário recebe feedback visual do status do pagamento (aprovado, pendente ou recusado).

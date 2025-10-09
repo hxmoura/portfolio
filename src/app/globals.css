@@ -38,6 +38,10 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
+
+  ::selection {
+    @apply text-primary bg-primary-dark;
+  }
 }
 
 @layer components {
@@ -55,9 +59,4 @@
   .disable-scroll {
     scrollbar-width: none;
   }
-}
-
-::selection {
-  background: #f5f5dc;
-  color: #4b2e2a;
 }

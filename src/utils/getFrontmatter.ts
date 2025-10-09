@@ -14,6 +14,11 @@ export default function getFrontmatter<T>({
   limit = 999,
 }: Props): Array<FrontmatterBase & T> {
   const dir = path.join(process.cwd(), "content", folderPath);
+
+  if (!fs.existsSync(dir)) {
+    return [];
+  }
+
   const files = fs.readdirSync(dir);
 
   const allData = files.map((file) => {

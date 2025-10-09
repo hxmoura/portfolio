@@ -1,6 +1,6 @@
-import Button from "@/components/Button";
 import CardPost from "@/components/CardPost";
 import CardProject from "@/components/CardProject";
+import CustomLink from "@/components/CustomLink";
 import Setup from "@/components/Setup";
 import StaggedAnimation from "@/components/StaggedAnimation";
 import Title from "@/components/Title";
@@ -44,9 +44,9 @@ export default async function Home({ params }: Props) {
         <MDXRemote source={content} components={components} />
 
         {data.showContinueReadingButton && (
-          <Button href="/about" className="text-brand-700 dark:text-white">
+          <CustomLink href="/about" arrow="right">
             {dict.readMore}
-          </Button>
+          </CustomLink>
         )}
 
         <div className="flex items-center gap-2 text-brand-300 dark:text-brand-500 animation-blur">
@@ -94,9 +94,9 @@ export default async function Home({ params }: Props) {
             ))}
           </div>
 
-          <Button href="/contents" className="mt-7">
+          <CustomLink href="/contents" arrow="right" className="mt-7">
             {dict.seeMore}
-          </Button>
+          </CustomLink>
         </section>
       )}
     </Setup>

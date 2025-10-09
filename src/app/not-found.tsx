@@ -1,4 +1,4 @@
-import PrimaryButton from "@/components/PrimaryButton";
+import Button from "@/components/Button";
 import Setup from "@/components/Setup";
 import StaggedAnimation from "@/components/StaggedAnimation";
 import Title from "@/components/Title";
@@ -24,7 +24,9 @@ export default async function NotFound() {
         <p className="mt-3 mb-9 text-brand-500 dark:text-brand-300 text-center max-w-76 animation-blur">
           {dict.notFoundDescription}
         </p>
-        <PrimaryButton href="/">{dict.notFoundButton}</PrimaryButton>
+        <Button href="/" type="primary">
+          {dict.notFoundButton}
+        </Button>
       </div>
     </Setup>
   );

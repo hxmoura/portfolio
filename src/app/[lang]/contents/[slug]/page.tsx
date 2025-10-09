@@ -1,4 +1,4 @@
-import Button from "@/components/Button";
+import CustomLink from "@/components/CustomLink";
 import Setup from "@/components/Setup";
 import StaggedAnimation from "@/components/StaggedAnimation";
 import { getDictionary } from "@/dictionaries";
@@ -41,9 +41,9 @@ export default async function ContentsPage({ params }: Props) {
       <StaggedAnimation />
 
       <div className="space-y-1">
-        <Button href="/contents" arrowLeft className="text-sm">
+        <CustomLink href="/" arrow="left" className="text-sm">
           {dict.back}
-        </Button>
+        </CustomLink>
 
         <h1 className="font-semibold text-xl text-brand-700 dark:text-white animation-blur">
           {data.title}

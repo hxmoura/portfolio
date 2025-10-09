@@ -2,14 +2,13 @@ import Button from "@/components/Button";
 import CardPost from "@/components/CardPost";
 import Project from "@/components/CardProject";
 import Container from "@/components/Container";
+import CustomLink from "@/components/CustomLink";
 import Experience from "@/components/Experience";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ImageView from "@/components/ImageView";
 import Modal from "@/components/Modal";
 import { Portal } from "@/components/Portal";
-import PrimaryButton from "@/components/PrimaryButton";
-import SecondaryButton from "@/components/SecondaryButton";
 import Setup from "@/components/Setup";
 import StaggedAnimation from "@/components/StaggedAnimation";
 import Status from "@/components/Status";
@@ -17,7 +16,50 @@ import Technology from "@/components/Technology";
 import Title from "@/components/Title";
 import ToggleLanguage from "@/components/ToggleLanguage";
 import ToggleTheme from "@/components/ToggleTheme";
-import { HTMLAttributes } from "react";
+import React, { ComponentPropsWithoutRef, HTMLElementType } from "react";
+
+const Spacer = ({ height = 64 }: { height?: number }) => (
+  <div className="w-full" style={{ height: `${height}px` }} />
+);
+
+const baseElements = {
+  p: "animation-blur",
+  strong: "animation-blur font-semibold",
+  ul: "list-disc list-inside space-y-1",
+  ol: "space-y-2",
+  li: "ml-4 animation-blur",
+};
+
+const simpleElements = Object.fromEntries(
+  Object.entries(baseElements).map(([tag, className]) => [
+    tag,
+    (props: ComponentPropsWithoutRef<HTMLElementType>) =>
+      React.createElement(tag, { ...props, className }),
+  ])
+);
+
+const headingBase =
+  "font-semibold animation-blur text-brand-700 dark:text-white mb-7";
+
+const headingSizes: Record<string, string> = {
+  h1: "text-3xl font-bold",
+  h2: "text-2xl",
+  h3: "text-xl",
+  h4: "text-lg",
+  h5: "text-lg font-medium",
+  h6: "text-lg font-medium",
+};
+
+const headings = Object.fromEntries(
+  Object.entries(headingSizes).map(([tag, size]) => [
+    tag,
+    (props: React.HTMLAttributes<HTMLHeadingElement>) =>
+      React.createElement(tag, {
+        ...props,
+        className: `${size} ${headingBase}`,
+      }),
+  ])
+);
 
 export const components = {
   Technology,
@@ -27,19 +69,18 @@ export const components = {
   Footer,
   Header,
   ImageView,
-  Button,
   Modal,
   Portal,
-  PrimaryButton,
   Project,
-  SecondaryButton,
   Setup,
   StaggedAnimation,
   Status,
   Title,
   ToggleLanguage,
   ToggleTheme,
-  p: (props: HTMLAttributes<HTMLParagraphElement>) => (
-    <p className="animation-blur" {...props} />
-  ),
+  Spacer,
+  CustomLink,
+  Button,
+  ...simpleElements,
+  ...headings,
 };

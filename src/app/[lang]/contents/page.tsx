@@ -1,4 +1,4 @@
-import Button from "@/components/Button";
+import CustomLink from "@/components/CustomLink";
 import Setup from "@/components/Setup";
 import StaggedAnimation from "@/components/StaggedAnimation";
 import Title from "@/components/Title";
@@ -32,9 +32,9 @@ export default async function Contents({ params }: Props) {
   return (
     <Setup dict={dict} lang={lang}>
       <StaggedAnimation />
-      <Button href="/" arrowLeft className="text-sm">
+      <CustomLink href="/" arrow="left" className="text-sm">
         {dict.back}
-      </Button>
+      </CustomLink>
       <Title>{dict.contentTitle}</Title>
       <ul>
         {posts.map((content, index) => (

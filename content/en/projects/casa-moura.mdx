@@ -1,14 +1,73 @@
 ---
-name: "Casa Moura"
-date: "2025-08-08"
 visibility: true
-shortDescription: "ajsdhjadhahdahdshasdhad"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco."
-icon: "🚀"
-technologies: ["reactjs", "docker", "aws", "figma"]
-projectUrl: "https://casamoura.hxmoura.com.br"
-codeUrl: "https://github.com/hxmoura"
-status: "Concluído"
+name: Casa Moura
+shortDescription: 'Buy materials to build or renovate your home. '
+description: >-
+  Casa Moura is an e-commerce site for building materials. You can search for the
+  product and check the information and ratings for each product.
+  Add the chosen products to your cart and complete your purchase safely.
+  securely.
+icon: "\U0001F6E0️"
+stacks:
+  - nextjs
+  - typescript
+  - tailwindcss
+  - firebase
+projectUrl: 'https://casamoura.hxmoura.com.br/'
+codeUrl: 'https://github.com/hxmoura/casa-moura'
+status: done
+publishedAt: '2025-10-07'
 ---
 
-Casa Moura é um projeto legal
+<Title>Layout</Title>
+
+Style guide and prototype screens are available at [Figma](https://www.figma.com/design/VfI83my6VZsLKM4GZJkBhO/Casa-Moura)
+
+**Screens created
+
+- 🏠 Home page
+- 🔍 Product listing by search
+- 📦 Specific product
+- 🔑 Authentication (registration/login)
+- 🛒 Shopping cart (Popup + page)
+- 💳 Multi-step checkout (Payment and personal data)
+- ✅ Purchase confirmation
+- ❌ Product not found
+- ✨ **Extra:** Skeleton Screen + Modals
+
+<Title>Future improvements</Title>
+
+- 🔄 Migrate to a relational database
+- 🔍 Migrate search, pagination and filters to the backend
+- 👤 Allow the user to view the status and history of orders
+- 🛠️ Create a simplified administrative panel to manage orders
+
+<Title>Application flow</Title>
+
+The main flow follows the user journey in an e-commerce store:
+
+1. **Navigation and product search**
+
+   - The user accesses the home page and views the products.
+   - You can filter or search by name.
+
+2. **🛒 Shopping cart**
+
+   - The user adds products to the cart.
+   - The cart is persisted (even after reloading the page).
+   - It is possible to increase/decrease quantity or remove items.
+
+3. **🔑 Authentication**
+
+   - To complete the purchase, the user must be authenticated.
+   - Login/registration is done via Firebase Authentication (email/password).
+   - After authentication, the user returns to the checkout flow.
+
+4. **💳 Checkout and payment**
+
+   - At checkout, the system calculates the total.
+   - Integration with **Mercado Pago Transparent Checkout** processes the payment without redirecting the user.
+
+5. **✅ Order confirmation**
+   - The order is registered in the **Firestore**.
+   - The user receives visual feedback on the payment status (approved, pending or declined).

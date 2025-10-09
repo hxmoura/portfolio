@@ -1,6 +1,5 @@
 import Button from "@/components/Button";
-import PrimaryButton from "@/components/PrimaryButton";
-import SecondaryButton from "@/components/SecondaryButton";
+import CustomLink from "@/components/CustomLink";
 import Setup from "@/components/Setup";
 import StaggedAnimation from "@/components/StaggedAnimation";
 import Technology from "@/components/Technology";
@@ -41,14 +40,14 @@ export default async function ProjectPage({ params }: Props) {
   });
 
   return (
-    <Setup spaceElements={40} dict={dict} lang={lang}>
+    <Setup dict={dict} lang={lang}>
       <StaggedAnimation />
 
-      <div>
+      <div className="mb-20">
         <div className="space-y-1">
-          <Button arrowLeft className="text-sm" href="/">
+          <CustomLink href="/" arrow="left" className="text-sm">
             {dict.back}
-          </Button>
+          </CustomLink>
 
           <Title noMargin>{data.name}</Title>
 
@@ -59,23 +58,23 @@ export default async function ProjectPage({ params }: Props) {
 
         <div className="flex gap-5 mt-6 mb-12">
           {data.projectUrl && (
-            <PrimaryButton openInNewTab href={data.projectUrl}>
+            <Button openInNewTab href={data.projectUrl} type="primary">
               <Icon icon="ri:search-eye-line" width={16} height={16} />
               {dict.seeProject}
-            </PrimaryButton>
+            </Button>
           )}
           {data.codeUrl && (
-            <SecondaryButton openInNewTab href={data.codeUrl}>
+            <Button openInNewTab href={data.codeUrl} type="secondary">
               <Icon icon="ri:code-s-slash-fill" width={16} height={16} />
               {dict.code}
-            </SecondaryButton>
+            </Button>
           )}
         </div>
 
         <p className="animation-blur">{data.description}</p>
 
         <div className="flex flex-wrap gap-3 mt-7">
-          {data.stacks.map((tech) => (
+          {data.stacks?.map((tech) => (
             <Technology key={tech} name={tech} />
           ))}
         </div>
