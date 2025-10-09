@@ -55,6 +55,7 @@ export default async function RootLayout({
           {
             "--color-primary": theme.primaryColor,
             "--color-primary-dark": theme.primaryColorDark,
+            "--color-primary-light": theme.primaryColorLight,
           } as React.CSSProperties
         }
         className={`${segoeUI.className} ${signature.variable} text-brand-500 dark:text-brand-300 bg-white dark:bg-brand-900`}

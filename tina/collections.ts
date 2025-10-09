@@ -45,8 +45,16 @@ export const settingsCollection: Collection = {
     },
     {
       type: "string",
-      label: "Cor primária escura",
+      label: "Cor primária - dark",
       name: "primaryColorDark",
+      ui: {
+        component: "color",
+      },
+    },
+    {
+      type: "string",
+      label: "Cor primária - light",
+      name: "primaryColorLight",
       ui: {
         component: "color",
       },
