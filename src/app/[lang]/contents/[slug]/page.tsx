@@ -37,7 +37,7 @@ export default async function ContentsPage({ params }: Props) {
   });
 
   return (
-    <Setup spaceElements={40} dict={dict} lang={lang}>
+    <Setup dict={dict} lang={lang}>
       <StaggedAnimation />
 
       <div className="space-y-1">

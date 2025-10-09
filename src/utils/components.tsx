@@ -11,7 +11,6 @@ import Modal from "@/components/Modal";
 import { Portal } from "@/components/Portal";
 import Setup from "@/components/Setup";
 import StaggedAnimation from "@/components/StaggedAnimation";
-import Status from "@/components/Status";
 import Technology from "@/components/Technology";
 import Title from "@/components/Title";
 import ToggleLanguage from "@/components/ToggleLanguage";
@@ -74,7 +73,6 @@ export const components = {
   Project,
   Setup,
   StaggedAnimation,
-  Status,
   Title,
   ToggleLanguage,
   ToggleTheme,

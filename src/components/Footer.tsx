@@ -1,4 +1,4 @@
-import Link from "next/link";
+import CustomLink from "./CustomLink";
 
 type Props = {
   dict: Record<string, string>;
@@ -11,26 +11,23 @@ export default function Footer({ dict }: Props) {
 
       <div className="flex flex-col items-center gap-3">
         <div className="flex items-center gap-5">
-          <Link
-            href="mailto:hxmoura@hotmail.com"
-            className="text-sm underline hover:text-brand-700 hover:dark:text-white"
-          >
+          <CustomLink href="mailto:hxmoura@hotmail.com" className="text-sm">
             E-mail
-          </Link>
-          <Link
+          </CustomLink>
+          <CustomLink
             href="https://www.linkedin.com/in/hxmoura/"
-            target="_blank"
-            className="text-sm underline hover:text-brand-700 hover:dark:text-white"
+            external
+            className="text-sm"
           >
             LinkedIn
-          </Link>
-          <Link
+          </CustomLink>
+          <CustomLink
             href="https://github.com/hxmoura"
-            target="_blank"
-            className="text-sm underline hover:text-brand-700 hover:dark:text-white"
+            external
+            className="text-sm"
           >
             Github
-          </Link>
+          </CustomLink>
         </div>
         <p className="text-sm text-brand-500 dark:text-brand-300 text-center">
           © hxmoura {new Date().getFullYear()} - {dict.copyright}
