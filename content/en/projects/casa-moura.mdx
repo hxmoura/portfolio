@@ -1,9 +1,9 @@
 ---
 visibility: true
 name: Casa Moura
-shortDescription: 'Buy materials to build or renovate your home. '
+shortDescription: Buy materials to build or renovate your home
 description: >-
-  Casa Moura is an e-commerce site for building materials. You can search for the
+  Casa Moura is an e-commerce store for building materials. You can search for the
   product and check the information and ratings for each product.
   Add the chosen products to your cart and complete your purchase safely.
   securely.
@@ -19,55 +19,37 @@ status: done
 publishedAt: '2025-10-07'
 ---
 
-<Title>Layout</Title>
+<Section className="space-y-7">
+   ### Search and filter products
 
-Style guide and prototype screens are available at [Figma](https://www.figma.com/design/VfI83my6VZsLKM4GZJkBhO/Casa-Moura)
+Search for the product you want using the search bar or select price and brand filters to refine the results. The functionality allows you to quickly find the items that meet your preferences, as well as saving your search history, making browsing more efficient and practical.
 
-**Screens created
+<ImageView imageUrl="/casa-moura01.png" />
+</Section>
 
-- 🏠 Home page
-- 🔍 Product listing by search
-- 📦 Specific product
-- 🔑 Authentication (registration/login)
-- 🛒 Shopping cart (Popup + page)
-- 💳 Multi-step checkout (Payment and personal data)
-- ✅ Purchase confirmation
-- ❌ Product not found
-- ✨ **Extra:** Skeleton Screen + Modals
+<Section className="space-y-7">
+### View information on each product
 
-<Title>Future improvements</Title>
+View full details of each product, including technical specifications, images, user reviews and description. This functionality allows the visitor to make informed decisions before adding an item to the cart, offering a more complete and intuitive browsing experience.
 
-- 🔄 Migrate to a relational database
-- 🔍 Migrate search, pagination and filters to the backend
-- 👤 Allow the user to view the status and history of orders
-- 🛠️ Create a simplified administrative panel to manage orders
+<ImageView imageUrl="/casa-moura02.png" />
 
-<Title>Application flow</Title>
+</Section>
 
-The main flow follows the user journey in an e-commerce store:
+<Section className="space-y-7">
+### Add products to cart
 
-1. **Navigation and product search**
+Manage your products in the shopping cart conveniently by adding, removing or changing the quantity of each item. Check out the detailed order summary, including the final price and shipping calculation.
 
-   - The user accesses the home page and views the products.
-   - You can filter or search by name.
+<ImageView imageUrl="/casa-moura03.png" />
 
-2. **🛒 Shopping cart**
+</Section>
 
-   - The user adds products to the cart.
-   - The cart is persisted (even after reloading the page).
-   - It is possible to increase/decrease quantity or remove items.
+<Section className="space-y-7">
+### Finalize your order
 
-3. **🔑 Authentication**
+Finalize your purchase quickly and securely by creating an account or using an existing one, informing the delivery address and payment details integrated with Mercado Pago. The whole process takes place within the site, without the need for redirects, guaranteeing convenience and security for the user.
 
-   - To complete the purchase, the user must be authenticated.
-   - Login/registration is done via Firebase Authentication (email/password).
-   - After authentication, the user returns to the checkout flow.
+<ImageView imageUrl="/casa-moura04.png" />
 
-4. **💳 Checkout and payment**
-
-   - At checkout, the system calculates the total.
-   - Integration with **Mercado Pago Transparent Checkout** processes the payment without redirecting the user.
-
-5. **✅ Order confirmation**
-   - The order is registered in the **Firestore**.
-   - The user receives visual feedback on the payment status (approved, pending or declined).
+</Section>
