@@ -44,7 +44,7 @@ export default function CustomLink({
       href={external ? href : `/${lang}${href}`}
       onClick={handleAnalyticsClick}
       target={external ? "_blank" : "_self"}
-      className={`flex items-center gap-1 underline group w-fit hover:text-brand-700 dark:hover:text-white ${
+      className={`inline-flex items-center gap-1 underline group w-fit hover:text-brand-700 dark:hover:text-white ${
         className ?? ""
       } ${!noAnimation && "animation-blur"}`}
     >
