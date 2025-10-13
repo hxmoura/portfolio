@@ -40,7 +40,7 @@ export default function getFrontmatter<T>({
         "publishedAt" in a ? new Date(a.publishedAt as string).getTime() : 0;
       const dateB =
         "publishedAt" in b ? new Date(b.publishedAt as string).getTime() : 0;
-      return dateA - dateB;
+      return dateB - dateA;
     })
     .slice(0, limit);
 }

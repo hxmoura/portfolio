@@ -20,6 +20,7 @@
     "postcss": "^8.5.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-syntax-highlighter": "^15.6.6",
     "tailwindcss": "^4.0.6",
     "tinacms": "^2.8.3"
   },
@@ -29,6 +30,7 @@
     "@types/node": "^20.19.17",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "cross-env": "^10.0.0",
     "eslint": "^9",
     "eslint-config-next": "15.1.7",

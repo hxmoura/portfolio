@@ -19,6 +19,7 @@ type Props = {
     event: analyticsEventName;
     target: string;
   };
+  noAnimation?: boolean;
 };
 
 export default function CustomLink({
@@ -28,6 +29,7 @@ export default function CustomLink({
   arrow,
   className,
   analyticsClick,
+  noAnimation,
 }: Props) {
   const { lang } = useTranslation();
 
@@ -42,9 +44,9 @@ export default function CustomLink({
       href={external ? href : `/${lang}${href}`}
       onClick={handleAnalyticsClick}
       target={external ? "_blank" : "_self"}
-      className={`flex items-center gap-1 underline group w-fit animation-blur hover:text-brand-700 dark:hover:text-white ${
+      className={`flex items-center gap-1 underline group w-fit hover:text-brand-700 dark:hover:text-white ${
         className ?? ""
-      }`}
+      } ${!noAnimation && "animation-blur"}`}
     >
       {arrow === "left" && <Icon icon="ri:arrow-left-line" fontSize={16} />}
 

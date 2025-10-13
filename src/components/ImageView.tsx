@@ -29,7 +29,7 @@ export default function ImageView({
         src={imageUrl}
         alt="Image"
         style={{ width, height }}
-        className={`transition-transform duration-300 hover:scale-103 cursor-pointer ${
+        className={`transition-transform duration-300 hover:scale-103 cursor-pointer rounded-lg animation-blur ${
           className ?? ""
         }`}
         draggable={false}

@@ -11,19 +11,26 @@ export default function Footer({ dict }: Props) {
 
       <div className="flex flex-col items-center gap-3">
         <div className="flex items-center gap-5">
-          <CustomLink href="mailto:hxmoura@hotmail.com" className="text-sm">
+          <CustomLink
+            noAnimation
+            external
+            href="mailto:hxmoura@hotmail.com"
+            className="text-sm"
+          >
             E-mail
           </CustomLink>
           <CustomLink
-            href="https://www.linkedin.com/in/hxmoura/"
+            noAnimation
             external
+            href="https://www.linkedin.com/in/hxmoura/"
             className="text-sm"
           >
             LinkedIn
           </CustomLink>
           <CustomLink
-            href="https://github.com/hxmoura"
+            noAnimation
             external
+            href="https://github.com/hxmoura"
             className="text-sm"
           >
             Github

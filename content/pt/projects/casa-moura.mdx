@@ -19,59 +19,37 @@ status: done
 publishedAt: "2025-10-07"
 ---
 
-### Layout
+<Section className="space-y-7">
+   ### Pesquise e filtre produtos
 
-Guia de estilo e prototipação das telas estão disponíveis no <CustomLink external href="https://www.figma.com/design/VfI83my6VZsLKM4GZJkBhO/Casa-Moura">Figma</CustomLink>
+Pesquise pelo produto desejado utilizando a barra de busca ou selecione filtros de preço e marca para refinar os resultados. A funcionalidade permite encontrar rapidamente os itens que atendem às suas preferências, além de salvar seu histórico de pesquisa, tornando a navegação mais eficiente e prática.
 
-**Telas criadas:**
+<ImageView imageUrl="/casa-moura01.png" />
+</Section>
 
-- 🏠 Página inicial
-- 🔍 Listagem de produtos por pesquisa
-- 📦 Produto específico
-- 🔑 Autenticação (Cadastro/login)
-- 🛒 Carrinho de compras (Popup + página)
-- 💳 Checkout multi-step (Pagamento e dados pessoais)
-- ✅ Confirmação de compra
-- ❌ Produto não encontrado
-- ✨ **Extra:** Skeleton Screen + Modais
+<Section className="space-y-7">
+### Visualize informações de cada produto
 
-<Spacer />
+Visualize detalhes completos de cada produto, incluindo especificações técnicas, imagens, avaliações de usuários e descrição. Essa funcionalidade permite que o visitante tome decisões informadas antes de adicionar um item ao carrinho, oferecendo uma experiência de navegação mais completa e intuitiva.
 
-### Melhorias futuras
+<ImageView imageUrl="/casa-moura02.png" />
 
-- 🔄 Migrar para um banco de dados relacional
-- 🔍 Migrar pesquisa, paginação e filtros para o backend
-- 👤 Permitir que o usuário visualize o status e o histórico de pedidos
-- 🛠️ Criar um painel administrativo simplificado para gerenciar pedidos
+</Section>
 
-<Spacer />
+<Section className="space-y-7">
+### Adicione produtos no carrinho
 
-### Fluxo da aplicação
+Gerencie seus produtos no carrinho de compras de forma prática, adicionando, removendo ou alterando a quantidade de cada item. Confira o resumo detalhado do pedido, incluindo o preço final e o cálculo do frete.
 
-O fluxo principal segue a jornada do usuário em um e-commerce:
+<ImageView imageUrl="/casa-moura03.png" />
 
-1. **🔎 Navegação e busca de produtos**
+</Section>
 
-   - O usuário acessa a página inicial e visualiza os produtos.
-   - É possível filtrar ou pesquisar por nome.
+<Section className="space-y-7">
+### Finalize seu pedido
 
-2. **🛒 Carrinho de compras**
+Finalize sua compra de maneira rápida e segura, criando uma conta ou utilizando uma existente, informando o endereço de entrega e os dados de pagamento integrados ao Mercado Pago. Todo o processo acontece dentro do site, sem a necessidade de redirecionamento, garantindo conveniência e segurança ao usuário.
 
-   - O usuário adiciona produtos ao carrinho.
-   - O carrinho é persistido (mesmo após recarregar a página).
-   - É possível aumentar/diminuir quantidade ou remover itens.
+<ImageView imageUrl="/casa-moura04.png" />
 
-3. **🔑 Autenticação**
-
-   - Para finalizar a compra, o usuário precisa estar autenticado.
-   - O login/cadastro é feito via Firebase Authentication (email/senha).
-   - Após autenticação, o usuário retorna ao fluxo de checkout.
-
-4. **💳 Checkout e pagamento**
-
-   - No checkout, o sistema calcula o total.
-   - Integração com o **Mercado Pago Checkout Transparente** processa o pagamento sem redirecionar o usuário.
-
-5. **✅ Confirmação de pedido**
-   - O pedido é registrado no **Firestore**.
-   - O usuário recebe feedback visual do status do pagamento (aprovado, pendente ou recusado).
+</Section>

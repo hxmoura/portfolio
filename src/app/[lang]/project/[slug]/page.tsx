@@ -40,10 +40,10 @@ export default async function ProjectPage({ params }: Props) {
   });
 
   return (
-    <Setup dict={dict} lang={lang}>
+    <Setup spaceElements={96} dict={dict} lang={lang}>
       <StaggedAnimation />
 
-      <div className="mb-20">
+      <div className="mb-5">
         <div className="space-y-1">
           <CustomLink href="/" arrow="left" className="text-sm">
             {dict.back}
@@ -64,7 +64,11 @@ export default async function ProjectPage({ params }: Props) {
             </Button>
           )}
           {data.codeUrl && (
-            <Button openInNewTab href={data.codeUrl} type="secondary">
+            <Button
+              openInNewTab
+              href={data.codeUrl}
+              type={data.projectUrl ? "secondary" : "primary"}
+            >
               <Icon icon="ri:code-s-slash-fill" width={16} height={16} />
               {dict.code}
             </Button>

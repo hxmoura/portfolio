@@ -1,6 +1,7 @@
 import Button from "@/components/Button";
 import CardPost from "@/components/CardPost";
 import Project from "@/components/CardProject";
+import Code from "@/components/Code";
 import Container from "@/components/Container";
 import CustomLink from "@/components/CustomLink";
 import Experience from "@/components/Experience";
@@ -9,6 +10,7 @@ import Header from "@/components/Header";
 import ImageView from "@/components/ImageView";
 import Modal from "@/components/Modal";
 import { Portal } from "@/components/Portal";
+import Section from "@/components/Section";
 import Setup from "@/components/Setup";
 import StaggedAnimation from "@/components/StaggedAnimation";
 import Technology from "@/components/Technology";
@@ -38,7 +40,7 @@ const simpleElements = Object.fromEntries(
 );
 
 const headingBase =
-  "font-semibold animation-blur text-brand-700 dark:text-white mb-7";
+  "font-semibold animation-blur text-brand-700 dark:text-white";
 
 const headingSizes: Record<string, string> = {
   h1: "text-3xl font-bold",
@@ -79,6 +81,8 @@ export const components = {
   Spacer,
   CustomLink,
   Button,
+  Section,
+  code: Code,
   ...simpleElements,
   ...headings,
 };
