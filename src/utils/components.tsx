@@ -27,7 +27,7 @@ const baseElements = {
   p: "animation-blur",
   strong: "animation-blur font-semibold",
   ul: "list-disc list-inside space-y-1",
-  ol: "space-y-2",
+  ol: "space-y-2 list-decimal",
   li: "ml-4 animation-blur",
 };
 
