@@ -1,0 +1,33 @@
+---
+visibility: true
+title: >-
+  How to share your project publicly in development using VS
+  Code
+publishedAt: '2025-10-14'
+---
+
+
+VS Code holds secrets that few people know about, one of which is the function of exposing your project publicly without having to host it on cloud services (port forwarding).
+
+This feature is useful for showing your project to other team members or clients. For security reasons, it should only be used for development, here's how to do it:
+
+1.  Press **CTRL + Quotation marks ( ' )** on your keyboard and access the "Ports" tab.
+
+    <ImageView imageUrl="/vs01.webp" />
+    <Spacer height={36} />
+
+2.  Click on the "Forward a port" button and enter the port your project is running on.
+
+    <ImageView imageUrl="/vs02.webp" />
+    <Spacer height={36} />
+
+3.  You will receive an access link, but it is still private (only you can access it). To allow public access, right-click on **"Private"**. Change the Port visibility to **"Public"**.
+    <ImageView imageUrl="/vs03.webp" />
+    <Spacer height={36} />
+
+That's it! You'll have your project publicly available and easily accessible, just copy the link and share it with your team.
+
+**Notes
+
+- When you do the process for the first time, you'll need to authenticate with Github
+- In order for the link to be available, the project must be running on your machine on the same port as that specified in the share.
