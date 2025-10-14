@@ -1,0 +1,34 @@
+---
+visibility: true
+title: Como recuperar quase qualquer coisa no git (git reflog)
+publishedAt: '2025-10-14'
+---
+
+Reflog é um recurso do Git que armazena informações das alterações de branch, commit, merge, rebase, checkout, entre outros (uma espécie de dedo duro 🫣).
+
+Diferente do git log, que rastreia commits de todas as pessoas do projeto, o reflog é armazenado localmente e apenas você tem acesso as informações referente as atualizações que fez (cada pessoa do projeto tem seu próprio reflog).
+
+Ao dar o comando **git reflog** você terá acesso as atualizações que você fez no projeto nos últimos 90 dias (esse tempo pode ser alterado), tendo acesso a informações que não são mais visíveis através dos comandos como git log e git branch.
+
+<ImageView imageUrl="/git-reflog.webp" />
+
+Podemos identificar cada alteração através de 2 formas:
+
+- Hashs (em amarelo na imagem)
+- Identificador HEAD@&#123;n&#125;, onde "n" representa o número de movimentos atrás no histórico. Por exemplo, _HEAD@{2}_ refere-se ao estado de duas alterações atrás.
+
+Usamos esses identificadores para recuperar branchs, acessar um commit antigo, desfazer um reset ou obter informações específicas do projeto:
+
+`git reset --hard <hash>`
+Recuperar commits antigos - Isso irá desfazer todas as alterações atuais do projeto.
+
+`git checkout -b new-branch <hash>`
+Criar uma nova branch a partir de um commit anterior identificado no reflog.
+
+`git diff master master@{yesterday}`
+Mostrar todas as alterações na branch master do dia anterior.
+
+``git checkout bugfix@{2.days.ago}``
+Visualizar como a branch bugfix estava a 2 dias atrás.
+
+Para saber mais, confira a <CustomLink href="https://git-scm.com/docs/git-reflog" external>documentação</CustomLink> do git reflog.
