@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+![Portfolio background](./public/wallpaper.png)
 
-## Getting Started
+## 🔎 Sobre o projeto
 
-First, run the development server:
+Um espaço dedicado a compartilhar meus aprendizados em tecnologia, projetos desenvolvidos e experiências profissionais ao longo da minha trajetória como desenvolvedor.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+#### Funcionalidades:
+
+- Internacionalização (PT/EN): conteúdo disponível em português e inglês.
+- Projetos: destaque para os principais e mais relevantes trabalhos que desenvolvi ou nos quais colaborei.
+- Blog: seção dedicada a compartilhar aprendizados, ideias e experiências adquiridas ao longo da minha jornada como desenvolvedor.
+- Sobre mim: um breve resumo da minha trajetória e conexão com a tecnologia.
+
+## 🛠️ Tecnologias utilizadas
+
+- ⚡ Next.js — Framework usado no desenvolvimento da interface e estrutura do portfólio.
+- 🎨 Tailwind CSS — Estilização moderna e responsiva de todos os componentes.
+- 🧠 TypeScript — Tipagem estática para maior segurança e manutenção do código.
+- 📝 TinaCMS — Gerenciamento simples e eficiente de todo o conteúdo.
+- 🌐 DeepL API — Tradução do conteúdo entre português e inglês.
+- 🔄 GitHub Actions — Automação do processo de internacionalização.
+
+## 📂 Estrutura do projeto
+```
+portfolio/
+├── .github/                 # Workflow Github Actions
+├── content/                 # Conteúdos gerenciados
+├── public/                  # Conteúdos estáticos/imagens
+├── tina/                    # Setup TinaCMS
+├── src/                     # Website
+│   ├── app/                 # Páginas
+│   ├── components/          # Componentes reutilizáveis
+│   ├── contexts/            # Estados globais
+│   ├── dictionaries/        # Internacionalização
+│   ├── fonts/               # Fontes personalizadas
+│   ├── scripts/             # Scripts de automação (GitHub Actions)
+│   ├── types/               # Tipos TypeScript
+│   ├── utils/               # Funções utilitárias
+│   └── middleware.ts/       # Middleware de internacionalização
+└── package.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**⚠️ Este projeto foi desenvolvido para uso pessoal e demonstra propósitos de portfolio.**
