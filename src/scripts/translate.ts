@@ -27,7 +27,7 @@ async function translateText(text: string) {
     throw new Error(`DeepL API returned status ${res.status}: ${errorText}`);
   }
 
-  const data = (await res.json()) as any;
+  const data = await res.json();
 
   return data.translations?.[0]?.text;
 }
@@ -49,8 +49,8 @@ async function translateFile(file: string) {
   fs.mkdirSync(path.dirname(targetPath), { recursive: true });
   fs.writeFileSync(targetPath, translated, "utf8");
     console.log(`Successfully translated: ${file} -> ${targetPath}`);
-  } catch (error: any) {
-    console.error(`Error translating file ${file}:`, error.message || error);
+  } catch (error: unknown) {
+    console.error(`Error translating file ${file}:`, (error as Error).message || error);
 }
 }
 
