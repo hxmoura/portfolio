@@ -13,9 +13,11 @@ async function translateText(text: string) {
 
   const res = await fetch(apiUrl, {
     method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    headers: { 
+      "Content-Type": "application/x-www-form-urlencoded",
+      "Authorization": `DeepL-Auth-Key ${DEEPL_API_KEY}`
+    },
     body: new URLSearchParams({
-      auth_key: DEEPL_API_KEY,
       text,
       source_lang: "PT",
       target_lang: "EN",
@@ -39,19 +41,19 @@ async function translateFile(file: string) {
   const text = fs.readFileSync(file, "utf8");
 
   try {
-  const translated = await translateText(text);
+    const translated = await translateText(text);
 
-  if (!translated) {
+    if (!translated) {
       console.error(`Could not translate file ${file}: DeepL returned an empty translation`);
-    return;
-  }
+      return;
+    }
 
-  fs.mkdirSync(path.dirname(targetPath), { recursive: true });
-  fs.writeFileSync(targetPath, translated, "utf8");
+    fs.mkdirSync(path.dirname(targetPath), { recursive: true });
+    fs.writeFileSync(targetPath, translated, "utf8");
     console.log(`Successfully translated: ${file} -> ${targetPath}`);
   } catch (error: unknown) {
     console.error(`Error translating file ${file}:`, (error as Error).message || error);
-}
+  }
 }
 
 const files = process.argv.slice(2);
@@ -66,4 +68,3 @@ for (const file of files) {
     await translateFile(file);
   }
 }
-
