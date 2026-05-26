@@ -36,6 +36,10 @@ export default async function Home({ params }: Props) {
     limit: 5,
   });
 
+  const stackIcons = data.stack
+    ? data.stack.flatMap((tech) => tech.split(",").map((t) => t.trim()))
+    : [];
+
   return (
     <Setup spaceElements={80} dict={dict} lang={lang}>
       <StaggedAnimation />
@@ -48,9 +52,9 @@ export default async function Home({ params }: Props) {
             {dict.readMore}
           </CustomLink>
         )}
-
+  
         <div className="flex items-center gap-2 text-brand-300 dark:text-brand-500 animation-blur">
-          {data.stack.map((tech, index) => (
+          {stackIcons.map((tech, index) => (
             <Icon
               key={index}
               icon={tech}
