@@ -139,6 +139,86 @@
         "pt": "Biblioteca JavaScript para construção de interfaces de usuário modernas e componentizadas.",
         "en": "JavaScript library for building modern, component-based user interfaces."
       }
+    },
+    {
+      "key": "nestjs",
+      "name": "NestJS",
+      "icon": "material-icon-theme:nest",
+      "color": "#E0234E",
+      "description": {
+        "pt": "Framework Node.js estruturado que organiza a arquitetura do código backend, garantindo padronização, alta escalabilidade e facilidade de manutenção.",
+        "en": "A structured Node.js framework that organizes the backend code architecture, ensuring standardization, high scalability, and ease of maintenance."
+      }
+    },
+    {
+      "key": "redis",
+      "name": "Redis",
+      "icon": "devicon:redis",
+      "color": "#DC382D",
+      "description": {
+        "pt": "Banco de dados em memória de altíssima velocidade, utilizado principalmente para cache de dados, gerenciamento de sessões e armazenamento temporário de rápida leitura.",
+        "en": "A very high-speed in-memory database, primarily used for data caching, session management, and fast-read temporary storage."
+      }
+    },
+    {
+      "key": "r2",
+      "name": "Cloudflare R2",
+      "icon": "devicon:cloudflare",
+      "color": "#F38020",
+      "description": {
+        "pt": "Serviço de armazenamento de objetos na nuvem focado em armazenar grandes volumes de dados não estruturados.",
+        "en": "A cloud-based object storage service focused on storing large volumes of unstructured data."
+      }
+    },
+    {
+      "key": "bullmq",
+      "name": "BullMQ",
+      "icon": "picon:bull",
+      "color": "#3288E6",
+      "description": {
+        "pt": "Sistema de gerenciamento de filas para organizar, distribuir e processar tarefas assíncronas complexas em segundo plano com alta confiabilidade.",
+        "en": "A queue management system for organizing, distributing, and processing complex asynchronous tasks in the background with high reliability."
+      }
+    },
+    {
+      "key": "socket.io",
+      "name": "Socket.io",
+      "icon": "cib:socket-io",
+      "color": "#010101",
+      "description": {
+        "pt": "Biblioteca voltada para possibilitar a comunicação bidirecional, assíncrona e em tempo real baseada em eventos entre clientes web e servidores.",
+        "en": "A library designed to enable bidirectional, asynchronous, and real-time event-driven communication between web clients and servers."
+      }
+    },
+    {
+      "key": "resend",
+      "name": "Resend",
+      "icon": "simple-icons:resend",
+      "color": "#000000",
+      "description": {
+        "pt": "Biblioteca voltada para possibilitar a comunicação bidirecional, assíncrona e em tempo real baseada em eventos entre clientes web e servidores.",
+        "en": "A library designed to enable bidirectional, asynchronous, and real-time event-driven communication between web clients and servers."
+      }
+    },
+    {
+      "key": "swagger",
+      "name": "Swagger",
+      "icon": "material-icon-theme:swagger",
+      "color": "#85EA2D",
+      "description": {
+        "pt": "Conjunto de ferramentas que gera automaticamente a documentação interativa e visual de APIs RESTful, facilitando a simulação de testes e o consumo.",
+        "en": "A set of tools that automatically generates interactive and visual documentation for RESTful APIs, facilitating test simulation and consumption."
+      }
+    },
+    {
+      "key": "postgresql",
+      "name": "PostgreSQL",
+      "icon": "devicon:postgresql",
+      "color": "#4169E1",
+      "description": {
+        "pt": "Sistema de gerenciamento de banco de dados relacional, reconhecido por sua robustez, integridade de dados e suporte a consultas complexas.",
+        "en": "A relational database management system, recognized for its robustness, data integrity, and support for complex queries."
+      }
     }
   ]
 }
