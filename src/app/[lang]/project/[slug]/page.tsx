@@ -56,30 +56,32 @@ export default async function ProjectPage({ params }: Props) {
           </p>
         </div>
 
-        <div className="flex gap-5 mt-6 mb-12">
-          {data.projectUrl && (
-            <Button openInNewTab href={data.projectUrl} type="primary">
-              <Icon icon="ri:search-eye-line" width={16} height={16} />
-              {dict.seeProject}
-            </Button>
-          )}
-          {data.codeUrl && (
-            <Button
-              openInNewTab
-              href={data.codeUrl}
-              type={data.projectUrl ? "secondary" : "primary"}
-            >
-              <Icon icon="ri:code-s-slash-fill" width={16} height={16} />
-              {dict.code}
-            </Button>
-          )}
-        </div>
+       {data.projectUrl || data.codeUrl ? (
+          <div className="flex gap-5 mt-6">
+            {data.projectUrl && (
+              <Button openInNewTab href={data.projectUrl} type="primary">
+                <Icon icon="ri:search-eye-line" width={16} height={16} />
+                {dict.seeProject}
+              </Button>
+            )}
+            {data.codeUrl && (
+              <Button
+                openInNewTab
+                href={data.codeUrl}
+                type={data.projectUrl ? "secondary" : "primary"}
+              >
+                <Icon icon="ri:code-s-slash-fill" width={16} height={16} />
+                {dict.code}
+              </Button>
+            )}
+          </div>
+        ) : null}
 
-        <p className="animation-blur">{data.description}</p>
+        <p className="animation-blur mt-12">{data.description}</p>
 
         <div className="flex flex-wrap gap-3 mt-7">
-          {data.stacks?.map((tech) => (
-            <Technology key={tech} name={tech} />
+          {data.stacks?.map((tech, i) => (
+            <Technology key={i} name={tech} />
           ))}
         </div>
       </div>

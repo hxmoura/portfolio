@@ -196,8 +196,8 @@
       "icon": "simple-icons:resend",
       "color": "#000000",
       "description": {
-        "pt": "Biblioteca voltada para possibilitar a comunicação bidirecional, assíncrona e em tempo real baseada em eventos entre clientes web e servidores.",
-        "en": "A library designed to enable bidirectional, asynchronous, and real-time event-driven communication between web clients and servers."
+        "pt": "Plataforma moderna e simplificada de envio de e-mails para desenvolvedores, otimizada para o disparo de notificações e mensagens transacionais.",
+        "en": "A modern and simplified email sending platform for developers, optimized for sending notifications and transactional messages."
       }
     },
     {
@@ -208,16 +208,6 @@
       "description": {
         "pt": "Conjunto de ferramentas que gera automaticamente a documentação interativa e visual de APIs RESTful, facilitando a simulação de testes e o consumo.",
         "en": "A set of tools that automatically generates interactive and visual documentation for RESTful APIs, facilitating test simulation and consumption."
-      }
-    },
-    {
-      "key": "postgresql",
-      "name": "PostgreSQL",
-      "icon": "devicon:postgresql",
-      "color": "#4169E1",
-      "description": {
-        "pt": "Sistema de gerenciamento de banco de dados relacional, reconhecido por sua robustez, integridade de dados e suporte a consultas complexas.",
-        "en": "A relational database management system, recognized for its robustness, data integrity, and support for complex queries."
       }
     }
   ]

@@ -1,9 +1,9 @@
 ---
 visibility: true
 name: LinkPix
-shortDescription: Uma nova maneira doar e se comunicar com streamers
+shortDescription: Doações Pix e interações em tempo real para criadores de conteúdo.
 description: O LinkPix permite que espectadores apoiem seus streamers favoritos com doações via Pix. Cada contribuição pode incluir uma mensagem de texto ou voz exibida durante a transmissão. Uma forma simples e divertida de fortalecer a conexão entre criador e audiência.
-icon: "\U0001F4B8"
+icon: "🤑"
 stacks:
   - nestjs
   - nextjs
@@ -16,15 +16,40 @@ stacks:
   - swagger
   - postgresql
 status: development
-publishedAt: '2025-10-13'
+publishedAt: "2025-10-14"
 ---
 
-
-
+  <ImageView imageUrl="/linkpix-logo.png" />
 
 <Section className="space-y-7">
-   ### Planejamento
+   ### Fluxo de doações em tempo real
 
-O projeto se encontra em fases iniciais de planejamento! Atualmente, definindo o fluxo da aplicação e tecnologias a serem utilizadas.
+<ul className="flex flex-col gap-4">
+  <li className="animation-blur">• **Ação do usuário:** O espectador acessa a página do streamer, digita seu nome, uma mensagem e escolhe o valor da doação. O sistema gera um QR Code Pix para o pagamento.</li>
+  <li className="animation-blur">• **Confirmação:** Assim que o pagamento é concluído, o gateway financeiro avisa o nosso sistema em tempo real (Webhook), dando início ao processamento da mensagem em uma fila (BullMQ).</li>
+  <li className="animation-blur">• **Processamento:** O sistema analisa o texto da mensagem aplicando filtros contra conteúdo impróprio. Em seguida, a mensagem é convertida em áudio (Text-to-Speech) e as informações são atualizadas no banco de dados.</li>
+  <li className="animation-blur">• **Organização:** A mensagem processada é enviada para uma lista de espera inteligente (Redis), que garante que nenhuma mensagem seja perdida e que a ordem cronológica de chegada seja seguida.</li>
+  <li className="animation-blur">• **Exibição na live:** Uma conexão direta com a tela do streamer (WebSocket) exibe a mensagem visualmente no overlay, reproduz o áudio gerado e, assim que a exibição termina, busca automaticamente a próxima mensagem da fila.</li>
+</ul>
+
+<ImageView imageUrl="/linkpix-fluxogram.png" className="rounded-xl" />
+</Section>
+
+<Section className="space-y-7">
+### Decisões técnicas
+
+<ul className="flex flex-col gap-4">
+  <li className="animation-blur">• **Segurança:** O sistema armazena o histórico de transações financeiras de forma detalhada e imutável (Ledger). O saldo não é apenas um número solto no banco de dados, cada transação é registrado para fins de auditoria e segurança.</li>
+  <li className="animation-blur">• **Flexibilidade:** As configurações de Widgets são armazenados de forma flexível (JSON), permitindo que cada widget seja personalizado de maneira diferente, sem exigir grandes alterações no banco de dados a cada nova opção.</li>
+  <li className="animation-blur">• **Autenticação:** O projeto utiliza uma estratégia híbrida de autenticação: JWTs stateless com informações essenciais de identidade e autorização, como ID do usuário e roles, enquanto sessões armazenadas no Redis permitem controle ativo de acesso. Com isso, o sistema mantém a praticidade e escalabilidade dos tokens JWT, mas ainda consegue invalidar sessões específicas a qualquer momento, como em casos de suspeita de comprometimento da conta, reduzindo o risco de uso indevido.</li>
+</ul>
+
+<div className="animation-blur space-y-2">
+  <ImageView imageUrl="/linkpix-diagram.png" />
+
+  <small className="text-xs text-right">
+    Modelagem de dados com relacionamentos que garantem a integridade financeira do sistema.
+  </small>
+</div>
 
 </Section>
