@@ -1,0 +1,56 @@
+---
+visibility: true
+name: LinkPix
+shortDescription: Pix donations and real-time interactions for content creators.
+description: LinkPix allows viewers to support their favorite streamers with donations via Pix. Each contribution can include a text or voice message displayed during the broadcast. A simple and fun way to strengthen the connection between creator and audience.
+icon: "\U0001F911"
+stacks:
+  - nestjs
+  - nextjs
+  - typescript
+  - redis
+  - r2
+  - bullmq
+  - socket.io
+  - resend
+  - swagger
+  - postgresql
+status: development
+publishedAt: '2025-10-14'
+---
+
+
+  <ImageView imageUrl="/linkpix-logo.png" />
+
+<Section className="space-y-7">
+   ### Donation flow in real time
+
+<ul className="flex flex-col gap-4">
+  <li className="animation-blur">- **User action:** The viewer accesses the streamer's page, enters their name, a message and chooses the donation amount. The system generates a Pix QR Code for payment.</li>
+  <li className="animation-blur">- **Confirmation:** As soon as the payment is completed, the financial gateway notifies our system in real time (Webhook), starting the processing of the message in a queue (BullMQ).</li>
+  <li className="animation-blur">- **Processing:** The system analyzes the text of the message by applying filters against inappropriate content. The message is then converted into audio (Text-to-Speech) and the information is updated in the database.</li>
+  <li className="animation-blur">- **Organization:** The processed message is sent to an intelligent waiting list (Redis), which ensures that no message is lost and that the chronological order of arrival is followed.</li>
+  <li className="animation-blur">- **Live display:** A direct connection to the streamer's screen (WebSocket) displays the message visually on the overlay, plays the generated audio and, as soon as the display ends, automatically searches for the next message in the queue.</li>
+</ul>
+
+<ImageView imageUrl="/linkpix-fluxogram.png" className="rounded-xl" />
+</Section>
+
+<Section className="space-y-7">
+### Technical decisions
+
+<ul className="flex flex-col gap-4">
+  <li className="animation-blur">- **Security:** The system stores the history of financial transactions in a detailed and immutable form (Ledger). The balance is not just a loose number in the database, every transaction is recorded for auditing and security purposes.</li>
+  <li className="animation-blur">- **Flexibility:** Widget settings are stored flexibly (JSON), allowing each widget to be customized differently, without requiring major changes to the database with each new option.</li>
+  <li className="animation-blur">- **Authentication:** The project uses a hybrid authentication strategy: stateless JWTs with essential identity and authorization information, such as user ID and roles, while sessions stored in Redis allow active access control. With this, the system maintains the practicality and scalability of JWT tokens, but is still able to invalidate specific sessions at any time, such as in cases of suspected account compromise, reducing the risk of misuse.</li>
+</ul>
+
+<div className="animation-blur space-y-2">
+  <ImageView imageUrl="/linkpix-diagram.png" />
+
+  <small className="text-xs text-right">
+    Data modeling with relationships that guarantee the system's financial integrity.
+  </small>
+</div>
+
+</Section>
