@@ -2,7 +2,7 @@
 visibility: true
 name: LinkPix
 shortDescription: Pix donations and real-time interactions for content creators.
-description: LinkPix allows viewers to support their favorite streamers with donations via Pix. Each contribution can include a text or voice message displayed during the broadcast. A simple and fun way to strengthen the connection between creator and audience.
+description: LinkPix allows viewers to support their favorite streamers with donations via Pix. Each contribution can include a text or voice message displayed during the stream. A simple and fun way to strengthen the connection between creators and their audience.
 icon: "\U0001F911"
 stacks:
   - nestjs
@@ -23,29 +23,30 @@ publishedAt: '2025-10-14'
 
 
 
+
   <ImageView imageUrl="/linkpix-logo.png" />
 
 <Section className="space-y-7">
    ### Real-time donation flow
 
 <ul className="flex flex-col gap-4">
-  <li className="animation-blur">• **User action:** The viewer accesses the streamer’s page, enters their name and a message, and selects the donation amount. The system generates a Pix QR Code for payment.</li>
-  <li className="animation-blur">• **Confirmation:** As soon as the payment is completed, the payment gateway notifies our system in real time (Webhook), initiating message processing in a queue (BullMQ).</li>
+  <li className="animation-blur">• **User action:** The viewer visits the streamer’s page, enters their name and a message, and selects the donation amount. The system generates a Pix QR code for payment.</li>
+  <li className="animation-blur">• **Confirmation:** As soon as the payment is completed, the payment gateway notifies our system in real time (Webhook), triggering the processing of the message in a queue (BullMQ).</li>
   <li className="animation-blur">• **Processing:** The system analyzes the message text using filters to detect inappropriate content. The message is then converted to audio (Text-to-Speech), and the information is updated in the database.</li>
   <li className="animation-blur">• **Organization:** The processed message is sent to a smart queue (Redis), which ensures that no messages are lost and that the chronological order of arrival is maintained.</li>
-  <li className="animation-blur">• **Live display:** A direct connection to the streamer’s screen (WebSocket) visually displays the message in the overlay, plays the generated audio, and, as soon as the display ends, automatically fetches the next message from the queue.</li>
+  <li className="animation-blur">• **Live Display:** A direct connection to the streamer’s screen (WebSocket) visually displays the message in the overlay, plays the generated audio, and, as soon as the display ends, automatically fetches the next message from the queue.</li>
 </ul>
 
-<ImageView imageUrl="/linkpix-fluxogram.png" className="rounded-xl" />
+<ImageView imageUrl="/diagram-donation.png" className="rounded-xl" />
 </Section>
 
 <Section className="space-y-7">
 ### Technical Decisions
 
 <ul className="flex flex-col gap-4">
-  <li className="animation-blur">• **Security:** The system stores financial transaction history in a detailed and immutable manner (Ledger). The balance is not just a random number in the database; every transaction is recorded for auditing and security purposes.</li>
+  <li className="animation-blur">• **Security:** The system stores a detailed and immutable history of financial transactions (Ledger). The balance isn’t just a single number in the database; every transaction is recorded for auditing and security purposes.</li>
   <li className="animation-blur">• **Flexibility:** Widget configurations are stored flexibly (JSON), allowing each widget to be customized differently without requiring major changes to the database for each new option.</li>
-  <li className="animation-blur">• **Authentication:** The project uses a hybrid authentication strategy: stateless JWTs containing essential identity and authorization information, such as user ID and roles, while sessions stored in Redis enable active access control. As a result, the system maintains the convenience and scalability of JWT tokens, yet can still invalidate specific sessions at any time—such as in cases of suspected account compromise—reducing the risk of misuse.</li>
+  <li className="animation-blur">• **Authentication:** The project uses a hybrid authentication strategy: stateless JWTs containing essential identity and authorization information, such as user ID and roles, while sessions stored in Redis enable active access control. As a result, the system maintains the convenience and scalability of JWT tokens, while still being able to invalidate specific sessions at any time—such as in cases of suspected account compromise—thereby reducing the risk of misuse.</li>
 </ul>
 
 <div className="animation-blur space-y-2">
