@@ -10,10 +10,10 @@ export const bodyField = {
   },
 } as const;
 
-const defaultValues = {
+const defaultValues = () => ({
   publishedAt: new Date().toISOString().split("T")[0],
   visibility: true,
-};
+});
 
 const visibilityField: TinaField = {
   type: "boolean",
